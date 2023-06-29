@@ -30,6 +30,33 @@ The repository is organized with the following folders:
 * ``sat`` that contains the SAT-based implementation of the learner, and
 * ``asp`` that contains the ASP-based implementation of the learner.
 
+## Dockerfile
+
+The dockerfile contains both the `sat` and `asp` versions of this library.
+
+```commandline
+git clone https://github.com/bonetblai/learner-strips.git
+cd learner-strips
+docker build --platform=linux/amd64 -t learner-strips .
+```
+
+Note: If you get errors regarding _FPU_EXTENDED, check the --platform option is correct.
+
+### Test the SAT version with the docker
+
+Access the docker container interactively:
+
+```commandline
+docker run -it learner-strips
+```
+
+Then while inside the docker container:
+
+```commandline
+cd /learner_strips/sat/scripts/
+python3 experiment.py --remove_dir --dfas_path ../../dfas --verbose 1 benchmarks/benchmarks_grid4ops_1r.txt 0
+```
+
 ## Inputs
 
 The input for learning is a number of labeled directed graphs that encode (opaque) state spaces: each node in
@@ -93,7 +120,7 @@ provide python scripts that implement the solution pipeline.
 The source for the C++ program called ```strips``` is in ```sat/src```. To construct it, a simple ```make```
 in the folder should suffice, yet some update to ```makefile``` may be required. The program requires the
 ```boost``` library and the submodules ```dfa-sat``` and ```sat-engine``` that can be installed with the
-command ```git sumodule update --init```.
+command ```git submodule update --init```.
 
 Directly executing ```src/strips``` gives a description of the different options and usages provided.
 One such usage allows for the generation of ```.dot``` (graphical) description of an input DFA.
@@ -103,12 +130,36 @@ SAT theories using a computation cluster, and then selecting the solutions that 
 instances and that are simpler in terms of number of actions and predicates, their arities, etc. For this,
 we make use of the python script described below.
 
+### SAT-based Installation Instructions
+
+```bash
+# get the repo
+git clone https://github.com/bonetblai/learner-strips.git
+cd learner-strips
+git submodule update --init
+```
+
+```bash
+# build the strips C++ program
+cd sat/src/
+make
+```
+
+There should now be an executable named `strips` in the folder. Check it works by doing:
+
+```bash
+chmod +x strips
+./strips --help
+```
+
+And you should see the instructions for using it. 
+
 
 ### Generation of graphs from DFAs
 
 To generate a ```.pdf``` file that graphically depicts a DFA, execute:
 
-```
+```bash
 ./strips --dump-ts-dot --output <filename>.dot <filename>.dfa
 dot -Tpdf -O <filename>.dot
 ```
@@ -124,6 +175,19 @@ pipeline for solving and verifying. The script reads a *record* from a *benchmar
 the SAT theory according to the values of the hyperparameters specified in the records, and, if successful,
 verify the obtained STRIPS model on a number of input graphs, also specified in the record.
 It is assumed that the SAT solver ```glucose``` is in the path.
+
+```bash
+cd ..  # get out of this project to keep glucose project separate
+git clone https://github.com/audemard/glucose.git
+cd glucose/simp
+git submodule update --init  # for pfactory
+make
+chmod +x glucose
+
+# now add this glucose executable to your path
+export PATH=$PATH:$(pwd)
+```
+
 
 Several benchmarks files are provided in the folder ```sat/scripts/benchmarks```. Each such file contains
 one record per line. As an example, let us consider the file ```sat/scripts/benchmarks/benchmarks_grid4ops_1r.txt```
@@ -273,7 +337,9 @@ to the ones reported in the KR2021 paper.
 For example, to solve the blocks3ops problem and store the results in the folder
 ```results/```, it is enough to do the following:
 
-```python incremental_solver.lp --remove_dir --results results benchmarks/blocks3ops_1r.txt 0```
+```bash
+python incremental_solver.py --remove_dir --results results benchmarks/blocks3ops_1r.txt 0
+```
 
 This instruct the solver to run the experiment described in the first line (record number 0)
 in the file ```benchmarks/blocks3ops_1r.txt```. The flag ```--remove_dir``` instruct the
