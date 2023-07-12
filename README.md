@@ -47,7 +47,7 @@ Note: If you get errors regarding _FPU_EXTENDED, check the --platform option is 
 Access the docker container interactively:
 
 ```commandline
-docker run -it learner-strips
+docker run --platform=linux/amd64 -it learner-strips
 ```
 
 Then while inside the docker container:
@@ -160,6 +160,7 @@ And you should see the instructions for using it.
 To generate a ```.pdf``` file that graphically depicts a DFA, execute:
 
 ```bash
+sudo apt install graphviz
 ./strips --dump-ts-dot --output <filename>.dot <filename>.dfa
 dot -Tpdf -O <filename>.dot
 ```

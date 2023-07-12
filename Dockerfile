@@ -1,4 +1,4 @@
-FROM ubuntu:18.04 as builder
+FROM --platform=linux/amd64 ubuntu:latest as builder
 
 ##### BEGIN SAT INSTALLATION ####
 
@@ -46,7 +46,9 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 
 # Build the strips program
 WORKDIR /learner_strips/sat/src
-RUN make .
+RUN make
+
+
 
 
 
