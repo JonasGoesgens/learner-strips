@@ -248,7 +248,7 @@ def create_instances_in_destination_folder(graph_path: Path, graphs: List[str], 
             with (graph_path / Path(graph)).open('r') as fd:
                 for line in fd.readlines():
                     if line.startswith('labelname('):
-                        i, label = re.search('labelname\((\d*),"(.*)"\).', line).groups()
+                        i, label = re.search('labelname\((\d*),\s*"(.*)"\).', line).groups()
                         actions.add(label)
     else:
         for index, graph in enumerate(graphs):
