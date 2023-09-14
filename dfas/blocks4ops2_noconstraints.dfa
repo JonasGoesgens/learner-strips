@@ -1,0 +1,2051 @@
+dfa 2048 -1
+4 get put unstack stack
+1 0
+0
+0
+1 put 41
+1 put 41
+1 put 81
+1 put 81
+2 put 45 put 83
+2 put 45 put 83
+0
+0
+2 put 41 stack 129
+2 put 41 stack 129
+2 put 89 stack 529
+2 put 89 stack 529
+4 put 45 put 91 stack 133 stack 531
+4 put 45 put 91 stack 133 stack 531
+0
+0
+2 put 57 stack 265
+2 put 57 stack 265
+2 put 81 stack 1025
+2 put 81 stack 1025
+4 put 61 put 83 stack 269 stack 1027
+4 put 61 put 83 stack 269 stack 1027
+0
+0
+3 put 57 stack 145 stack 265
+3 put 57 stack 145 stack 265
+3 put 89 stack 529 stack 1033
+3 put 89 stack 529 stack 1033
+6 put 61 put 91 stack 149 stack 269 stack 531 stack 1035
+6 put 61 put 91 stack 149 stack 269 stack 531 stack 1035
+0
+0
+1 put 41
+1 put 41
+1 put 113
+1 put 113
+2 put 45 put 115
+2 put 45 put 115
+0
+1 get 2
+2 put 41 stack 161
+3 get 2 put 41 stack 161
+2 put 121 stack 561
+3 get 6 put 121 stack 561
+4 put 45 put 123 stack 165 stack 563
+5 get 6 put 45 put 123 stack 165 stack 563
+0
+0
+2 put 57 stack 297
+2 put 57 stack 297
+2 put 113 stack 1057
+2 put 113 stack 1057
+4 put 61 put 115 stack 301 stack 1059
+4 put 61 put 115 stack 301 stack 1059
+0
+1 get 18
+3 put 57 stack 177 stack 297
+4 get 18 put 57 stack 177 stack 297
+3 put 121 stack 561 stack 1065
+4 get 22 put 121 stack 561 stack 1065
+6 put 61 put 123 stack 181 stack 301 stack 563 stack 1067
+7 get 22 put 61 put 123 stack 181 stack 301 stack 563 stack 1067
+0
+0
+1 put 105
+1 put 105
+1 put 81
+1 put 81
+2 put 109 put 83
+2 put 109 put 83
+0
+0
+2 put 105 stack 193
+2 put 105 stack 193
+2 put 89 stack 593
+2 put 89 stack 593
+4 put 109 put 91 stack 197 stack 595
+4 put 109 put 91 stack 197 stack 595
+0
+1 get 4
+2 put 121 stack 329
+3 get 6 put 121 stack 329
+2 put 81 stack 1089
+3 get 4 put 81 stack 1089
+4 put 125 put 83 stack 333 stack 1091
+5 get 6 put 125 put 83 stack 333 stack 1091
+0
+1 get 12
+3 put 121 stack 209 stack 329
+4 get 14 put 121 stack 209 stack 329
+3 put 89 stack 593 stack 1097
+4 get 12 put 89 stack 593 stack 1097
+6 put 125 put 91 stack 213 stack 333 stack 595 stack 1099
+7 get 14 put 125 put 91 stack 213 stack 333 stack 595 stack 1099
+0
+0
+1 put 105
+1 put 105
+1 put 113
+1 put 113
+2 put 109 put 115
+2 put 109 put 115
+0
+1 get 66
+2 put 105 stack 225
+3 get 66 put 105 stack 225
+2 put 121 stack 625
+3 get 70 put 121 stack 625
+4 put 109 put 123 stack 229 stack 627
+5 get 70 put 109 put 123 stack 229 stack 627
+0
+1 get 36
+2 put 121 stack 361
+3 get 38 put 121 stack 361
+2 put 113 stack 1121
+3 get 36 put 113 stack 1121
+4 put 125 put 115 stack 365 stack 1123
+5 get 38 put 125 put 115 stack 365 stack 1123
+0
+2 get 82 get 44
+3 put 121 stack 241 stack 361
+5 get 82 get 46 put 121 stack 241 stack 361
+3 put 121 stack 625 stack 1129
+5 get 86 get 44 put 121 stack 625 stack 1129
+6 put 125 put 123 stack 245 stack 365 stack 627 stack 1131
+8 get 86 get 46 put 125 put 123 stack 245 stack 365 stack 627 stack 1131
+0
+0
+1 put 169
+1 put 169
+1 put 209
+1 put 209
+2 put 173 put 211
+2 put 173 put 211
+0
+1 unstack 2
+2 put 169 stack 129
+3 put 169 unstack 2 stack 129
+2 put 217 stack 657
+3 put 217 unstack 6 stack 657
+4 put 173 put 219 stack 133 stack 659
+5 put 173 put 219 unstack 6 stack 133 stack 659
+0
+0
+2 put 185 stack 393
+2 put 185 stack 393
+2 put 209 stack 1153
+2 put 209 stack 1153
+4 put 189 put 211 stack 397 stack 1155
+4 put 189 put 211 stack 397 stack 1155
+0
+1 unstack 18
+3 put 185 stack 145 stack 393
+4 put 185 unstack 18 stack 145 stack 393
+3 put 217 stack 657 stack 1161
+4 put 217 unstack 22 stack 657 stack 1161
+6 put 189 put 219 stack 149 stack 397 stack 659 stack 1163
+7 put 189 put 219 unstack 22 stack 149 stack 397 stack 659 stack 1163
+0
+0
+1 put 169
+1 put 169
+1 put 241
+1 put 241
+2 put 173 put 243
+2 put 173 put 243
+0
+2 get 130 unstack 34
+2 put 169 stack 161
+4 get 130 put 169 unstack 34 stack 161
+2 put 249 stack 689
+4 get 134 put 249 unstack 38 stack 689
+4 put 173 put 251 stack 165 stack 691
+6 get 134 put 173 put 251 unstack 38 stack 165 stack 691
+0
+0
+2 put 185 stack 425
+2 put 185 stack 425
+2 put 241 stack 1185
+2 put 241 stack 1185
+4 put 189 put 243 stack 429 stack 1187
+4 put 189 put 243 stack 429 stack 1187
+0
+2 get 146 unstack 50
+3 put 185 stack 177 stack 425
+5 get 146 put 185 unstack 50 stack 177 stack 425
+3 put 249 stack 689 stack 1193
+5 get 150 put 249 unstack 54 stack 689 stack 1193
+6 put 189 put 251 stack 181 stack 429 stack 691 stack 1195
+8 get 150 put 189 put 251 unstack 54 stack 181 stack 429 stack 691 stack 1195
+0
+0
+1 put 233
+1 put 233
+1 put 209
+1 put 209
+2 put 237 put 211
+2 put 237 put 211
+0
+1 unstack 66
+2 put 233 stack 193
+3 put 233 unstack 66 stack 193
+2 put 217 stack 721
+3 put 217 unstack 70 stack 721
+4 put 237 put 219 stack 197 stack 723
+5 put 237 put 219 unstack 70 stack 197 stack 723
+0
+1 get 132
+2 put 249 stack 457
+3 get 134 put 249 stack 457
+2 put 209 stack 1217
+3 get 132 put 209 stack 1217
+4 put 253 put 211 stack 461 stack 1219
+5 get 134 put 253 put 211 stack 461 stack 1219
+0
+2 get 140 unstack 82
+3 put 249 stack 209 stack 457
+5 get 142 put 249 unstack 82 stack 209 stack 457
+3 put 217 stack 721 stack 1225
+5 get 140 put 217 unstack 86 stack 721 stack 1225
+6 put 253 put 219 stack 213 stack 461 stack 723 stack 1227
+8 get 142 put 253 put 219 unstack 86 stack 213 stack 461 stack 723 stack 1227
+0
+0
+1 put 233
+1 put 233
+1 put 241
+1 put 241
+2 put 237 put 243
+2 put 237 put 243
+0
+2 get 194 unstack 98
+2 put 233 stack 225
+4 get 194 put 233 unstack 98 stack 225
+2 put 249 stack 753
+4 get 198 put 249 unstack 102 stack 753
+4 put 237 put 251 stack 229 stack 755
+6 get 198 put 237 put 251 unstack 102 stack 229 stack 755
+0
+1 get 164
+2 put 249 stack 489
+3 get 166 put 249 stack 489
+2 put 241 stack 1249
+3 get 164 put 241 stack 1249
+4 put 253 put 243 stack 493 stack 1251
+5 get 166 put 253 put 243 stack 493 stack 1251
+0
+3 get 210 get 172 unstack 114
+3 put 249 stack 241 stack 489
+6 get 210 get 174 put 249 unstack 114 stack 241 stack 489
+3 put 249 stack 753 stack 1257
+6 get 214 get 172 put 249 unstack 118 stack 753 stack 1257
+6 put 253 put 251 stack 245 stack 493 stack 755 stack 1259
+9 get 214 get 174 put 253 put 251 unstack 118 stack 245 stack 493 stack 755 stack 1259
+0
+0
+1 put 297
+1 put 297
+1 put 337
+1 put 337
+2 put 301 put 339
+2 put 301 put 339
+0
+1 unstack 18
+2 put 297 stack 385
+3 put 297 unstack 18 stack 385
+2 put 345 stack 785
+3 put 345 unstack 22 stack 785
+4 put 301 put 347 stack 389 stack 787
+5 put 301 put 347 unstack 22 stack 389 stack 787
+0
+0
+2 put 313 stack 265
+2 put 313 stack 265
+2 put 337 stack 1281
+2 put 337 stack 1281
+4 put 317 put 339 stack 269 stack 1283
+4 put 317 put 339 stack 269 stack 1283
+0
+1 unstack 18
+3 put 313 stack 401 stack 265
+4 put 313 unstack 18 stack 401 stack 265
+3 put 345 stack 785 stack 1289
+4 put 345 unstack 22 stack 785 stack 1289
+6 put 317 put 347 stack 405 stack 269 stack 787 stack 1291
+7 put 317 put 347 unstack 22 stack 405 stack 269 stack 787 stack 1291
+0
+0
+1 put 297
+1 put 297
+1 put 369
+1 put 369
+2 put 301 put 371
+2 put 301 put 371
+0
+2 get 258 unstack 50
+2 put 297 stack 417
+4 get 258 put 297 unstack 50 stack 417
+2 put 377 stack 817
+4 get 262 put 377 unstack 54 stack 817
+4 put 301 put 379 stack 421 stack 819
+6 get 262 put 301 put 379 unstack 54 stack 421 stack 819
+0
+0
+2 put 313 stack 297
+2 put 313 stack 297
+2 put 369 stack 1313
+2 put 369 stack 1313
+4 put 317 put 371 stack 301 stack 1315
+4 put 317 put 371 stack 301 stack 1315
+0
+2 get 274 unstack 50
+3 put 313 stack 433 stack 297
+5 get 274 put 313 unstack 50 stack 433 stack 297
+3 put 377 stack 817 stack 1321
+5 get 278 put 377 unstack 54 stack 817 stack 1321
+6 put 317 put 379 stack 437 stack 301 stack 819 stack 1323
+8 get 278 put 317 put 379 unstack 54 stack 437 stack 301 stack 819 stack 1323
+0
+0
+1 put 361
+1 put 361
+1 put 337
+1 put 337
+2 put 365 put 339
+2 put 365 put 339
+0
+1 unstack 82
+2 put 361 stack 449
+3 put 361 unstack 82 stack 449
+2 put 345 stack 849
+3 put 345 unstack 86 stack 849
+4 put 365 put 347 stack 453 stack 851
+5 put 365 put 347 unstack 86 stack 453 stack 851
+0
+1 get 260
+2 put 377 stack 329
+3 get 262 put 377 stack 329
+2 put 337 stack 1345
+3 get 260 put 337 stack 1345
+4 put 381 put 339 stack 333 stack 1347
+5 get 262 put 381 put 339 stack 333 stack 1347
+0
+2 get 268 unstack 82
+3 put 377 stack 465 stack 329
+5 get 270 put 377 unstack 82 stack 465 stack 329
+3 put 345 stack 849 stack 1353
+5 get 268 put 345 unstack 86 stack 849 stack 1353
+6 put 381 put 347 stack 469 stack 333 stack 851 stack 1355
+8 get 270 put 381 put 347 unstack 86 stack 469 stack 333 stack 851 stack 1355
+0
+0
+1 put 361
+1 put 361
+1 put 369
+1 put 369
+2 put 365 put 371
+2 put 365 put 371
+0
+2 get 322 unstack 114
+2 put 361 stack 481
+4 get 322 put 361 unstack 114 stack 481
+2 put 377 stack 881
+4 get 326 put 377 unstack 118 stack 881
+4 put 365 put 379 stack 485 stack 883
+6 get 326 put 365 put 379 unstack 118 stack 485 stack 883
+0
+1 get 292
+2 put 377 stack 361
+3 get 294 put 377 stack 361
+2 put 369 stack 1377
+3 get 292 put 369 stack 1377
+4 put 381 put 371 stack 365 stack 1379
+5 get 294 put 381 put 371 stack 365 stack 1379
+0
+3 get 338 get 300 unstack 114
+3 put 377 stack 497 stack 361
+6 get 338 get 302 put 377 unstack 114 stack 497 stack 361
+3 put 377 stack 881 stack 1385
+6 get 342 get 300 put 377 unstack 118 stack 881 stack 1385
+6 put 381 put 379 stack 501 stack 365 stack 883 stack 1387
+9 get 342 get 302 put 381 put 379 unstack 118 stack 501 stack 365 stack 883 stack 1387
+0
+0
+1 put 425
+1 put 425
+1 put 465
+1 put 465
+2 put 429 put 467
+2 put 429 put 467
+0
+2 unstack 258 unstack 146
+2 put 425 stack 385
+4 put 425 unstack 258 unstack 146 stack 385
+2 put 473 stack 913
+4 put 473 unstack 262 unstack 150 stack 913
+4 put 429 put 475 stack 389 stack 915
+6 put 429 put 475 unstack 262 unstack 150 stack 389 stack 915
+0
+0
+2 put 441 stack 393
+2 put 441 stack 393
+2 put 465 stack 1409
+2 put 465 stack 1409
+4 put 445 put 467 stack 397 stack 1411
+4 put 445 put 467 stack 397 stack 1411
+0
+2 unstack 274 unstack 146
+3 put 441 stack 401 stack 393
+5 put 441 unstack 274 unstack 146 stack 401 stack 393
+3 put 473 stack 913 stack 1417
+5 put 473 unstack 278 unstack 150 stack 913 stack 1417
+6 put 445 put 475 stack 405 stack 397 stack 915 stack 1419
+8 put 445 put 475 unstack 278 unstack 150 stack 405 stack 397 stack 915 stack 1419
+0
+0
+1 put 425
+1 put 425
+1 put 497
+1 put 497
+2 put 429 put 499
+2 put 429 put 499
+0
+3 get 386 unstack 290 unstack 178
+2 put 425 stack 417
+5 get 386 put 425 unstack 290 unstack 178 stack 417
+2 put 505 stack 945
+5 get 390 put 505 unstack 294 unstack 182 stack 945
+4 put 429 put 507 stack 421 stack 947
+7 get 390 put 429 put 507 unstack 294 unstack 182 stack 421 stack 947
+0
+0
+2 put 441 stack 425
+2 put 441 stack 425
+2 put 497 stack 1441
+2 put 497 stack 1441
+4 put 445 put 499 stack 429 stack 1443
+4 put 445 put 499 stack 429 stack 1443
+0
+3 get 402 unstack 306 unstack 178
+3 put 441 stack 433 stack 425
+6 get 402 put 441 unstack 306 unstack 178 stack 433 stack 425
+3 put 505 stack 945 stack 1449
+6 get 406 put 505 unstack 310 unstack 182 stack 945 stack 1449
+6 put 445 put 507 stack 437 stack 429 stack 947 stack 1451
+9 get 406 put 445 put 507 unstack 310 unstack 182 stack 437 stack 429 stack 947 stack 1451
+0
+0
+1 put 489
+1 put 489
+1 put 465
+1 put 465
+2 put 493 put 467
+2 put 493 put 467
+0
+2 unstack 322 unstack 210
+2 put 489 stack 449
+4 put 489 unstack 322 unstack 210 stack 449
+2 put 473 stack 977
+4 put 473 unstack 326 unstack 214 stack 977
+4 put 493 put 475 stack 453 stack 979
+6 put 493 put 475 unstack 326 unstack 214 stack 453 stack 979
+0
+1 get 388
+2 put 505 stack 457
+3 get 390 put 505 stack 457
+2 put 465 stack 1473
+3 get 388 put 465 stack 1473
+4 put 509 put 467 stack 461 stack 1475
+5 get 390 put 509 put 467 stack 461 stack 1475
+0
+3 get 396 unstack 338 unstack 210
+3 put 505 stack 465 stack 457
+6 get 398 put 505 unstack 338 unstack 210 stack 465 stack 457
+3 put 473 stack 977 stack 1481
+6 get 396 put 473 unstack 342 unstack 214 stack 977 stack 1481
+6 put 509 put 475 stack 469 stack 461 stack 979 stack 1483
+9 get 398 put 509 put 475 unstack 342 unstack 214 stack 469 stack 461 stack 979 stack 1483
+0
+0
+1 put 489
+1 put 489
+1 put 497
+1 put 497
+2 put 493 put 499
+2 put 493 put 499
+0
+3 get 450 unstack 354 unstack 242
+2 put 489 stack 481
+5 get 450 put 489 unstack 354 unstack 242 stack 481
+2 put 505 stack 1009
+5 get 454 put 505 unstack 358 unstack 246 stack 1009
+4 put 493 put 507 stack 485 stack 1011
+7 get 454 put 493 put 507 unstack 358 unstack 246 stack 485 stack 1011
+0
+1 get 420
+2 put 505 stack 489
+3 get 422 put 505 stack 489
+2 put 497 stack 1505
+3 get 420 put 497 stack 1505
+4 put 509 put 499 stack 493 stack 1507
+5 get 422 put 509 put 499 stack 493 stack 1507
+0
+4 get 466 get 428 unstack 370 unstack 242
+3 put 505 stack 497 stack 489
+7 get 466 get 430 put 505 unstack 370 unstack 242 stack 497 stack 489
+3 put 505 stack 1009 stack 1513
+7 get 470 get 428 put 505 unstack 374 unstack 246 stack 1009 stack 1513
+6 put 509 put 507 stack 501 stack 493 stack 1011 stack 1515
+10 get 470 get 430 put 509 put 507 unstack 374 unstack 246 stack 501 stack 493 stack 1011 stack 1515
+0
+0
+1 put 553
+1 put 553
+1 put 593
+1 put 593
+2 put 557 put 595
+2 put 557 put 595
+0
+0
+2 put 553 stack 641
+2 put 553 stack 641
+2 put 601 stack 529
+2 put 601 stack 529
+4 put 557 put 603 stack 645 stack 531
+4 put 557 put 603 stack 645 stack 531
+0
+1 unstack 12
+2 put 569 stack 777
+3 put 569 unstack 14 stack 777
+2 put 593 stack 1537
+3 put 593 unstack 12 stack 1537
+4 put 573 put 595 stack 781 stack 1539
+5 put 573 put 595 unstack 14 stack 781 stack 1539
+0
+1 unstack 12
+3 put 569 stack 657 stack 777
+4 put 569 unstack 14 stack 657 stack 777
+3 put 601 stack 529 stack 1545
+4 put 601 unstack 12 stack 529 stack 1545
+6 put 573 put 603 stack 661 stack 781 stack 531 stack 1547
+7 put 573 put 603 unstack 14 stack 661 stack 781 stack 531 stack 1547
+0
+0
+1 put 553
+1 put 553
+1 put 625
+1 put 625
+2 put 557 put 627
+2 put 557 put 627
+0
+1 get 514
+2 put 553 stack 673
+3 get 514 put 553 stack 673
+2 put 633 stack 561
+3 get 518 put 633 stack 561
+4 put 557 put 635 stack 677 stack 563
+5 get 518 put 557 put 635 stack 677 stack 563
+0
+1 unstack 44
+2 put 569 stack 809
+3 put 569 unstack 46 stack 809
+2 put 625 stack 1569
+3 put 625 unstack 44 stack 1569
+4 put 573 put 627 stack 813 stack 1571
+5 put 573 put 627 unstack 46 stack 813 stack 1571
+0
+2 get 530 unstack 44
+3 put 569 stack 689 stack 809
+5 get 530 put 569 unstack 46 stack 689 stack 809
+3 put 633 stack 561 stack 1577
+5 get 534 put 633 unstack 44 stack 561 stack 1577
+6 put 573 put 635 stack 693 stack 813 stack 563 stack 1579
+8 get 534 put 573 put 635 unstack 46 stack 693 stack 813 stack 563 stack 1579
+0
+0
+1 put 617
+1 put 617
+1 put 593
+1 put 593
+2 put 621 put 595
+2 put 621 put 595
+0
+0
+2 put 617 stack 705
+2 put 617 stack 705
+2 put 601 stack 593
+2 put 601 stack 593
+4 put 621 put 603 stack 709 stack 595
+4 put 621 put 603 stack 709 stack 595
+0
+2 get 516 unstack 76
+2 put 633 stack 841
+4 get 518 put 633 unstack 78 stack 841
+2 put 593 stack 1601
+4 get 516 put 593 unstack 76 stack 1601
+4 put 637 put 595 stack 845 stack 1603
+6 get 518 put 637 put 595 unstack 78 stack 845 stack 1603
+0
+2 get 524 unstack 76
+3 put 633 stack 721 stack 841
+5 get 526 put 633 unstack 78 stack 721 stack 841
+3 put 601 stack 593 stack 1609
+5 get 524 put 601 unstack 76 stack 593 stack 1609
+6 put 637 put 603 stack 725 stack 845 stack 595 stack 1611
+8 get 526 put 637 put 603 unstack 78 stack 725 stack 845 stack 595 stack 1611
+0
+0
+1 put 617
+1 put 617
+1 put 625
+1 put 625
+2 put 621 put 627
+2 put 621 put 627
+0
+1 get 578
+2 put 617 stack 737
+3 get 578 put 617 stack 737
+2 put 633 stack 625
+3 get 582 put 633 stack 625
+4 put 621 put 635 stack 741 stack 627
+5 get 582 put 621 put 635 stack 741 stack 627
+0
+2 get 548 unstack 108
+2 put 633 stack 873
+4 get 550 put 633 unstack 110 stack 873
+2 put 625 stack 1633
+4 get 548 put 625 unstack 108 stack 1633
+4 put 637 put 627 stack 877 stack 1635
+6 get 550 put 637 put 627 unstack 110 stack 877 stack 1635
+0
+3 get 594 get 556 unstack 108
+3 put 633 stack 753 stack 873
+6 get 594 get 558 put 633 unstack 110 stack 753 stack 873
+3 put 633 stack 625 stack 1641
+6 get 598 get 556 put 633 unstack 108 stack 625 stack 1641
+6 put 637 put 635 stack 757 stack 877 stack 627 stack 1643
+9 get 598 get 558 put 637 put 635 unstack 110 stack 757 stack 877 stack 627 stack 1643
+0
+0
+1 put 681
+1 put 681
+1 put 721
+1 put 721
+2 put 685 put 723
+2 put 685 put 723
+0
+1 unstack 514
+2 put 681 stack 641
+3 put 681 unstack 514 stack 641
+2 put 729 stack 657
+3 put 729 unstack 518 stack 657
+4 put 685 put 731 stack 645 stack 659
+5 put 685 put 731 unstack 518 stack 645 stack 659
+0
+1 unstack 140
+2 put 697 stack 905
+3 put 697 unstack 142 stack 905
+2 put 721 stack 1665
+3 put 721 unstack 140 stack 1665
+4 put 701 put 723 stack 909 stack 1667
+5 put 701 put 723 unstack 142 stack 909 stack 1667
+0
+2 unstack 530 unstack 140
+3 put 697 stack 657 stack 905
+5 put 697 unstack 530 unstack 142 stack 657 stack 905
+3 put 729 stack 657 stack 1673
+5 put 729 unstack 534 unstack 140 stack 657 stack 1673
+6 put 701 put 731 stack 661 stack 909 stack 659 stack 1675
+8 put 701 put 731 unstack 534 unstack 142 stack 661 stack 909 stack 659 stack 1675
+0
+0
+1 put 681
+1 put 681
+1 put 753
+1 put 753
+2 put 685 put 755
+2 put 685 put 755
+0
+2 get 642 unstack 546
+2 put 681 stack 673
+4 get 642 put 681 unstack 546 stack 673
+2 put 761 stack 689
+4 get 646 put 761 unstack 550 stack 689
+4 put 685 put 763 stack 677 stack 691
+6 get 646 put 685 put 763 unstack 550 stack 677 stack 691
+0
+1 unstack 172
+2 put 697 stack 937
+3 put 697 unstack 174 stack 937
+2 put 753 stack 1697
+3 put 753 unstack 172 stack 1697
+4 put 701 put 755 stack 941 stack 1699
+5 put 701 put 755 unstack 174 stack 941 stack 1699
+0
+3 get 658 unstack 562 unstack 172
+3 put 697 stack 689 stack 937
+6 get 658 put 697 unstack 562 unstack 174 stack 689 stack 937
+3 put 761 stack 689 stack 1705
+6 get 662 put 761 unstack 566 unstack 172 stack 689 stack 1705
+6 put 701 put 763 stack 693 stack 941 stack 691 stack 1707
+9 get 662 put 701 put 763 unstack 566 unstack 174 stack 693 stack 941 stack 691 stack 1707
+0
+0
+1 put 745
+1 put 745
+1 put 721
+1 put 721
+2 put 749 put 723
+2 put 749 put 723
+0
+1 unstack 578
+2 put 745 stack 705
+3 put 745 unstack 578 stack 705
+2 put 729 stack 721
+3 put 729 unstack 582 stack 721
+4 put 749 put 731 stack 709 stack 723
+5 put 749 put 731 unstack 582 stack 709 stack 723
+0
+2 get 644 unstack 204
+2 put 761 stack 969
+4 get 646 put 761 unstack 206 stack 969
+2 put 721 stack 1729
+4 get 644 put 721 unstack 204 stack 1729
+4 put 765 put 723 stack 973 stack 1731
+6 get 646 put 765 put 723 unstack 206 stack 973 stack 1731
+0
+3 get 652 unstack 594 unstack 204
+3 put 761 stack 721 stack 969
+6 get 654 put 761 unstack 594 unstack 206 stack 721 stack 969
+3 put 729 stack 721 stack 1737
+6 get 652 put 729 unstack 598 unstack 204 stack 721 stack 1737
+6 put 765 put 731 stack 725 stack 973 stack 723 stack 1739
+9 get 654 put 765 put 731 unstack 598 unstack 206 stack 725 stack 973 stack 723 stack 1739
+0
+0
+1 put 745
+1 put 745
+1 put 753
+1 put 753
+2 put 749 put 755
+2 put 749 put 755
+0
+2 get 706 unstack 610
+2 put 745 stack 737
+4 get 706 put 745 unstack 610 stack 737
+2 put 761 stack 753
+4 get 710 put 761 unstack 614 stack 753
+4 put 749 put 763 stack 741 stack 755
+6 get 710 put 749 put 763 unstack 614 stack 741 stack 755
+0
+2 get 676 unstack 236
+2 put 761 stack 1001
+4 get 678 put 761 unstack 238 stack 1001
+2 put 753 stack 1761
+4 get 676 put 753 unstack 236 stack 1761
+4 put 765 put 755 stack 1005 stack 1763
+6 get 678 put 765 put 755 unstack 238 stack 1005 stack 1763
+0
+4 get 722 get 684 unstack 626 unstack 236
+3 put 761 stack 753 stack 1001
+7 get 722 get 686 put 761 unstack 626 unstack 238 stack 753 stack 1001
+3 put 761 stack 753 stack 1769
+7 get 726 get 684 put 761 unstack 630 unstack 236 stack 753 stack 1769
+6 put 765 put 763 stack 757 stack 1005 stack 755 stack 1771
+10 get 726 get 686 put 765 put 763 unstack 630 unstack 238 stack 757 stack 1005 stack 755 stack 1771
+0
+0
+1 put 809
+1 put 809
+1 put 849
+1 put 849
+2 put 813 put 851
+2 put 813 put 851
+0
+1 unstack 530
+2 put 809 stack 897
+3 put 809 unstack 530 stack 897
+2 put 857 stack 785
+3 put 857 unstack 534 stack 785
+4 put 813 put 859 stack 901 stack 787
+5 put 813 put 859 unstack 534 stack 901 stack 787
+0
+1 unstack 268
+2 put 825 stack 777
+3 put 825 unstack 270 stack 777
+2 put 849 stack 1793
+3 put 849 unstack 268 stack 1793
+4 put 829 put 851 stack 781 stack 1795
+5 put 829 put 851 unstack 270 stack 781 stack 1795
+0
+2 unstack 530 unstack 268
+3 put 825 stack 913 stack 777
+5 put 825 unstack 530 unstack 270 stack 913 stack 777
+3 put 857 stack 785 stack 1801
+5 put 857 unstack 534 unstack 268 stack 785 stack 1801
+6 put 829 put 859 stack 917 stack 781 stack 787 stack 1803
+8 put 829 put 859 unstack 534 unstack 270 stack 917 stack 781 stack 787 stack 1803
+0
+0
+1 put 809
+1 put 809
+1 put 881
+1 put 881
+2 put 813 put 883
+2 put 813 put 883
+0
+2 get 770 unstack 562
+2 put 809 stack 929
+4 get 770 put 809 unstack 562 stack 929
+2 put 889 stack 817
+4 get 774 put 889 unstack 566 stack 817
+4 put 813 put 891 stack 933 stack 819
+6 get 774 put 813 put 891 unstack 566 stack 933 stack 819
+0
+1 unstack 300
+2 put 825 stack 809
+3 put 825 unstack 302 stack 809
+2 put 881 stack 1825
+3 put 881 unstack 300 stack 1825
+4 put 829 put 883 stack 813 stack 1827
+5 put 829 put 883 unstack 302 stack 813 stack 1827
+0
+3 get 786 unstack 562 unstack 300
+3 put 825 stack 945 stack 809
+6 get 786 put 825 unstack 562 unstack 302 stack 945 stack 809
+3 put 889 stack 817 stack 1833
+6 get 790 put 889 unstack 566 unstack 300 stack 817 stack 1833
+6 put 829 put 891 stack 949 stack 813 stack 819 stack 1835
+9 get 790 put 829 put 891 unstack 566 unstack 302 stack 949 stack 813 stack 819 stack 1835
+0
+0
+1 put 873
+1 put 873
+1 put 849
+1 put 849
+2 put 877 put 851
+2 put 877 put 851
+0
+1 unstack 594
+2 put 873 stack 961
+3 put 873 unstack 594 stack 961
+2 put 857 stack 849
+3 put 857 unstack 598 stack 849
+4 put 877 put 859 stack 965 stack 851
+5 put 877 put 859 unstack 598 stack 965 stack 851
+0
+2 get 772 unstack 332
+2 put 889 stack 841
+4 get 774 put 889 unstack 334 stack 841
+2 put 849 stack 1857
+4 get 772 put 849 unstack 332 stack 1857
+4 put 893 put 851 stack 845 stack 1859
+6 get 774 put 893 put 851 unstack 334 stack 845 stack 1859
+0
+3 get 780 unstack 594 unstack 332
+3 put 889 stack 977 stack 841
+6 get 782 put 889 unstack 594 unstack 334 stack 977 stack 841
+3 put 857 stack 849 stack 1865
+6 get 780 put 857 unstack 598 unstack 332 stack 849 stack 1865
+6 put 893 put 859 stack 981 stack 845 stack 851 stack 1867
+9 get 782 put 893 put 859 unstack 598 unstack 334 stack 981 stack 845 stack 851 stack 1867
+0
+0
+1 put 873
+1 put 873
+1 put 881
+1 put 881
+2 put 877 put 883
+2 put 877 put 883
+0
+2 get 834 unstack 626
+2 put 873 stack 993
+4 get 834 put 873 unstack 626 stack 993
+2 put 889 stack 881
+4 get 838 put 889 unstack 630 stack 881
+4 put 877 put 891 stack 997 stack 883
+6 get 838 put 877 put 891 unstack 630 stack 997 stack 883
+0
+2 get 804 unstack 364
+2 put 889 stack 873
+4 get 806 put 889 unstack 366 stack 873
+2 put 881 stack 1889
+4 get 804 put 881 unstack 364 stack 1889
+4 put 893 put 883 stack 877 stack 1891
+6 get 806 put 893 put 883 unstack 366 stack 877 stack 1891
+0
+4 get 850 get 812 unstack 626 unstack 364
+3 put 889 stack 1009 stack 873
+7 get 850 get 814 put 889 unstack 626 unstack 366 stack 1009 stack 873
+3 put 889 stack 881 stack 1897
+7 get 854 get 812 put 889 unstack 630 unstack 364 stack 881 stack 1897
+6 put 893 put 891 stack 1013 stack 877 stack 883 stack 1899
+10 get 854 get 814 put 893 put 891 unstack 630 unstack 366 stack 1013 stack 877 stack 883 stack 1899
+0
+0
+1 put 937
+1 put 937
+1 put 977
+1 put 977
+2 put 941 put 979
+2 put 941 put 979
+0
+2 unstack 770 unstack 658
+2 put 937 stack 897
+4 put 937 unstack 770 unstack 658 stack 897
+2 put 985 stack 913
+4 put 985 unstack 774 unstack 662 stack 913
+4 put 941 put 987 stack 901 stack 915
+6 put 941 put 987 unstack 774 unstack 662 stack 901 stack 915
+0
+1 unstack 396
+2 put 953 stack 905
+3 put 953 unstack 398 stack 905
+2 put 977 stack 1921
+3 put 977 unstack 396 stack 1921
+4 put 957 put 979 stack 909 stack 1923
+5 put 957 put 979 unstack 398 stack 909 stack 1923
+0
+3 unstack 786 unstack 658 unstack 396
+3 put 953 stack 913 stack 905
+6 put 953 unstack 786 unstack 658 unstack 398 stack 913 stack 905
+3 put 985 stack 913 stack 1929
+6 put 985 unstack 790 unstack 662 unstack 396 stack 913 stack 1929
+6 put 957 put 987 stack 917 stack 909 stack 915 stack 1931
+9 put 957 put 987 unstack 790 unstack 662 unstack 398 stack 917 stack 909 stack 915 stack 1931
+0
+0
+1 put 937
+1 put 937
+1 put 1009
+1 put 1009
+2 put 941 put 1011
+2 put 941 put 1011
+0
+3 get 898 unstack 802 unstack 690
+2 put 937 stack 929
+5 get 898 put 937 unstack 802 unstack 690 stack 929
+2 put 1017 stack 945
+5 get 902 put 1017 unstack 806 unstack 694 stack 945
+4 put 941 put 1019 stack 933 stack 947
+7 get 902 put 941 put 1019 unstack 806 unstack 694 stack 933 stack 947
+0
+1 unstack 428
+2 put 953 stack 937
+3 put 953 unstack 430 stack 937
+2 put 1009 stack 1953
+3 put 1009 unstack 428 stack 1953
+4 put 957 put 1011 stack 941 stack 1955
+5 put 957 put 1011 unstack 430 stack 941 stack 1955
+0
+4 get 914 unstack 818 unstack 690 unstack 428
+3 put 953 stack 945 stack 937
+7 get 914 put 953 unstack 818 unstack 690 unstack 430 stack 945 stack 937
+3 put 1017 stack 945 stack 1961
+7 get 918 put 1017 unstack 822 unstack 694 unstack 428 stack 945 stack 1961
+6 put 957 put 1019 stack 949 stack 941 stack 947 stack 1963
+10 get 918 put 957 put 1019 unstack 822 unstack 694 unstack 430 stack 949 stack 941 stack 947 stack 1963
+0
+0
+1 put 1001
+1 put 1001
+1 put 977
+1 put 977
+2 put 1005 put 979
+2 put 1005 put 979
+0
+2 unstack 834 unstack 722
+2 put 1001 stack 961
+4 put 1001 unstack 834 unstack 722 stack 961
+2 put 985 stack 977
+4 put 985 unstack 838 unstack 726 stack 977
+4 put 1005 put 987 stack 965 stack 979
+6 put 1005 put 987 unstack 838 unstack 726 stack 965 stack 979
+0
+2 get 900 unstack 460
+2 put 1017 stack 969
+4 get 902 put 1017 unstack 462 stack 969
+2 put 977 stack 1985
+4 get 900 put 977 unstack 460 stack 1985
+4 put 1021 put 979 stack 973 stack 1987
+6 get 902 put 1021 put 979 unstack 462 stack 973 stack 1987
+0
+4 get 908 unstack 850 unstack 722 unstack 460
+3 put 1017 stack 977 stack 969
+7 get 910 put 1017 unstack 850 unstack 722 unstack 462 stack 977 stack 969
+3 put 985 stack 977 stack 1993
+7 get 908 put 985 unstack 854 unstack 726 unstack 460 stack 977 stack 1993
+6 put 1021 put 987 stack 981 stack 973 stack 979 stack 1995
+10 get 910 put 1021 put 987 unstack 854 unstack 726 unstack 462 stack 981 stack 973 stack 979 stack 1995
+0
+0
+1 put 1001
+1 put 1001
+1 put 1009
+1 put 1009
+2 put 1005 put 1011
+2 put 1005 put 1011
+0
+3 get 962 unstack 866 unstack 754
+2 put 1001 stack 993
+5 get 962 put 1001 unstack 866 unstack 754 stack 993
+2 put 1017 stack 1009
+5 get 966 put 1017 unstack 870 unstack 758 stack 1009
+4 put 1005 put 1019 stack 997 stack 1011
+7 get 966 put 1005 put 1019 unstack 870 unstack 758 stack 997 stack 1011
+0
+2 get 932 unstack 492
+2 put 1017 stack 1001
+4 get 934 put 1017 unstack 494 stack 1001
+2 put 1009 stack 2017
+4 get 932 put 1009 unstack 492 stack 2017
+4 put 1021 put 1011 stack 1005 stack 2019
+6 get 934 put 1021 put 1011 unstack 494 stack 1005 stack 2019
+0
+5 get 978 get 940 unstack 882 unstack 754 unstack 492
+3 put 1017 stack 1009 stack 1001
+8 get 978 get 942 put 1017 unstack 882 unstack 754 unstack 494 stack 1009 stack 1001
+3 put 1017 stack 1009 stack 2025
+8 get 982 get 940 put 1017 unstack 886 unstack 758 unstack 492 stack 1009 stack 2025
+6 put 1021 put 1019 stack 1013 stack 1005 stack 1011 stack 2027
+11 get 982 get 942 put 1021 put 1019 unstack 886 unstack 758 unstack 494 stack 1013 stack 1005 stack 1011 stack 2027
+0
+0
+1 put 1065
+1 put 1065
+1 put 1105
+1 put 1105
+2 put 1069 put 1107
+2 put 1069 put 1107
+0
+0
+2 put 1065 stack 1153
+2 put 1065 stack 1153
+2 put 1113 stack 1553
+2 put 1113 stack 1553
+4 put 1069 put 1115 stack 1157 stack 1555
+4 put 1069 put 1115 stack 1157 stack 1555
+0
+1 unstack 4
+2 put 1081 stack 1289
+3 put 1081 unstack 6 stack 1289
+2 put 1105 stack 1025
+3 put 1105 unstack 4 stack 1025
+4 put 1085 put 1107 stack 1293 stack 1027
+5 put 1085 put 1107 unstack 6 stack 1293 stack 1027
+0
+1 unstack 12
+3 put 1081 stack 1169 stack 1289
+4 put 1081 unstack 14 stack 1169 stack 1289
+3 put 1113 stack 1553 stack 1033
+4 put 1113 unstack 12 stack 1553 stack 1033
+6 put 1085 put 1115 stack 1173 stack 1293 stack 1555 stack 1035
+7 put 1085 put 1115 unstack 14 stack 1173 stack 1293 stack 1555 stack 1035
+0
+0
+1 put 1065
+1 put 1065
+1 put 1137
+1 put 1137
+2 put 1069 put 1139
+2 put 1069 put 1139
+0
+1 get 1026
+2 put 1065 stack 1185
+3 get 1026 put 1065 stack 1185
+2 put 1145 stack 1585
+3 get 1030 put 1145 stack 1585
+4 put 1069 put 1147 stack 1189 stack 1587
+5 get 1030 put 1069 put 1147 stack 1189 stack 1587
+0
+1 unstack 36
+2 put 1081 stack 1321
+3 put 1081 unstack 38 stack 1321
+2 put 1137 stack 1057
+3 put 1137 unstack 36 stack 1057
+4 put 1085 put 1139 stack 1325 stack 1059
+5 put 1085 put 1139 unstack 38 stack 1325 stack 1059
+0
+2 get 1042 unstack 44
+3 put 1081 stack 1201 stack 1321
+5 get 1042 put 1081 unstack 46 stack 1201 stack 1321
+3 put 1145 stack 1585 stack 1065
+5 get 1046 put 1145 unstack 44 stack 1585 stack 1065
+6 put 1085 put 1147 stack 1205 stack 1325 stack 1587 stack 1067
+8 get 1046 put 1085 put 1147 unstack 46 stack 1205 stack 1325 stack 1587 stack 1067
+0
+0
+1 put 1129
+1 put 1129
+1 put 1105
+1 put 1105
+2 put 1133 put 1107
+2 put 1133 put 1107
+0
+0
+2 put 1129 stack 1217
+2 put 1129 stack 1217
+2 put 1113 stack 1617
+2 put 1113 stack 1617
+4 put 1133 put 1115 stack 1221 stack 1619
+4 put 1133 put 1115 stack 1221 stack 1619
+0
+2 get 1028 unstack 68
+2 put 1145 stack 1353
+4 get 1030 put 1145 unstack 70 stack 1353
+2 put 1105 stack 1089
+4 get 1028 put 1105 unstack 68 stack 1089
+4 put 1149 put 1107 stack 1357 stack 1091
+6 get 1030 put 1149 put 1107 unstack 70 stack 1357 stack 1091
+0
+2 get 1036 unstack 76
+3 put 1145 stack 1233 stack 1353
+5 get 1038 put 1145 unstack 78 stack 1233 stack 1353
+3 put 1113 stack 1617 stack 1097
+5 get 1036 put 1113 unstack 76 stack 1617 stack 1097
+6 put 1149 put 1115 stack 1237 stack 1357 stack 1619 stack 1099
+8 get 1038 put 1149 put 1115 unstack 78 stack 1237 stack 1357 stack 1619 stack 1099
+0
+0
+1 put 1129
+1 put 1129
+1 put 1137
+1 put 1137
+2 put 1133 put 1139
+2 put 1133 put 1139
+0
+1 get 1090
+2 put 1129 stack 1249
+3 get 1090 put 1129 stack 1249
+2 put 1145 stack 1649
+3 get 1094 put 1145 stack 1649
+4 put 1133 put 1147 stack 1253 stack 1651
+5 get 1094 put 1133 put 1147 stack 1253 stack 1651
+0
+2 get 1060 unstack 100
+2 put 1145 stack 1385
+4 get 1062 put 1145 unstack 102 stack 1385
+2 put 1137 stack 1121
+4 get 1060 put 1137 unstack 100 stack 1121
+4 put 1149 put 1139 stack 1389 stack 1123
+6 get 1062 put 1149 put 1139 unstack 102 stack 1389 stack 1123
+0
+3 get 1106 get 1068 unstack 108
+3 put 1145 stack 1265 stack 1385
+6 get 1106 get 1070 put 1145 unstack 110 stack 1265 stack 1385
+3 put 1145 stack 1649 stack 1129
+6 get 1110 get 1068 put 1145 unstack 108 stack 1649 stack 1129
+6 put 1149 put 1147 stack 1269 stack 1389 stack 1651 stack 1131
+9 get 1110 get 1070 put 1149 put 1147 unstack 110 stack 1269 stack 1389 stack 1651 stack 1131
+0
+0
+1 put 1193
+1 put 1193
+1 put 1233
+1 put 1233
+2 put 1197 put 1235
+2 put 1197 put 1235
+0
+1 unstack 1026
+2 put 1193 stack 1153
+3 put 1193 unstack 1026 stack 1153
+2 put 1241 stack 1681
+3 put 1241 unstack 1030 stack 1681
+4 put 1197 put 1243 stack 1157 stack 1683
+5 put 1197 put 1243 unstack 1030 stack 1157 stack 1683
+0
+1 unstack 132
+2 put 1209 stack 1417
+3 put 1209 unstack 134 stack 1417
+2 put 1233 stack 1153
+3 put 1233 unstack 132 stack 1153
+4 put 1213 put 1235 stack 1421 stack 1155
+5 put 1213 put 1235 unstack 134 stack 1421 stack 1155
+0
+2 unstack 1042 unstack 140
+3 put 1209 stack 1169 stack 1417
+5 put 1209 unstack 1042 unstack 142 stack 1169 stack 1417
+3 put 1241 stack 1681 stack 1161
+5 put 1241 unstack 1046 unstack 140 stack 1681 stack 1161
+6 put 1213 put 1243 stack 1173 stack 1421 stack 1683 stack 1163
+8 put 1213 put 1243 unstack 1046 unstack 142 stack 1173 stack 1421 stack 1683 stack 1163
+0
+0
+1 put 1193
+1 put 1193
+1 put 1265
+1 put 1265
+2 put 1197 put 1267
+2 put 1197 put 1267
+0
+2 get 1154 unstack 1058
+2 put 1193 stack 1185
+4 get 1154 put 1193 unstack 1058 stack 1185
+2 put 1273 stack 1713
+4 get 1158 put 1273 unstack 1062 stack 1713
+4 put 1197 put 1275 stack 1189 stack 1715
+6 get 1158 put 1197 put 1275 unstack 1062 stack 1189 stack 1715
+0
+1 unstack 164
+2 put 1209 stack 1449
+3 put 1209 unstack 166 stack 1449
+2 put 1265 stack 1185
+3 put 1265 unstack 164 stack 1185
+4 put 1213 put 1267 stack 1453 stack 1187
+5 put 1213 put 1267 unstack 166 stack 1453 stack 1187
+0
+3 get 1170 unstack 1074 unstack 172
+3 put 1209 stack 1201 stack 1449
+6 get 1170 put 1209 unstack 1074 unstack 174 stack 1201 stack 1449
+3 put 1273 stack 1713 stack 1193
+6 get 1174 put 1273 unstack 1078 unstack 172 stack 1713 stack 1193
+6 put 1213 put 1275 stack 1205 stack 1453 stack 1715 stack 1195
+9 get 1174 put 1213 put 1275 unstack 1078 unstack 174 stack 1205 stack 1453 stack 1715 stack 1195
+0
+0
+1 put 1257
+1 put 1257
+1 put 1233
+1 put 1233
+2 put 1261 put 1235
+2 put 1261 put 1235
+0
+1 unstack 1090
+2 put 1257 stack 1217
+3 put 1257 unstack 1090 stack 1217
+2 put 1241 stack 1745
+3 put 1241 unstack 1094 stack 1745
+4 put 1261 put 1243 stack 1221 stack 1747
+5 put 1261 put 1243 unstack 1094 stack 1221 stack 1747
+0
+2 get 1156 unstack 196
+2 put 1273 stack 1481
+4 get 1158 put 1273 unstack 198 stack 1481
+2 put 1233 stack 1217
+4 get 1156 put 1233 unstack 196 stack 1217
+4 put 1277 put 1235 stack 1485 stack 1219
+6 get 1158 put 1277 put 1235 unstack 198 stack 1485 stack 1219
+0
+3 get 1164 unstack 1106 unstack 204
+3 put 1273 stack 1233 stack 1481
+6 get 1166 put 1273 unstack 1106 unstack 206 stack 1233 stack 1481
+3 put 1241 stack 1745 stack 1225
+6 get 1164 put 1241 unstack 1110 unstack 204 stack 1745 stack 1225
+6 put 1277 put 1243 stack 1237 stack 1485 stack 1747 stack 1227
+9 get 1166 put 1277 put 1243 unstack 1110 unstack 206 stack 1237 stack 1485 stack 1747 stack 1227
+0
+0
+1 put 1257
+1 put 1257
+1 put 1265
+1 put 1265
+2 put 1261 put 1267
+2 put 1261 put 1267
+0
+2 get 1218 unstack 1122
+2 put 1257 stack 1249
+4 get 1218 put 1257 unstack 1122 stack 1249
+2 put 1273 stack 1777
+4 get 1222 put 1273 unstack 1126 stack 1777
+4 put 1261 put 1275 stack 1253 stack 1779
+6 get 1222 put 1261 put 1275 unstack 1126 stack 1253 stack 1779
+0
+2 get 1188 unstack 228
+2 put 1273 stack 1513
+4 get 1190 put 1273 unstack 230 stack 1513
+2 put 1265 stack 1249
+4 get 1188 put 1265 unstack 228 stack 1249
+4 put 1277 put 1267 stack 1517 stack 1251
+6 get 1190 put 1277 put 1267 unstack 230 stack 1517 stack 1251
+0
+4 get 1234 get 1196 unstack 1138 unstack 236
+3 put 1273 stack 1265 stack 1513
+7 get 1234 get 1198 put 1273 unstack 1138 unstack 238 stack 1265 stack 1513
+3 put 1273 stack 1777 stack 1257
+7 get 1238 get 1196 put 1273 unstack 1142 unstack 236 stack 1777 stack 1257
+6 put 1277 put 1275 stack 1269 stack 1517 stack 1779 stack 1259
+10 get 1238 get 1198 put 1277 put 1275 unstack 1142 unstack 238 stack 1269 stack 1517 stack 1779 stack 1259
+0
+0
+1 put 1321
+1 put 1321
+1 put 1361
+1 put 1361
+2 put 1325 put 1363
+2 put 1325 put 1363
+0
+1 unstack 1042
+2 put 1321 stack 1409
+3 put 1321 unstack 1042 stack 1409
+2 put 1369 stack 1809
+3 put 1369 unstack 1046 stack 1809
+4 put 1325 put 1371 stack 1413 stack 1811
+5 put 1325 put 1371 unstack 1046 stack 1413 stack 1811
+0
+1 unstack 260
+2 put 1337 stack 1289
+3 put 1337 unstack 262 stack 1289
+2 put 1361 stack 1281
+3 put 1361 unstack 260 stack 1281
+4 put 1341 put 1363 stack 1293 stack 1283
+5 put 1341 put 1363 unstack 262 stack 1293 stack 1283
+0
+2 unstack 1042 unstack 268
+3 put 1337 stack 1425 stack 1289
+5 put 1337 unstack 1042 unstack 270 stack 1425 stack 1289
+3 put 1369 stack 1809 stack 1289
+5 put 1369 unstack 1046 unstack 268 stack 1809 stack 1289
+6 put 1341 put 1371 stack 1429 stack 1293 stack 1811 stack 1291
+8 put 1341 put 1371 unstack 1046 unstack 270 stack 1429 stack 1293 stack 1811 stack 1291
+0
+0
+1 put 1321
+1 put 1321
+1 put 1393
+1 put 1393
+2 put 1325 put 1395
+2 put 1325 put 1395
+0
+2 get 1282 unstack 1074
+2 put 1321 stack 1441
+4 get 1282 put 1321 unstack 1074 stack 1441
+2 put 1401 stack 1841
+4 get 1286 put 1401 unstack 1078 stack 1841
+4 put 1325 put 1403 stack 1445 stack 1843
+6 get 1286 put 1325 put 1403 unstack 1078 stack 1445 stack 1843
+0
+1 unstack 292
+2 put 1337 stack 1321
+3 put 1337 unstack 294 stack 1321
+2 put 1393 stack 1313
+3 put 1393 unstack 292 stack 1313
+4 put 1341 put 1395 stack 1325 stack 1315
+5 put 1341 put 1395 unstack 294 stack 1325 stack 1315
+0
+3 get 1298 unstack 1074 unstack 300
+3 put 1337 stack 1457 stack 1321
+6 get 1298 put 1337 unstack 1074 unstack 302 stack 1457 stack 1321
+3 put 1401 stack 1841 stack 1321
+6 get 1302 put 1401 unstack 1078 unstack 300 stack 1841 stack 1321
+6 put 1341 put 1403 stack 1461 stack 1325 stack 1843 stack 1323
+9 get 1302 put 1341 put 1403 unstack 1078 unstack 302 stack 1461 stack 1325 stack 1843 stack 1323
+0
+0
+1 put 1385
+1 put 1385
+1 put 1361
+1 put 1361
+2 put 1389 put 1363
+2 put 1389 put 1363
+0
+1 unstack 1106
+2 put 1385 stack 1473
+3 put 1385 unstack 1106 stack 1473
+2 put 1369 stack 1873
+3 put 1369 unstack 1110 stack 1873
+4 put 1389 put 1371 stack 1477 stack 1875
+5 put 1389 put 1371 unstack 1110 stack 1477 stack 1875
+0
+2 get 1284 unstack 324
+2 put 1401 stack 1353
+4 get 1286 put 1401 unstack 326 stack 1353
+2 put 1361 stack 1345
+4 get 1284 put 1361 unstack 324 stack 1345
+4 put 1405 put 1363 stack 1357 stack 1347
+6 get 1286 put 1405 put 1363 unstack 326 stack 1357 stack 1347
+0
+3 get 1292 unstack 1106 unstack 332
+3 put 1401 stack 1489 stack 1353
+6 get 1294 put 1401 unstack 1106 unstack 334 stack 1489 stack 1353
+3 put 1369 stack 1873 stack 1353
+6 get 1292 put 1369 unstack 1110 unstack 332 stack 1873 stack 1353
+6 put 1405 put 1371 stack 1493 stack 1357 stack 1875 stack 1355
+9 get 1294 put 1405 put 1371 unstack 1110 unstack 334 stack 1493 stack 1357 stack 1875 stack 1355
+0
+0
+1 put 1385
+1 put 1385
+1 put 1393
+1 put 1393
+2 put 1389 put 1395
+2 put 1389 put 1395
+0
+2 get 1346 unstack 1138
+2 put 1385 stack 1505
+4 get 1346 put 1385 unstack 1138 stack 1505
+2 put 1401 stack 1905
+4 get 1350 put 1401 unstack 1142 stack 1905
+4 put 1389 put 1403 stack 1509 stack 1907
+6 get 1350 put 1389 put 1403 unstack 1142 stack 1509 stack 1907
+0
+2 get 1316 unstack 356
+2 put 1401 stack 1385
+4 get 1318 put 1401 unstack 358 stack 1385
+2 put 1393 stack 1377
+4 get 1316 put 1393 unstack 356 stack 1377
+4 put 1405 put 1395 stack 1389 stack 1379
+6 get 1318 put 1405 put 1395 unstack 358 stack 1389 stack 1379
+0
+4 get 1362 get 1324 unstack 1138 unstack 364
+3 put 1401 stack 1521 stack 1385
+7 get 1362 get 1326 put 1401 unstack 1138 unstack 366 stack 1521 stack 1385
+3 put 1401 stack 1905 stack 1385
+7 get 1366 get 1324 put 1401 unstack 1142 unstack 364 stack 1905 stack 1385
+6 put 1405 put 1403 stack 1525 stack 1389 stack 1907 stack 1387
+10 get 1366 get 1326 put 1405 put 1403 unstack 1142 unstack 366 stack 1525 stack 1389 stack 1907 stack 1387
+0
+0
+1 put 1449
+1 put 1449
+1 put 1489
+1 put 1489
+2 put 1453 put 1491
+2 put 1453 put 1491
+0
+2 unstack 1282 unstack 1170
+2 put 1449 stack 1409
+4 put 1449 unstack 1282 unstack 1170 stack 1409
+2 put 1497 stack 1937
+4 put 1497 unstack 1286 unstack 1174 stack 1937
+4 put 1453 put 1499 stack 1413 stack 1939
+6 put 1453 put 1499 unstack 1286 unstack 1174 stack 1413 stack 1939
+0
+1 unstack 388
+2 put 1465 stack 1417
+3 put 1465 unstack 390 stack 1417
+2 put 1489 stack 1409
+3 put 1489 unstack 388 stack 1409
+4 put 1469 put 1491 stack 1421 stack 1411
+5 put 1469 put 1491 unstack 390 stack 1421 stack 1411
+0
+3 unstack 1298 unstack 1170 unstack 396
+3 put 1465 stack 1425 stack 1417
+6 put 1465 unstack 1298 unstack 1170 unstack 398 stack 1425 stack 1417
+3 put 1497 stack 1937 stack 1417
+6 put 1497 unstack 1302 unstack 1174 unstack 396 stack 1937 stack 1417
+6 put 1469 put 1499 stack 1429 stack 1421 stack 1939 stack 1419
+9 put 1469 put 1499 unstack 1302 unstack 1174 unstack 398 stack 1429 stack 1421 stack 1939 stack 1419
+0
+0
+1 put 1449
+1 put 1449
+1 put 1521
+1 put 1521
+2 put 1453 put 1523
+2 put 1453 put 1523
+0
+3 get 1410 unstack 1314 unstack 1202
+2 put 1449 stack 1441
+5 get 1410 put 1449 unstack 1314 unstack 1202 stack 1441
+2 put 1529 stack 1969
+5 get 1414 put 1529 unstack 1318 unstack 1206 stack 1969
+4 put 1453 put 1531 stack 1445 stack 1971
+7 get 1414 put 1453 put 1531 unstack 1318 unstack 1206 stack 1445 stack 1971
+0
+1 unstack 420
+2 put 1465 stack 1449
+3 put 1465 unstack 422 stack 1449
+2 put 1521 stack 1441
+3 put 1521 unstack 420 stack 1441
+4 put 1469 put 1523 stack 1453 stack 1443
+5 put 1469 put 1523 unstack 422 stack 1453 stack 1443
+0
+4 get 1426 unstack 1330 unstack 1202 unstack 428
+3 put 1465 stack 1457 stack 1449
+7 get 1426 put 1465 unstack 1330 unstack 1202 unstack 430 stack 1457 stack 1449
+3 put 1529 stack 1969 stack 1449
+7 get 1430 put 1529 unstack 1334 unstack 1206 unstack 428 stack 1969 stack 1449
+6 put 1469 put 1531 stack 1461 stack 1453 stack 1971 stack 1451
+10 get 1430 put 1469 put 1531 unstack 1334 unstack 1206 unstack 430 stack 1461 stack 1453 stack 1971 stack 1451
+0
+0
+1 put 1513
+1 put 1513
+1 put 1489
+1 put 1489
+2 put 1517 put 1491
+2 put 1517 put 1491
+0
+2 unstack 1346 unstack 1234
+2 put 1513 stack 1473
+4 put 1513 unstack 1346 unstack 1234 stack 1473
+2 put 1497 stack 2001
+4 put 1497 unstack 1350 unstack 1238 stack 2001
+4 put 1517 put 1499 stack 1477 stack 2003
+6 put 1517 put 1499 unstack 1350 unstack 1238 stack 1477 stack 2003
+0
+2 get 1412 unstack 452
+2 put 1529 stack 1481
+4 get 1414 put 1529 unstack 454 stack 1481
+2 put 1489 stack 1473
+4 get 1412 put 1489 unstack 452 stack 1473
+4 put 1533 put 1491 stack 1485 stack 1475
+6 get 1414 put 1533 put 1491 unstack 454 stack 1485 stack 1475
+0
+4 get 1420 unstack 1362 unstack 1234 unstack 460
+3 put 1529 stack 1489 stack 1481
+7 get 1422 put 1529 unstack 1362 unstack 1234 unstack 462 stack 1489 stack 1481
+3 put 1497 stack 2001 stack 1481
+7 get 1420 put 1497 unstack 1366 unstack 1238 unstack 460 stack 2001 stack 1481
+6 put 1533 put 1499 stack 1493 stack 1485 stack 2003 stack 1483
+10 get 1422 put 1533 put 1499 unstack 1366 unstack 1238 unstack 462 stack 1493 stack 1485 stack 2003 stack 1483
+0
+0
+1 put 1513
+1 put 1513
+1 put 1521
+1 put 1521
+2 put 1517 put 1523
+2 put 1517 put 1523
+0
+3 get 1474 unstack 1378 unstack 1266
+2 put 1513 stack 1505
+5 get 1474 put 1513 unstack 1378 unstack 1266 stack 1505
+2 put 1529 stack 2033
+5 get 1478 put 1529 unstack 1382 unstack 1270 stack 2033
+4 put 1517 put 1531 stack 1509 stack 2035
+7 get 1478 put 1517 put 1531 unstack 1382 unstack 1270 stack 1509 stack 2035
+0
+2 get 1444 unstack 484
+2 put 1529 stack 1513
+4 get 1446 put 1529 unstack 486 stack 1513
+2 put 1521 stack 1505
+4 get 1444 put 1521 unstack 484 stack 1505
+4 put 1533 put 1523 stack 1517 stack 1507
+6 get 1446 put 1533 put 1523 unstack 486 stack 1517 stack 1507
+0
+5 get 1490 get 1452 unstack 1394 unstack 1266 unstack 492
+3 put 1529 stack 1521 stack 1513
+8 get 1490 get 1454 put 1529 unstack 1394 unstack 1266 unstack 494 stack 1521 stack 1513
+3 put 1529 stack 2033 stack 1513
+8 get 1494 get 1452 put 1529 unstack 1398 unstack 1270 unstack 492 stack 2033 stack 1513
+6 put 1533 put 1531 stack 1525 stack 1517 stack 2035 stack 1515
+11 get 1494 get 1454 put 1533 put 1531 unstack 1398 unstack 1270 unstack 494 stack 1525 stack 1517 stack 2035 stack 1515
+0
+0
+1 put 1577
+1 put 1577
+1 put 1617
+1 put 1617
+2 put 1581 put 1619
+2 put 1581 put 1619
+0
+0
+2 put 1577 stack 1665
+2 put 1577 stack 1665
+2 put 1625 stack 1553
+2 put 1625 stack 1553
+4 put 1581 put 1627 stack 1669 stack 1555
+4 put 1581 put 1627 stack 1669 stack 1555
+0
+2 unstack 1036 unstack 516
+2 put 1593 stack 1801
+4 put 1593 unstack 1038 unstack 518 stack 1801
+2 put 1617 stack 1537
+4 put 1617 unstack 1036 unstack 516 stack 1537
+4 put 1597 put 1619 stack 1805 stack 1539
+6 put 1597 put 1619 unstack 1038 unstack 518 stack 1805 stack 1539
+0
+2 unstack 1036 unstack 524
+3 put 1593 stack 1681 stack 1801
+5 put 1593 unstack 1038 unstack 526 stack 1681 stack 1801
+3 put 1625 stack 1553 stack 1545
+5 put 1625 unstack 1036 unstack 524 stack 1553 stack 1545
+6 put 1597 put 1627 stack 1685 stack 1805 stack 1555 stack 1547
+8 put 1597 put 1627 unstack 1038 unstack 526 stack 1685 stack 1805 stack 1555 stack 1547
+0
+0
+1 put 1577
+1 put 1577
+1 put 1649
+1 put 1649
+2 put 1581 put 1651
+2 put 1581 put 1651
+0
+1 get 1538
+2 put 1577 stack 1697
+3 get 1538 put 1577 stack 1697
+2 put 1657 stack 1585
+3 get 1542 put 1657 stack 1585
+4 put 1581 put 1659 stack 1701 stack 1587
+5 get 1542 put 1581 put 1659 stack 1701 stack 1587
+0
+2 unstack 1068 unstack 548
+2 put 1593 stack 1833
+4 put 1593 unstack 1070 unstack 550 stack 1833
+2 put 1649 stack 1569
+4 put 1649 unstack 1068 unstack 548 stack 1569
+4 put 1597 put 1651 stack 1837 stack 1571
+6 put 1597 put 1651 unstack 1070 unstack 550 stack 1837 stack 1571
+0
+3 get 1554 unstack 1068 unstack 556
+3 put 1593 stack 1713 stack 1833
+6 get 1554 put 1593 unstack 1070 unstack 558 stack 1713 stack 1833
+3 put 1657 stack 1585 stack 1577
+6 get 1558 put 1657 unstack 1068 unstack 556 stack 1585 stack 1577
+6 put 1597 put 1659 stack 1717 stack 1837 stack 1587 stack 1579
+9 get 1558 put 1597 put 1659 unstack 1070 unstack 558 stack 1717 stack 1837 stack 1587 stack 1579
+0
+0
+1 put 1641
+1 put 1641
+1 put 1617
+1 put 1617
+2 put 1645 put 1619
+2 put 1645 put 1619
+0
+0
+2 put 1641 stack 1729
+2 put 1641 stack 1729
+2 put 1625 stack 1617
+2 put 1625 stack 1617
+4 put 1645 put 1627 stack 1733 stack 1619
+4 put 1645 put 1627 stack 1733 stack 1619
+0
+3 get 1540 unstack 1100 unstack 580
+2 put 1657 stack 1865
+5 get 1542 put 1657 unstack 1102 unstack 582 stack 1865
+2 put 1617 stack 1601
+5 get 1540 put 1617 unstack 1100 unstack 580 stack 1601
+4 put 1661 put 1619 stack 1869 stack 1603
+7 get 1542 put 1661 put 1619 unstack 1102 unstack 582 stack 1869 stack 1603
+0
+3 get 1548 unstack 1100 unstack 588
+3 put 1657 stack 1745 stack 1865
+6 get 1550 put 1657 unstack 1102 unstack 590 stack 1745 stack 1865
+3 put 1625 stack 1617 stack 1609
+6 get 1548 put 1625 unstack 1100 unstack 588 stack 1617 stack 1609
+6 put 1661 put 1627 stack 1749 stack 1869 stack 1619 stack 1611
+9 get 1550 put 1661 put 1627 unstack 1102 unstack 590 stack 1749 stack 1869 stack 1619 stack 1611
+0
+0
+1 put 1641
+1 put 1641
+1 put 1649
+1 put 1649
+2 put 1645 put 1651
+2 put 1645 put 1651
+0
+1 get 1602
+2 put 1641 stack 1761
+3 get 1602 put 1641 stack 1761
+2 put 1657 stack 1649
+3 get 1606 put 1657 stack 1649
+4 put 1645 put 1659 stack 1765 stack 1651
+5 get 1606 put 1645 put 1659 stack 1765 stack 1651
+0
+3 get 1572 unstack 1132 unstack 612
+2 put 1657 stack 1897
+5 get 1574 put 1657 unstack 1134 unstack 614 stack 1897
+2 put 1649 stack 1633
+5 get 1572 put 1649 unstack 1132 unstack 612 stack 1633
+4 put 1661 put 1651 stack 1901 stack 1635
+7 get 1574 put 1661 put 1651 unstack 1134 unstack 614 stack 1901 stack 1635
+0
+4 get 1618 get 1580 unstack 1132 unstack 620
+3 put 1657 stack 1777 stack 1897
+7 get 1618 get 1582 put 1657 unstack 1134 unstack 622 stack 1777 stack 1897
+3 put 1657 stack 1649 stack 1641
+7 get 1622 get 1580 put 1657 unstack 1132 unstack 620 stack 1649 stack 1641
+6 put 1661 put 1659 stack 1781 stack 1901 stack 1651 stack 1643
+10 get 1622 get 1582 put 1661 put 1659 unstack 1134 unstack 622 stack 1781 stack 1901 stack 1651 stack 1643
+0
+0
+1 put 1705
+1 put 1705
+1 put 1745
+1 put 1745
+2 put 1709 put 1747
+2 put 1709 put 1747
+0
+1 unstack 1538
+2 put 1705 stack 1665
+3 put 1705 unstack 1538 stack 1665
+2 put 1753 stack 1681
+3 put 1753 unstack 1542 stack 1681
+4 put 1709 put 1755 stack 1669 stack 1683
+5 put 1709 put 1755 unstack 1542 stack 1669 stack 1683
+0
+2 unstack 1164 unstack 644
+2 put 1721 stack 1929
+4 put 1721 unstack 1166 unstack 646 stack 1929
+2 put 1745 stack 1665
+4 put 1745 unstack 1164 unstack 644 stack 1665
+4 put 1725 put 1747 stack 1933 stack 1667
+6 put 1725 put 1747 unstack 1166 unstack 646 stack 1933 stack 1667
+0
+3 unstack 1554 unstack 1164 unstack 652
+3 put 1721 stack 1681 stack 1929
+6 put 1721 unstack 1554 unstack 1166 unstack 654 stack 1681 stack 1929
+3 put 1753 stack 1681 stack 1673
+6 put 1753 unstack 1558 unstack 1164 unstack 652 stack 1681 stack 1673
+6 put 1725 put 1755 stack 1685 stack 1933 stack 1683 stack 1675
+9 put 1725 put 1755 unstack 1558 unstack 1166 unstack 654 stack 1685 stack 1933 stack 1683 stack 1675
+0
+0
+1 put 1705
+1 put 1705
+1 put 1777
+1 put 1777
+2 put 1709 put 1779
+2 put 1709 put 1779
+0
+2 get 1666 unstack 1570
+2 put 1705 stack 1697
+4 get 1666 put 1705 unstack 1570 stack 1697
+2 put 1785 stack 1713
+4 get 1670 put 1785 unstack 1574 stack 1713
+4 put 1709 put 1787 stack 1701 stack 1715
+6 get 1670 put 1709 put 1787 unstack 1574 stack 1701 stack 1715
+0
+2 unstack 1196 unstack 676
+2 put 1721 stack 1961
+4 put 1721 unstack 1198 unstack 678 stack 1961
+2 put 1777 stack 1697
+4 put 1777 unstack 1196 unstack 676 stack 1697
+4 put 1725 put 1779 stack 1965 stack 1699
+6 put 1725 put 1779 unstack 1198 unstack 678 stack 1965 stack 1699
+0
+4 get 1682 unstack 1586 unstack 1196 unstack 684
+3 put 1721 stack 1713 stack 1961
+7 get 1682 put 1721 unstack 1586 unstack 1198 unstack 686 stack 1713 stack 1961
+3 put 1785 stack 1713 stack 1705
+7 get 1686 put 1785 unstack 1590 unstack 1196 unstack 684 stack 1713 stack 1705
+6 put 1725 put 1787 stack 1717 stack 1965 stack 1715 stack 1707
+10 get 1686 put 1725 put 1787 unstack 1590 unstack 1198 unstack 686 stack 1717 stack 1965 stack 1715 stack 1707
+0
+0
+1 put 1769
+1 put 1769
+1 put 1745
+1 put 1745
+2 put 1773 put 1747
+2 put 1773 put 1747
+0
+1 unstack 1602
+2 put 1769 stack 1729
+3 put 1769 unstack 1602 stack 1729
+2 put 1753 stack 1745
+3 put 1753 unstack 1606 stack 1745
+4 put 1773 put 1755 stack 1733 stack 1747
+5 put 1773 put 1755 unstack 1606 stack 1733 stack 1747
+0
+3 get 1668 unstack 1228 unstack 708
+2 put 1785 stack 1993
+5 get 1670 put 1785 unstack 1230 unstack 710 stack 1993
+2 put 1745 stack 1729
+5 get 1668 put 1745 unstack 1228 unstack 708 stack 1729
+4 put 1789 put 1747 stack 1997 stack 1731
+7 get 1670 put 1789 put 1747 unstack 1230 unstack 710 stack 1997 stack 1731
+0
+4 get 1676 unstack 1618 unstack 1228 unstack 716
+3 put 1785 stack 1745 stack 1993
+7 get 1678 put 1785 unstack 1618 unstack 1230 unstack 718 stack 1745 stack 1993
+3 put 1753 stack 1745 stack 1737
+7 get 1676 put 1753 unstack 1622 unstack 1228 unstack 716 stack 1745 stack 1737
+6 put 1789 put 1755 stack 1749 stack 1997 stack 1747 stack 1739
+10 get 1678 put 1789 put 1755 unstack 1622 unstack 1230 unstack 718 stack 1749 stack 1997 stack 1747 stack 1739
+0
+0
+1 put 1769
+1 put 1769
+1 put 1777
+1 put 1777
+2 put 1773 put 1779
+2 put 1773 put 1779
+0
+2 get 1730 unstack 1634
+2 put 1769 stack 1761
+4 get 1730 put 1769 unstack 1634 stack 1761
+2 put 1785 stack 1777
+4 get 1734 put 1785 unstack 1638 stack 1777
+4 put 1773 put 1787 stack 1765 stack 1779
+6 get 1734 put 1773 put 1787 unstack 1638 stack 1765 stack 1779
+0
+3 get 1700 unstack 1260 unstack 740
+2 put 1785 stack 2025
+5 get 1702 put 1785 unstack 1262 unstack 742 stack 2025
+2 put 1777 stack 1761
+5 get 1700 put 1777 unstack 1260 unstack 740 stack 1761
+4 put 1789 put 1779 stack 2029 stack 1763
+7 get 1702 put 1789 put 1779 unstack 1262 unstack 742 stack 2029 stack 1763
+0
+5 get 1746 get 1708 unstack 1650 unstack 1260 unstack 748
+3 put 1785 stack 1777 stack 2025
+8 get 1746 get 1710 put 1785 unstack 1650 unstack 1262 unstack 750 stack 1777 stack 2025
+3 put 1785 stack 1777 stack 1769
+8 get 1750 get 1708 put 1785 unstack 1654 unstack 1260 unstack 748 stack 1777 stack 1769
+6 put 1789 put 1787 stack 1781 stack 2029 stack 1779 stack 1771
+11 get 1750 get 1710 put 1789 put 1787 unstack 1654 unstack 1262 unstack 750 stack 1781 stack 2029 stack 1779 stack 1771
+0
+0
+1 put 1833
+1 put 1833
+1 put 1873
+1 put 1873
+2 put 1837 put 1875
+2 put 1837 put 1875
+0
+1 unstack 1554
+2 put 1833 stack 1921
+3 put 1833 unstack 1554 stack 1921
+2 put 1881 stack 1809
+3 put 1881 unstack 1558 stack 1809
+4 put 1837 put 1883 stack 1925 stack 1811
+5 put 1837 put 1883 unstack 1558 stack 1925 stack 1811
+0
+2 unstack 1292 unstack 772
+2 put 1849 stack 1801
+4 put 1849 unstack 1294 unstack 774 stack 1801
+2 put 1873 stack 1793
+4 put 1873 unstack 1292 unstack 772 stack 1793
+4 put 1853 put 1875 stack 1805 stack 1795
+6 put 1853 put 1875 unstack 1294 unstack 774 stack 1805 stack 1795
+0
+3 unstack 1554 unstack 1292 unstack 780
+3 put 1849 stack 1937 stack 1801
+6 put 1849 unstack 1554 unstack 1294 unstack 782 stack 1937 stack 1801
+3 put 1881 stack 1809 stack 1801
+6 put 1881 unstack 1558 unstack 1292 unstack 780 stack 1809 stack 1801
+6 put 1853 put 1883 stack 1941 stack 1805 stack 1811 stack 1803
+9 put 1853 put 1883 unstack 1558 unstack 1294 unstack 782 stack 1941 stack 1805 stack 1811 stack 1803
+0
+0
+1 put 1833
+1 put 1833
+1 put 1905
+1 put 1905
+2 put 1837 put 1907
+2 put 1837 put 1907
+0
+2 get 1794 unstack 1586
+2 put 1833 stack 1953
+4 get 1794 put 1833 unstack 1586 stack 1953
+2 put 1913 stack 1841
+4 get 1798 put 1913 unstack 1590 stack 1841
+4 put 1837 put 1915 stack 1957 stack 1843
+6 get 1798 put 1837 put 1915 unstack 1590 stack 1957 stack 1843
+0
+2 unstack 1324 unstack 804
+2 put 1849 stack 1833
+4 put 1849 unstack 1326 unstack 806 stack 1833
+2 put 1905 stack 1825
+4 put 1905 unstack 1324 unstack 804 stack 1825
+4 put 1853 put 1907 stack 1837 stack 1827
+6 put 1853 put 1907 unstack 1326 unstack 806 stack 1837 stack 1827
+0
+4 get 1810 unstack 1586 unstack 1324 unstack 812
+3 put 1849 stack 1969 stack 1833
+7 get 1810 put 1849 unstack 1586 unstack 1326 unstack 814 stack 1969 stack 1833
+3 put 1913 stack 1841 stack 1833
+7 get 1814 put 1913 unstack 1590 unstack 1324 unstack 812 stack 1841 stack 1833
+6 put 1853 put 1915 stack 1973 stack 1837 stack 1843 stack 1835
+10 get 1814 put 1853 put 1915 unstack 1590 unstack 1326 unstack 814 stack 1973 stack 1837 stack 1843 stack 1835
+0
+0
+1 put 1897
+1 put 1897
+1 put 1873
+1 put 1873
+2 put 1901 put 1875
+2 put 1901 put 1875
+0
+1 unstack 1618
+2 put 1897 stack 1985
+3 put 1897 unstack 1618 stack 1985
+2 put 1881 stack 1873
+3 put 1881 unstack 1622 stack 1873
+4 put 1901 put 1883 stack 1989 stack 1875
+5 put 1901 put 1883 unstack 1622 stack 1989 stack 1875
+0
+3 get 1796 unstack 1356 unstack 836
+2 put 1913 stack 1865
+5 get 1798 put 1913 unstack 1358 unstack 838 stack 1865
+2 put 1873 stack 1857
+5 get 1796 put 1873 unstack 1356 unstack 836 stack 1857
+4 put 1917 put 1875 stack 1869 stack 1859
+7 get 1798 put 1917 put 1875 unstack 1358 unstack 838 stack 1869 stack 1859
+0
+4 get 1804 unstack 1618 unstack 1356 unstack 844
+3 put 1913 stack 2001 stack 1865
+7 get 1806 put 1913 unstack 1618 unstack 1358 unstack 846 stack 2001 stack 1865
+3 put 1881 stack 1873 stack 1865
+7 get 1804 put 1881 unstack 1622 unstack 1356 unstack 844 stack 1873 stack 1865
+6 put 1917 put 1883 stack 2005 stack 1869 stack 1875 stack 1867
+10 get 1806 put 1917 put 1883 unstack 1622 unstack 1358 unstack 846 stack 2005 stack 1869 stack 1875 stack 1867
+0
+0
+1 put 1897
+1 put 1897
+1 put 1905
+1 put 1905
+2 put 1901 put 1907
+2 put 1901 put 1907
+0
+2 get 1858 unstack 1650
+2 put 1897 stack 2017
+4 get 1858 put 1897 unstack 1650 stack 2017
+2 put 1913 stack 1905
+4 get 1862 put 1913 unstack 1654 stack 1905
+4 put 1901 put 1915 stack 2021 stack 1907
+6 get 1862 put 1901 put 1915 unstack 1654 stack 2021 stack 1907
+0
+3 get 1828 unstack 1388 unstack 868
+2 put 1913 stack 1897
+5 get 1830 put 1913 unstack 1390 unstack 870 stack 1897
+2 put 1905 stack 1889
+5 get 1828 put 1905 unstack 1388 unstack 868 stack 1889
+4 put 1917 put 1907 stack 1901 stack 1891
+7 get 1830 put 1917 put 1907 unstack 1390 unstack 870 stack 1901 stack 1891
+0
+5 get 1874 get 1836 unstack 1650 unstack 1388 unstack 876
+3 put 1913 stack 2033 stack 1897
+8 get 1874 get 1838 put 1913 unstack 1650 unstack 1390 unstack 878 stack 2033 stack 1897
+3 put 1913 stack 1905 stack 1897
+8 get 1878 get 1836 put 1913 unstack 1654 unstack 1388 unstack 876 stack 1905 stack 1897
+6 put 1917 put 1915 stack 2037 stack 1901 stack 1907 stack 1899
+11 get 1878 get 1838 put 1917 put 1915 unstack 1654 unstack 1390 unstack 878 stack 2037 stack 1901 stack 1907 stack 1899
+0
+0
+1 put 1961
+1 put 1961
+1 put 2001
+1 put 2001
+2 put 1965 put 2003
+2 put 1965 put 2003
+0
+2 unstack 1794 unstack 1682
+2 put 1961 stack 1921
+4 put 1961 unstack 1794 unstack 1682 stack 1921
+2 put 2009 stack 1937
+4 put 2009 unstack 1798 unstack 1686 stack 1937
+4 put 1965 put 2011 stack 1925 stack 1939
+6 put 1965 put 2011 unstack 1798 unstack 1686 stack 1925 stack 1939
+0
+2 unstack 1420 unstack 900
+2 put 1977 stack 1929
+4 put 1977 unstack 1422 unstack 902 stack 1929
+2 put 2001 stack 1921
+4 put 2001 unstack 1420 unstack 900 stack 1921
+4 put 1981 put 2003 stack 1933 stack 1923
+6 put 1981 put 2003 unstack 1422 unstack 902 stack 1933 stack 1923
+0
+4 unstack 1810 unstack 1682 unstack 1420 unstack 908
+3 put 1977 stack 1937 stack 1929
+7 put 1977 unstack 1810 unstack 1682 unstack 1422 unstack 910 stack 1937 stack 1929
+3 put 2009 stack 1937 stack 1929
+7 put 2009 unstack 1814 unstack 1686 unstack 1420 unstack 908 stack 1937 stack 1929
+6 put 1981 put 2011 stack 1941 stack 1933 stack 1939 stack 1931
+10 put 1981 put 2011 unstack 1814 unstack 1686 unstack 1422 unstack 910 stack 1941 stack 1933 stack 1939 stack 1931
+0
+0
+1 put 1961
+1 put 1961
+1 put 2033
+1 put 2033
+2 put 1965 put 2035
+2 put 1965 put 2035
+0
+3 get 1922 unstack 1826 unstack 1714
+2 put 1961 stack 1953
+5 get 1922 put 1961 unstack 1826 unstack 1714 stack 1953
+2 put 2041 stack 1969
+5 get 1926 put 2041 unstack 1830 unstack 1718 stack 1969
+4 put 1965 put 2043 stack 1957 stack 1971
+7 get 1926 put 1965 put 2043 unstack 1830 unstack 1718 stack 1957 stack 1971
+0
+2 unstack 1452 unstack 932
+2 put 1977 stack 1961
+4 put 1977 unstack 1454 unstack 934 stack 1961
+2 put 2033 stack 1953
+4 put 2033 unstack 1452 unstack 932 stack 1953
+4 put 1981 put 2035 stack 1965 stack 1955
+6 put 1981 put 2035 unstack 1454 unstack 934 stack 1965 stack 1955
+0
+5 get 1938 unstack 1842 unstack 1714 unstack 1452 unstack 940
+3 put 1977 stack 1969 stack 1961
+8 get 1938 put 1977 unstack 1842 unstack 1714 unstack 1454 unstack 942 stack 1969 stack 1961
+3 put 2041 stack 1969 stack 1961
+8 get 1942 put 2041 unstack 1846 unstack 1718 unstack 1452 unstack 940 stack 1969 stack 1961
+6 put 1981 put 2043 stack 1973 stack 1965 stack 1971 stack 1963
+11 get 1942 put 1981 put 2043 unstack 1846 unstack 1718 unstack 1454 unstack 942 stack 1973 stack 1965 stack 1971 stack 1963
+0
+0
+1 put 2025
+1 put 2025
+1 put 2001
+1 put 2001
+2 put 2029 put 2003
+2 put 2029 put 2003
+0
+2 unstack 1858 unstack 1746
+2 put 2025 stack 1985
+4 put 2025 unstack 1858 unstack 1746 stack 1985
+2 put 2009 stack 2001
+4 put 2009 unstack 1862 unstack 1750 stack 2001
+4 put 2029 put 2011 stack 1989 stack 2003
+6 put 2029 put 2011 unstack 1862 unstack 1750 stack 1989 stack 2003
+0
+3 get 1924 unstack 1484 unstack 964
+2 put 2041 stack 1993
+5 get 1926 put 2041 unstack 1486 unstack 966 stack 1993
+2 put 2001 stack 1985
+5 get 1924 put 2001 unstack 1484 unstack 964 stack 1985
+4 put 2045 put 2003 stack 1997 stack 1987
+7 get 1926 put 2045 put 2003 unstack 1486 unstack 966 stack 1997 stack 1987
+0
+5 get 1932 unstack 1874 unstack 1746 unstack 1484 unstack 972
+3 put 2041 stack 2001 stack 1993
+8 get 1934 put 2041 unstack 1874 unstack 1746 unstack 1486 unstack 974 stack 2001 stack 1993
+3 put 2009 stack 2001 stack 1993
+8 get 1932 put 2009 unstack 1878 unstack 1750 unstack 1484 unstack 972 stack 2001 stack 1993
+6 put 2045 put 2011 stack 2005 stack 1997 stack 2003 stack 1995
+11 get 1934 put 2045 put 2011 unstack 1878 unstack 1750 unstack 1486 unstack 974 stack 2005 stack 1997 stack 2003 stack 1995
+0
+0
+1 put 2025
+1 put 2025
+1 put 2033
+1 put 2033
+2 put 2029 put 2035
+2 put 2029 put 2035
+0
+3 get 1986 unstack 1890 unstack 1778
+2 put 2025 stack 2017
+5 get 1986 put 2025 unstack 1890 unstack 1778 stack 2017
+2 put 2041 stack 2033
+5 get 1990 put 2041 unstack 1894 unstack 1782 stack 2033
+4 put 2029 put 2043 stack 2021 stack 2035
+7 get 1990 put 2029 put 2043 unstack 1894 unstack 1782 stack 2021 stack 2035
+0
+3 get 1956 unstack 1516 unstack 996
+2 put 2041 stack 2025
+5 get 1958 put 2041 unstack 1518 unstack 998 stack 2025
+2 put 2033 stack 2017
+5 get 1956 put 2033 unstack 1516 unstack 996 stack 2017
+4 put 2045 put 2035 stack 2029 stack 2019
+7 get 1958 put 2045 put 2035 unstack 1518 unstack 998 stack 2029 stack 2019
+0
+6 get 2002 get 1964 unstack 1906 unstack 1778 unstack 1516 unstack 1004
+3 put 2041 stack 2033 stack 2025
+9 get 2002 get 1966 put 2041 unstack 1906 unstack 1778 unstack 1518 unstack 1006 stack 2033 stack 2025
+3 put 2041 stack 2033 stack 2025
+9 get 2006 get 1964 put 2041 unstack 1910 unstack 1782 unstack 1516 unstack 1004 stack 2033 stack 2025
+6 put 2045 put 2043 stack 2037 stack 2029 stack 2035 stack 2027
+12 get 2006 get 1966 put 2045 put 2043 unstack 1910 unstack 1782 unstack 1518 unstack 1006 stack 2037 stack 2029 stack 2035 stack 2027
