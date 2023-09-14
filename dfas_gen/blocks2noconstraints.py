@@ -41,15 +41,15 @@ num_nodes = (1 << curr_pos)
 #build flags
 get_action_flags = [[0] * 3 for i in range(num_objects)]
 for j in range(0, num_objects):
-    int pre = 0
+    pre = 0
     pre = pre | (1 << handfree_pos)
     pre = pre | (1 << (clear_pos + j))
     pre = pre | (1 << (table_pos + j))
     get_action_flags[j][0] = pre
-    int add = 0
+    add = 0
     add = add | (1 << (grabbed_pos + j))
     get_action_flags[j][1] = add
-    int dele = 0
+    dele = 0
     dele = dele | (1 << handfree_pos)
     dele = dele | (1 << (clear_pos + j))
     dele = dele | (1 << (table_pos + j))
@@ -58,15 +58,15 @@ for j in range(0, num_objects):
 #put x
 put_action_flags = [[0] * 3 for i in range(num_objects)]
 for j in range(0, num_objects):
-    int pre = 0
+    pre = 0
     pre = pre | (1 << (grabbed_pos + j))
     put_action_flags[j][0] = pre
-    int add = 0
+    add = 0
     add = add | (1 << handfree_pos)
     add = add | (1 << (clear_pos + j))
     add = add | (1 << (table_pos + j))
     put_action_flags[j][1] = add
-    int dele = 0
+    dele = 0
     dele = dele | (1 << (grabbed_pos + j))
     put_action_flags[j][2] = dele
 
@@ -75,16 +75,16 @@ for j in range(0, num_objects):
 unstack_action_flags = [[0] * 3 for i in range(num_objects * num_objects)]
 for j in range(0, num_objects):
     for k in range(0, num_objects):
-        int pre = 0
+        pre = 0
         pre = pre | (1 << handfree_pos)
         pre = pre | (1 << (clear_pos + j))
         pre = pre | (1 << (on_pos + j*num_objects + k))
         unstack_action_flags[j*num_objects+k][0] = pre
-        int add = 0
+        add = 0
         add = add | (1 << (grabbed_pos + j))
         add = add | (1 << (clear_pos + k))
         unstack_action_flags[j*num_objects+k][1] = add
-        int dele = 0
+        dele = 0
         dele = dele | (1 << handfree_pos)
         dele = dele | (1 << (clear_pos + j))
         dele = dele | (1 << (on_pos + j*num_objects + k))
@@ -95,16 +95,16 @@ for j in range(0, num_objects):
 stack_action_flags = [[0] * 3 for i in range(num_objects * num_objects)]
 for j in range(0, num_objects):
     for k in range(0, num_objects):
-        int pre = 0
+        pre = 0
         pre = pre | (1 << (grabbed_pos + j))
         pre = pre | (1 << (clear_pos + k))
         stack_action_flags[j*num_objects+k][0] = pre
-        int add = 0
+        add = 0
         add = add | (1 << handfree_pos)
         add = add | (1 << (clear_pos + j))
         add = add | (1 << (on_pos + j*num_objects + k))
         stack_action_flags[j*num_objects+k][1] = add
-        int dele = 0
+        dele = 0
         dele = dele | (1 << (grabbed_pos + j))
         dele = dele | (1 << (clear_pos + k))
         stack_action_flags[j*num_objects+k][2] = dele
