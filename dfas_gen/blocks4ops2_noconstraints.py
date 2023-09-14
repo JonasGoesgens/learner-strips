@@ -35,7 +35,7 @@ on_pos = curr_pos
 curr_pos += num_objects * num_objects
 num_nodes = (1 << curr_pos)
 #all_flags = num_nodes - 1
-#encoding bittable handfree,grabbed0,grabbed1,clear0,clear1,table0,table1,on00,on01,on10,on11
+#encoding bittable: handfree,grabbed0,grabbed1,clear0,clear1,table0,table1,on00,on01,on10,on11
 
 
 #build flags
@@ -142,5 +142,5 @@ for i in range(0, num_nodes):
                 node_string += " stack " + str(target)
     output_string += str(connections) + node_string + "\n"
 output_string = "dfa " + str(num_nodes) + " -1\n" + "4 get put unstack stack\n" + "1 0\n" + output_string
-with open('blocks2noconstraints.dfa', 'w') as f:
+with open('blocks4ops2_noconstraints.dfa', 'w') as f:
     f.write(output_string)
