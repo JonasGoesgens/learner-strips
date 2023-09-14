@@ -44,7 +44,7 @@ for j in range(0, num_objects):
     pre = 0
     pre = pre | (1 << handfree_pos)
     pre = pre | (1 << (clear_pos + j))
-    pre = pre | (1 << (table_pos + j))
+    pre = pre | (1 << (ontable_pos + j))
     get_action_flags[j][0] = pre
     add = 0
     add = add | (1 << (grabbed_pos + j))
@@ -52,7 +52,7 @@ for j in range(0, num_objects):
     dele = 0
     dele = dele | (1 << handfree_pos)
     dele = dele | (1 << (clear_pos + j))
-    dele = dele | (1 << (table_pos + j))
+    dele = dele | (1 << (ontable_pos + j))
     get_action_flags[j][2] = dele
 
 #put x
@@ -64,7 +64,7 @@ for j in range(0, num_objects):
     add = 0
     add = add | (1 << handfree_pos)
     add = add | (1 << (clear_pos + j))
-    add = add | (1 << (table_pos + j))
+    add = add | (1 << (ontable_pos + j))
     put_action_flags[j][1] = add
     dele = 0
     dele = dele | (1 << (grabbed_pos + j))
