@@ -132,14 +132,14 @@ for i in range(0, num_nodes):
             if i & unstack_action_flags[j*num_objects+k][0] == unstack_action_flags[j*num_objects+k][0]:
                 connections += 1
                 target = ((i | unstack_action_flags[j*num_objects+k][1]) & ~unstack_action_flags[j*num_objects+k][2])# & all_flags
-                node_string += " put " + str(target)
+                node_string += " unstack " + str(target)
     #stack x,y
     for j in range(0, num_objects):
         for k in range(0, num_objects):
             if i & stack_action_flags[j*num_objects+k][0] == stack_action_flags[j*num_objects+k][0]:
                 connections += 1
                 target = ((i | stack_action_flags[j*num_objects+k][1]) & ~stack_action_flags[j*num_objects+k][2])# & all_flags
-                node_string += " put " + str(target)
+                node_string += " stack " + str(target)
     output_string += str(connections) + node_string + "\n"
 output_string = "dfa " + str(num_nodes) + " -1\n" + "4 get put unstack stack\n" + "1 0\n" + output_string
 with open('blocks2noconstraints.dfa', 'w') as f:
