@@ -34,12 +34,13 @@ curr_pos += num_objects
 on_pos = curr_pos
 curr_pos += num_objects * num_objects
 num_nodes = (1 << curr_pos)
+#all_flags = num_nodes - 1
 #encoding bittable handfree,grabbed0,grabbed1,clear0,clear1,table0,table1,on00,on01,on10,on11
 
 
 #build flags
 get_action_flags = [[0] * 3 for i in range(num_objects)]
-for j in range(0, num_objects)
+for j in range(0, num_objects):
     int pre = 0
     pre = pre | (1 << handfree_pos)
     pre = pre | (1 << (clear_pos + j))
@@ -56,7 +57,7 @@ for j in range(0, num_objects)
 
 #put x
 put_action_flags = [[0] * 3 for i in range(num_objects)]
-for j in range(0, num_objects)
+for j in range(0, num_objects):
     int pre = 0
     pre = pre | (1 << (grabbed_pos + j))
     put_action_flags[j][0] = pre
@@ -72,8 +73,8 @@ for j in range(0, num_objects)
 
 #unstack x,y
 unstack_action_flags = [[0] * 3 for i in range(num_objects * num_objects)]
-for j in range(0, num_objects)
-    for k in range(0, num_objects)
+for j in range(0, num_objects):
+    for k in range(0, num_objects):
         int pre = 0
         pre = pre | (1 << handfree_pos)
         pre = pre | (1 << (clear_pos + j))
@@ -92,8 +93,8 @@ for j in range(0, num_objects)
 
 #stack x,y
 stack_action_flags = [[0] * 3 for i in range(num_objects * num_objects)]
-for j in range(0, num_objects)
-    for k in range(0, num_objects)
+for j in range(0, num_objects):
+    for k in range(0, num_objects):
         int pre = 0
         pre = pre | (1 << (grabbed_pos + j))
         pre = pre | (1 << (clear_pos + k))
@@ -108,22 +109,38 @@ for j in range(0, num_objects)
         dele = dele | (1 << (clear_pos + k))
         stack_action_flags[j*num_objects+k][2] = dele
 
+output_string = ""
 #build nodes
-for i in range(0, num_nodes)
+for i in range(0, num_nodes):
+    connections = 0
+    node_string = ""
     #get x
-    for j in range(0, num_objects)
-
+    for j in range(0, num_objects):
+        if i & get_action_flags[j][0] == get_action_flags[j][0]:
+            connections += 1
+            target = ((i | get_action_flags[j][1]) & ~get_action_flags[j][2])# & all_flags
+            node_string += " get " + str(target)
     #put x
-    for j in range(0, num_objects)
-
-
+    for j in range(0, num_objects):
+        if i & put_action_flags[j][0] == put_action_flags[j][0]:
+            connections += 1
+            target = ((i | put_action_flags[j][1]) & ~put_action_flags[j][2])# & all_flags
+            node_string += " put " + str(target)
     #unstack x,y
-    for j in range(0, num_objects)
-        for k in range(0, num_objects)
-
-
+    for j in range(0, num_objects):
+        for k in range(0, num_objects):
+            if i & unstack_action_flags[j*num_objects+k][0] == unstack_action_flags[j*num_objects+k][0]:
+                connections += 1
+                target = ((i | unstack_action_flags[j*num_objects+k][1]) & ~unstack_action_flags[j*num_objects+k][2])# & all_flags
+                node_string += " put " + str(target)
     #stack x,y
-    for j in range(0, num_objects)
-        for k in range(0, num_objects)
-
-
+    for j in range(0, num_objects):
+        for k in range(0, num_objects):
+            if i & stack_action_flags[j*num_objects+k][0] == stack_action_flags[j*num_objects+k][0]:
+                connections += 1
+                target = ((i | stack_action_flags[j*num_objects+k][1]) & ~stack_action_flags[j*num_objects+k][2])# & all_flags
+                node_string += " put " + str(target)
+    output_string += str(connections) + node_string + "\n"
+output_string = "dfa " + str(num_nodes) + " -1\n" + "4 get put unstack stack\n" + "1 0\n" + output_string
+with open('blocks2noconstraints.dfa', 'w') as f:
+    f.write(output_string)
