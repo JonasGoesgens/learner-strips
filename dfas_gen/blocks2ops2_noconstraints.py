@@ -26,38 +26,44 @@ num_nodes = (1 << curr_pos)
 
 #build flags
 #unstack x,y
-unstack_action_flags = [[0] * 3 for i in range(num_objects * num_objects)]
+unstack_action_flags = [[0] * 3 for i in range(num_objects * num_objects - num_objects)]
+index = 0
 for j in range(0, num_objects):
     for k in range(0, num_objects):
-        pre = 0
-        pre = pre | (1 << (clear_pos + j))
-        pre = pre | (1 << (on_pos + j*num_objects + k))
-        unstack_action_flags[j*num_objects+k][0] = pre
-        add = 0
-        add = add | (1 << (ontable_pos + j))
-        add = add | (1 << (clear_pos + k))
-        unstack_action_flags[j*num_objects+k][1] = add
-        dele = 0
-        dele = dele | (1 << (on_pos + j*num_objects + k))
-        unstack_action_flags[j*num_objects+k][2] = dele
+        if (k != j):
+            pre = 0
+            pre = pre | (1 << (clear_pos + j))
+            pre = pre | (1 << (on_pos + j*num_objects + k))
+            unstack_action_flags[index][0] = pre
+            add = 0
+            add = add | (1 << (ontable_pos + j))
+            add = add | (1 << (clear_pos + k))
+            unstack_action_flags[index][1] = add
+            dele = 0
+            dele = dele | (1 << (on_pos + j*num_objects + k))
+            unstack_action_flags[index][2] = dele
+            index += 1
 
 
 #stack x,y
-stack_action_flags = [[0] * 3 for i in range(num_objects * num_objects)]
+stack_action_flags = [[0] * 3 for i in range(num_objects * num_objects - num_objects)]
+index = 0
 for j in range(0, num_objects):
     for k in range(0, num_objects):
-        pre = 0
-        pre = pre | (1 << (ontable_pos + j))
-        pre = pre | (1 << (clear_pos + j))
-        pre = pre | (1 << (clear_pos + k))
-        stack_action_flags[j*num_objects+k][0] = pre
-        add = 0
-        add = add | (1 << (on_pos + j*num_objects + k))
-        stack_action_flags[j*num_objects+k][1] = add
-        dele = 0
-        dele = dele | (1 << (ontable_pos + j))
-        dele = dele | (1 << (clear_pos + k))
-        stack_action_flags[j*num_objects+k][2] = dele
+        if (k != j):
+            pre = 0
+            pre = pre | (1 << (ontable_pos + j))
+            pre = pre | (1 << (clear_pos + j))
+            pre = pre | (1 << (clear_pos + k))
+            stack_action_flags[index][0] = pre
+            add = 0
+            add = add | (1 << (on_pos + j*num_objects + k))
+            stack_action_flags[index][1] = add
+            dele = 0
+            dele = dele | (1 << (ontable_pos + j))
+            dele = dele | (1 << (clear_pos + k))
+            stack_action_flags[index][2] = dele
+            index += 1
 
 
 output_string = ""
@@ -66,25 +72,23 @@ for i in range(0, num_nodes):
     connections = 0
     node_string = ""
     #unstack x,y
-    for j in range(0, num_objects):
-        for k in range(0, num_objects):
-            if i & unstack_action_flags[j*num_objects+k][0] == unstack_action_flags[j*num_objects+k][0]:
-                connections += 1
-                target = ((i | unstack_action_flags[j*num_objects+k][1]) & ~unstack_action_flags[j*num_objects+k][2])# & all_flags
-                node_string += " unstack " + str(target)
+    for flags in unstack_action_flags:
+        if (i & flags[0]) == flags[0]:
+            connections += 1
+            target = ((i | flags[1]) & ~flags[2])# & all_flags
+            node_string += " unstack " + str(target)
     #stack x,y
-    for j in range(0, num_objects):
-        for k in range(0, num_objects):
-            if i & stack_action_flags[j*num_objects+k][0] == stack_action_flags[j*num_objects+k][0]:
-                connections += 1
-                target = ((i | stack_action_flags[j*num_objects+k][1]) & ~stack_action_flags[j*num_objects+k][2])# & all_flags
-                node_string += " stack " + str(target)
+    for flags in stack_action_flags:
+        if (i & flags[0]) == flags[0]:
+            connections += 1
+            target = ((i | flags[1]) & ~flags[2])# & all_flags
+            node_string += " stack " + str(target)
     output_string += str(connections) + node_string + "\n"
 output_string = "dfa " + str(num_nodes) + " -1\n" + "2 unstack stack\n" + "1 0\n" + output_string
 with open('blocks2ops2_noconstraints.dfa', 'w') as f:
     f.write(output_string)
 
-for num_objects in range (2,5):
+for num_objects in range (2,7):
     #predicates
     #clear(x)
     #ontable(x)
@@ -111,38 +115,44 @@ for num_objects in range (2,5):
 
     #build flags
     #unstack x,y
-    unstack_action_flags = [[0] * 3 for i in range(num_objects * num_objects)]
+    unstack_action_flags = [[0] * 3 for i in range(num_objects * num_objects - num_objects)]
+    index = 0
     for j in range(0, num_objects):
         for k in range(0, num_objects):
-            pre = 0
-            pre = pre | (1 << (clear_pos + j))
-            pre = pre | (1 << (on_pos + j*num_objects + k))
-            unstack_action_flags[j*num_objects+k][0] = pre
-            add = 0
-            add = add | (1 << (ontable_pos + j))
-            add = add | (1 << (clear_pos + k))
-            unstack_action_flags[j*num_objects+k][1] = add
-            dele = 0
-            dele = dele | (1 << (on_pos + j*num_objects + k))
-            unstack_action_flags[j*num_objects+k][2] = dele
+            if (k != j):
+                pre = 0
+                pre = pre | (1 << (clear_pos + j))
+                pre = pre | (1 << (on_pos + j*num_objects + k))
+                unstack_action_flags[index][0] = pre
+                add = 0
+                add = add | (1 << (ontable_pos + j))
+                add = add | (1 << (clear_pos + k))
+                unstack_action_flags[index][1] = add
+                dele = 0
+                dele = dele | (1 << (on_pos + j*num_objects + k))
+                unstack_action_flags[index][2] = dele
+                index += 1
 
 
     #stack x,y
-    stack_action_flags = [[0] * 3 for i in range(num_objects * num_objects)]
+    stack_action_flags = [[0] * 3 for i in range(num_objects * num_objects - num_objects)]
+    index = 0
     for j in range(0, num_objects):
         for k in range(0, num_objects):
-            pre = 0
-            pre = pre | (1 << (ontable_pos + j))
-            pre = pre | (1 << (clear_pos + j))
-            pre = pre | (1 << (clear_pos + k))
-            stack_action_flags[j*num_objects+k][0] = pre
-            add = 0
-            add = add | (1 << (on_pos + j*num_objects + k))
-            stack_action_flags[j*num_objects+k][1] = add
-            dele = 0
-            dele = dele | (1 << (ontable_pos + j))
-            dele = dele | (1 << (clear_pos + k))
-            stack_action_flags[j*num_objects+k][2] = dele
+            if (k != j):
+                pre = 0
+                pre = pre | (1 << (ontable_pos + j))
+                pre = pre | (1 << (clear_pos + j))
+                pre = pre | (1 << (clear_pos + k))
+                stack_action_flags[index][0] = pre
+                add = 0
+                add = add | (1 << (on_pos + j*num_objects + k))
+                stack_action_flags[index][1] = add
+                dele = 0
+                dele = dele | (1 << (ontable_pos + j))
+                dele = dele | (1 << (clear_pos + k))
+                stack_action_flags[index][2] = dele
+                index += 1
     
     node_id = 0
     output_nodes = []
@@ -162,21 +172,19 @@ for num_objects in range (2,5):
         current_edges = []
         connections = 0
         #unstack x,y
-        for j in range(0, num_objects):
-            for k in range(0, num_objects):
-                if (j != k) and (current_node & unstack_action_flags[j*num_objects+k][0] == unstack_action_flags[j*num_objects+k][0]):
+        for flags in unstack_action_flags:
+                if current_node & flags[0] == flags[0]:
                     connections += 1
-                    target = ((current_node | unstack_action_flags[j*num_objects+k][1]) & ~unstack_action_flags[j*num_objects+k][2])# & all_flags
+                    target = ((current_node | flags[1]) & ~flags[2])# & all_flags
                     if not ((target in output_nodes) or (target in todo_nodes)):
                         todo_nodes.append(target)
                     current_edges.append([" unstack ",target])
         
         #stack x,y
-        for j in range(0, num_objects):
-            for k in range(0, num_objects):
-                if (j != k) and (current_node & stack_action_flags[j*num_objects+k][0] == stack_action_flags[j*num_objects+k][0]):
+        for flags in stack_action_flags:
+                if current_node & flags[0] == flags[0]:
                     connections += 1
-                    target = ((current_node | stack_action_flags[j*num_objects+k][1]) & ~stack_action_flags[j*num_objects+k][2])# & all_flags
+                    target = ((current_node | flags[1]) & ~flags[2])# & all_flags
                     if not ((target in output_nodes) or (target in todo_nodes)):
                         todo_nodes.append(target)
                     current_edges.append([" stack ",target])
