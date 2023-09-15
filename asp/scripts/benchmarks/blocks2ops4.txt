@@ -1,2 +1,2 @@
 
-blocks2ops4.lp 4 0 -c max_num_invariants=2 -c max_predicates=3 -c max_static=0 VERIFY 6 0 blocks2ops2_noconstraints.lp blocks2ops2.lp blocks2ops3.lp blocks2ops4.lp blocks2ops5.lp blocks2ops6.lp
+blocks2ops4.lp 4 0 -c max_num_invariants=2 -c max_predicates=3 -c max_static=0 VERIFY 6 0 blocks2ops2.lp blocks2ops3.lp blocks2ops4.lp blocks2ops5.lp blocks2ops6.lp
