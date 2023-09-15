@@ -39,6 +39,7 @@ num_nodes = (1 << curr_pos)
 
 
 #build flags
+#get x
 get_action_flags = [[0] * 3 for i in range(num_objects)]
 for j in range(0, num_objects):
     pre = 0
