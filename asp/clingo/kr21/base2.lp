@@ -225,7 +225,7 @@ appl(A,OO1,S) :- action(A), objtuple(OO1,3), node(S), not nappl(A,OO1,S),
 { next(A,OO,S1,S2) : tlabel((S1,S2),A) } = 1 :- appl(A,OO,S1).
 
 % If action A maps S1 into S2, there is instance of A assigned to edge
-:- tlabel((S1,S2),A), { next(A,OO,S1,S2) } != 1.
+:- tlabel((S1,S2),A), { next(A,OO,S1,S2) } = 0.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
