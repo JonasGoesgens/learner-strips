@@ -1,0 +1,25 @@
+% 5 nodes, 8 edges
+node(0).
+node(1).
+node(2).
+node(3).
+node(4).
+labelname(1,"unstack").
+labelname(2,"stack").
+labelname(3,"put").
+edge((0,1)).
+tlabel((0,1),1).
+edge((0,2)).
+tlabel((0,2),1).
+edge((1,3)).
+tlabel((1,3),2).
+edge((1,0)).
+tlabel((1,0),3).
+edge((2,4)).
+tlabel((2,4),2).
+edge((2,0)).
+tlabel((2,0),3).
+edge((3,1)).
+tlabel((3,1),1).
+edge((4,2)).
+tlabel((4,2),1).
