@@ -309,6 +309,14 @@ root(I,S) :- min(I,S), not root(I,N) : marked(I,N), N != S.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Do not change the graph
+
+% no additional edges
+:- numedges(X), numedges(Y), X != Y.
+numedges(X) :- {edge((S1,S2))} = X.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Display
 
 #show action/1.
