@@ -264,7 +264,7 @@ appl(I,A,OO1,S) :- action(A), objtuple(I,OO1,3), marked(I,S), not nappl(I,A,OO1,
 { next(I,A,OO,S1,S2) : tlabel(I,(S1,S2),B) } = 1 :- appl(I,A,OO,S1), labelmatch(I,A,B), marked(I,S1).
 
 % If action A maps S1 into S2, there is instance of A assigned to edge
-:- marked(I,S1), tlabel(I,(S1,S2),B), labelmatch(I,A,B), { next(I,A,OO,S1,S2) } != 1.
+:- marked(I,S1), tlabel(I,(S1,S2),B), labelmatch(I,A,B), { next(I,A,OO,S1,S2) } = 0.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -306,6 +306,14 @@ affects(A,(P,T)) :- eff(A,(P,T),X).
 % Define root if no root node is specified
  min(I,S) :- marked(I,S), S <= S1 : marked(I,S1).
 root(I,S) :- min(I,S), not root(I,N) : marked(I,N), N != S.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Do not change the graph
+
+% no additional edges
+:- numedges(X), numedges(Y), X != Y.
+numedges(X) :- {edge((S1,S2))} = X.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

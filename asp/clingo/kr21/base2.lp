@@ -268,6 +268,14 @@ root(0) :- not root(N) : node(N), N != 0.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Do not change the graph
+
+% no additional edges
+:- numedges(X), numedges(Y), X != Y.
+numedges(X) :- {edge((S1,S2))} = X.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Display
 
 #show action/1.

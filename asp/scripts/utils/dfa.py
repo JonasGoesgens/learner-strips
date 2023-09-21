@@ -57,6 +57,7 @@ class DFA:
 
     def dump_as_lp(self, fd):
         fd.write(f'% {self.num_nodes} nodes, {self.num_edges} edges\n')
+        fd.write(f'numedges({self.num_edges}).\n')
         for node in range(self.num_nodes):
             fd.write(f'node({node}).\n')
         for label in self.labels:
