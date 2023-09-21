@@ -137,7 +137,7 @@ for i in range(0, num_nodes):
             node_string += " put " + str(target)
     output_string += str(connections) + node_string + "\n"
 output_string = "dfa " + str(num_nodes) + " -1\n" + "3 unstack stack put\n" + "1 0\n" + output_string
-with open('blocksmin2ops2_noconstraints.dfa', 'w') as f:
+with open('blocksmin4ops2_noconstraints.dfa', 'w') as f:
     f.write(output_string)
 
 for num_objects in range (2,7):
@@ -217,6 +217,6 @@ for num_objects in range (2,7):
             node_string += labeled_edge[0] + str(index)
         output_string += str(connections) + node_string + "\n"
     output_string = "dfa " + str(num_nodes) + " -1\n" + "3 unstack stack put\n" + "1 0\n" + output_string
-    filename = "blocksmin2ops" + str(num_objects) + ".dfa"
+    filename = "blocksmin4ops" + str(num_objects) + ".dfa"
     with open(filename, 'w') as f:
         f.write(output_string)
