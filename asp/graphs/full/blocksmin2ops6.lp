@@ -1,4 +1,5 @@
 % 4051 nodes, 12540 edges
+numedges(12540).
 node(0).
 node(1).
 node(2).

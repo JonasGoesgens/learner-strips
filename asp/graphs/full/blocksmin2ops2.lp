@@ -1,4 +1,5 @@
 % 3 nodes, 4 edges
+numedges(4).
 node(0).
 node(1).
 node(2).

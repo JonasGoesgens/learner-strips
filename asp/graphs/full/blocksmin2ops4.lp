@@ -1,4 +1,5 @@
 % 73 nodes, 168 edges
+numedges(168).
 node(0).
 node(1).
 node(2).
