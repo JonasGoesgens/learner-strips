@@ -314,6 +314,7 @@ root(I,S) :- min(I,S), not root(I,N) : marked(I,N), N != S.
 % no additional edges
 :- numedges(X), numedges(Y), X != Y.
 numedges(X) :- {edge((S1,S2))} = X.
+edge((S1,S2)) :- tlabel((S1,S2),A).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
