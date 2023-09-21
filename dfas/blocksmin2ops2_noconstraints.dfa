@@ -1,0 +1,67 @@
+dfa 64 -1
+2 unstack stack
+1 0
+0
+0
+0
+0
+0
+0
+0
+1 stack 9
+0
+1 unstack 7
+0
+1 unstack 7
+0
+1 unstack 7
+0
+2 unstack 7 stack 9
+0
+0
+1 unstack 35
+1 unstack 35
+0
+0
+1 unstack 39
+2 unstack 39 stack 25
+0
+1 unstack 23
+1 unstack 43
+2 unstack 23 unstack 43
+0
+1 unstack 23
+1 unstack 47
+3 unstack 23 unstack 47 stack 25
+0
+0
+0
+1 stack 18
+0
+0
+0
+2 stack 41 stack 22
+0
+1 unstack 39
+0
+2 unstack 39 stack 26
+0
+1 unstack 39
+0
+3 unstack 39 stack 41 stack 30
+0
+0
+1 unstack 35
+2 unstack 35 stack 18
+0
+0
+1 unstack 39
+3 unstack 39 stack 57 stack 22
+0
+1 unstack 55
+1 unstack 43
+3 unstack 55 unstack 43 stack 26
+0
+1 unstack 55
+1 unstack 47
+4 unstack 55 unstack 47 stack 57 stack 30
