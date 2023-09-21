@@ -1,0 +1,14 @@
+Fluent Predicates:
+	p1(x1)
+	p2(x1, x2)
+Static Predicates:
+Actions:
+	a1(x1, x2) label "unstack"
+		Static: neq(x1, x2)
+		Pre: p1(x1), -p2(x1, x2)
+		Eff: -p1(x1), -p2(x1, x1), -p2(x2, x1)
+	a2(x1, x2) label "stack"
+		Static: neq(x1, x2)
+		Pre: -p2(x1, x1), -p2(x1, x2), -p2(x2, x1)
+		Eff: p1(x1), p2(x2, x1)
+Objects: o1, o2
