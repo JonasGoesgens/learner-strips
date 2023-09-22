@@ -88,7 +88,7 @@ dot_output_string = ""
 for i in range(0, num_nodes):
     connections = 0
     node_string = ""
-    dot_node_string = "N" + str(i)
+    dot_node_string = "N" + "{0:#06b}".format(i)
     #unstack x,y
     b_edge = False
     for flags in unstack_action_flags:
@@ -99,9 +99,9 @@ for i in range(0, num_nodes):
             if not b_edge:
                 dot_node_string += " -> { "
                 b_edge = True
-            dot_node_string += "N" + str(target) + " " 
+            dot_node_string += "N" + "{0:#06b}".format(target) + " " 
     if b_edge:
-        dot_node_string += "} [color=red]\nN" + str(i)
+        dot_node_string += "} [color=red]\nN" + "{0:#06b}".format(i)
         b_edge = False
     #stack x,y
     for flags in stack_action_flags:
@@ -112,7 +112,7 @@ for i in range(0, num_nodes):
             if not b_edge:
                 dot_node_string += " -> { "
                 b_edge = True
-            dot_node_string += "N" + str(target) + " " 
+            dot_node_string += "N" + "{0:#06b}".format(target) + " " 
     if b_edge:
         dot_node_string += "} [color=blue]"
         b_edge = False
