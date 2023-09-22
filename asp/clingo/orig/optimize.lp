@@ -18,4 +18,4 @@ max_arity(K) :- #max { N,A : a_arity(A, N) } = K.
 #minimize {   N@2, N : bound_on_true_atoms_per_state(N) }.
 
 % Prefer positive preconditions
-#minimize {   1@1, prec(A,(P,T),0) }.
+#minimize {   1@1, prec(A,(P,T),0) : prec(A,(P,T),0) }.
