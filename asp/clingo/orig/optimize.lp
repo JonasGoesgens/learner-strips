@@ -2,7 +2,8 @@
 % Optimization (ordered by priority)
 
 % Perfer low max arity
-#minimize {   K@6, K : #max { N,A : a_arity(A, N) } = K }
+max_arity(K) :- #max { N,A : a_arity(A, N) } = K.
+#minimize {   K@6, K : max_arity(K) }.
 
 % Prefer models with minimum sum of actions' cardinalities
 #minimize { 1+N@5, A : a_arity(A, N) }.
