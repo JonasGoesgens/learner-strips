@@ -1,0 +1,22 @@
+% 5 nodes, 7 edges
+numedges(7).
+node(0).
+node(1).
+node(2).
+node(3).
+node(4).
+labelname(1,"move").
+edge((1,2)).
+tlabel((1,2),1).
+edge((1,3)).
+tlabel((1,3),1).
+edge((2,0)).
+tlabel((2,0),1).
+edge((2,3)).
+tlabel((2,3),1).
+edge((3,0)).
+tlabel((3,0),1).
+edge((4,0)).
+tlabel((4,0),1).
+edge((4,1)).
+tlabel((4,1),1).

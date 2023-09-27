@@ -1,0 +1,2 @@
+
+navgraphmin1ops7pat73.lp 7 0 -c max_num_invariants=0 -c max_predicates=1 -c max_static=0 VERIFY 8 0 navgraphmin1ops5pat26.lp navgraphmin1ops6pat57.lp navgraphmin1ops7pat73.lp navgraphmin1ops8pat57.lp

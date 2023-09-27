@@ -1,0 +1,2 @@
+
+navgraphmin1ops2_noconstraints.lp 2 0 -c max_num_invariants=0 -c max_predicates=2 -c max_static=0 VERIFY 7 0 navgraphmin1ops2_noconstraints.lp navgraphmin1ops5pat26.lp navgraphmin1ops6pat57.lp navgraphmin1ops7pat73.lp

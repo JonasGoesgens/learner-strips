@@ -1,0 +1,9 @@
+dfa 6 -1
+1 move
+1 0
+5 move 1 move 2 move 3 move 4 move 5
+3 move 0 move 2 move 3
+3 move 3 move 4 move 5
+2 move 1 move 5
+3 move 1 move 2 move 5
+3 move 1 move 3 move 4
