@@ -102,6 +102,8 @@ a_arity_geq(A,M) :- a_arity(A,N), M = 1..3, N = M..3.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Actions: preconditions and effects
+% prec/eff(Action,(Predicate,Mapping action objects into predicate objects),Value)
+% states an effect or precondition of an action.
 
 % prec(A,(P,T),0): atom (P,T) is negative prec of action A
 % prec(A,(P,T),1): atom (P,T) is positive prec of action A
@@ -114,6 +116,8 @@ a_arity_geq(A,M) :- a_arity(A,N), M = 1..3, N = M..3.
 % eff(A,(P,T),1): atom (P,T) is positive effect of action A
 
 % at least one effect (assumes there are no noop actions, i.e. self loops in graphs)
+% this does not rule out all types of selfloops in the graph!
+% only actions that only introduce self loops are forbidden.
 1 { eff(A,(P,T),0..1) : pred(P), argtuple(T), not p_static(P) } max_effects :- action(A), opt_synthesis = 1.
 :- eff(A,M,0), eff(A,M,1).           % rule out contradictory effects
 
@@ -141,6 +145,7 @@ p_reflexive(P) :- a_atom(_,(P,(V,V))), V > 0.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % States: valuations of ground atoms, either static or dynamic
+% val((predicate,objects),State optional,value)
 
 { val((P,OO),  0..1) } = 1 :- pred(P),     p_static(P), objtuple(OO,2).
 { val((P,OO),S,0..1) } = 1 :- pred(P), not p_static(P), objtuple(OO,2), node(S).
@@ -212,12 +217,14 @@ appl(A,OO1,S) :- action(A), objtuple(OO1,3), node(S), not nappl(A,OO1,S),
                  OO1 = (O1,O2, 1), a_arity_geq(A,2), O2 != 1.
 appl(A,OO1,S) :- action(A), objtuple(OO1,3), node(S), not nappl(A,OO1,S),
                  OO1 = (O1,O2,O3), a_arity_geq(A,3), O3 != 1.
+:- appl(A,OO1,S), nappl(A,OO1,S).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Successors
 
 % If A(OO) is applicable at S1, choose a next node among those give by edges
+% enforces determinism of actions.
 { next(A,OO,S1,S2) : tlabel((S1,S2),A) } = 1 :- appl(A,OO,S1).
 
 % If action A maps S1 into S2, there is instance of A assigned to edge
@@ -232,6 +239,12 @@ pnext(0,A, 0,S1,S2) :-        tlabel((S1,S2),A), S2 >= 0. % for nullary predicat
 pnext(1,A,O1,S1,S2) :- next(A,(O1,O2,O3),S1,S2), S2 >= 0.
 pnext(2,A,O2,S1,S2) :- next(A,(O1,O2,O3),S1,S2), S2 >= 0.
 pnext(3,A,O3,S1,S2) :- next(A,(O1,O2,O3),S1,S2), S2 >= 0.
+:- S2 < 0 , pnext(_,A,_,S1,S2).
+:- O != 0 , pnext(0,A,O,S1,S2).
+:- { next(A,(O1,O2,O3),S1,S2) : object(O1), object(O2) } = 0 , pnext(3,A,O3,S1,S2), S2 >= 0.
+:- { next(A,(O1,O2,O3),S1,S2) : object(O1), object(O3) } = 0 , pnext(2,A,O2,S1,S2), S2 >= 0.
+:- { next(A,(O1,O2,O3),S1,S2) : object(O2), object(O3) } = 0 , pnext(1,A,O1,S1,S2), S2 >= 0.
+tlabel((S1,S2),A) :- pnext(0,A, 0,S1,S2), S2 >= 0.
 
 % If A goes from S1 to S2 with O1 in V1 and O2 in V2, the effects must hold in S2
 :- eff(A,(P,(V1,V2)),X), pnext(V1,A,O1,S1,S2), pnext(V2,A,O2,S1,S2), val((P,(O1,O2)),S2,1-X).
@@ -255,11 +268,12 @@ affects(A,(P,T)) :- eff(A,(P,T),X).
 :- edge((S1,S2)), max_effects+1 #count{ M : val(M,S1,V), val(M,S2,1-V) }.
 
 % If A has X outgoing edges in S1, it should be applicable X times
-:- node(S1), action(A), X = { tlabel((S1,S2),A) }, { appl(A,OO,S1) } != X.
+:- node(S1), action(A), X = { tlabel((S1,S2),A) }, { appl(A,OO,S1) } < X.
+:- { appl(A,OO,S1) : next(A,OO,S1,S2) } = 0 , tlabel((S1,S2),A).
 
 % If there are X edges, there should be X applicable actions (redundant as it should be implied by above)
-:- action(A), X = { tlabel(E,A) }, { appl(A,OO,S) } != X.
-:- X = { tlabel(E,A) }, { appl(B,OO,S) } != X.
+%:- action(A), X = { tlabel(E,A) }, { appl(A,OO,S) } != X.
+%:- X = { tlabel(E,A) }, { appl(B,OO,S) } != X.
 
 % Define root(0) by default if no root node specified (root/1 is not used elsewhere)
 root(0) :- not root(N) : node(N), N != 0.
@@ -271,8 +285,10 @@ root(0) :- not root(N) : node(N), N != 0.
 % no additional edges
 :- numedges(X), numedges(Y), X != Y.
 numedges(X) :- {edge((S1,S2))} = X.
+%a label causes an edge.
 edge((S1,S2)) :- tlabel((S1,S2),A).
-
+% an edge causes a label.
+:- { tlabel((S1,S2),A) : action(A) } = 0 , edge((S1,S2)).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Display
