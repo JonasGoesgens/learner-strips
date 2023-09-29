@@ -84,6 +84,7 @@ stack_action_flags = compute_stack_flags(num_objects)
 num_nodes = compute_num_nodes(num_objects)
 output_string = ""
 dot_output_string = ""
+lp_output_string = "p_arity(1,1).\np_arity(2,2).\n:-node(S),noisy(S).\n"
 #build nodes
 for i in range(0, num_nodes):
     connections = 0
@@ -91,6 +92,7 @@ for i in range(0, num_nodes):
     dot_node_string = "N" + "{0:#06b}".format(i)
     #unstack x,y
     b_edge = False
+    clear_pos, on_pos, curr_pos = compute_flag_pos(num_objects)
     for flags in unstack_action_flags:
         if (i & flags[0]) == flags[0]:
             connections += 1
@@ -118,6 +120,18 @@ for i in range(0, num_nodes):
         b_edge = False
     output_string += str(connections) + node_string + "\n"
     dot_output_string += dot_node_string + "\n"
+    for j in range(0, num_objects):
+        for k in range(0, num_objects):
+            if ((i & (1 << (on_pos +  + j*num_objects + k))) == (1 << (on_pos +  + j*num_objects + k))):
+                lp_output_string += "val((2 ,(" + str(j+1) + ", " + str(k+1) + "))," + str(i) + ", 1).\n"
+            else:
+                lp_output_string += "val((2 ,(" + str(j+1) + ", " + str(k+1) + "))," + str(i) + ", 0).\n"
+        if (i & (1 << (clear_pos +  + j)) == (1 << (clear_pos +  + j))):
+            lp_output_string += "val((1 ,(" + str(j+1) + ", " + str(j+1) + "))," + str(i) + ", 1).\n"
+        else:
+            lp_output_string += "val((1 ,(" + str(j+1) + ", " + str(j+1) + "))," + str(i) + ", 0).\n"
+    
+    
 dot_output_string = "digraph { \n" + dot_output_string + "}"
 output_string = "dfa " + str(num_nodes) + " -1\n" + "2 unstack stack\n" + "1 0\n" + output_string
 with open('blocksmin2ops2_noconstraints.dfa', 'w') as f:
@@ -125,6 +139,9 @@ with open('blocksmin2ops2_noconstraints.dfa', 'w') as f:
 
 with open('blocksmin2ops2_noconstraints.dot', 'w') as f:
     f.write(dot_output_string)
+
+with open('blocksmin2ops2_noconstraints_additionalinfo.lp', 'w') as f:
+    f.write(lp_output_string)
 
 
 for num_objects in range (2,7):
