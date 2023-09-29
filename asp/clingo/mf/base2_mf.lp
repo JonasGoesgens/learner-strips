@@ -312,9 +312,9 @@ root(I,S) :- min(I,S), not root(I,N) : marked(I,N), N != S.
 % Do not change the graph
 
 % no additional edges
-:- numedges(X), numedges(Y), X != Y.
-numedges(X) :- {edge((S1,S2))} = X.
-edge((S1,S2)) :- tlabel((S1,S2),A).
+:- numedges(I,X), numedges(I,Y), X != Y.
+numedges(I,X) :- {edge(I,(S1,S2))} = X, instance(I).
+edge(I,(S1,S2)) :- tlabel(I,(S1,S2),A).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

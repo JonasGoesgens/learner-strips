@@ -169,6 +169,7 @@ p_used(P)             :- p_arity(P,_).
 :- p_arity(P,0), a_atom(_,(P,(V1, _))), V1 > 0.
 :- p_arity(P,1), a_atom(_,(P,(V1,V2))), V1 != V2.
 :- p_arity(P,K), a_atom(_,(P,( 0, 0))),  K > 0.
+:- p_arity(P,K), p_arity(P,J), K != J.
 
 %*
 % CHECK: Alternatively, from definition of actions infer arity of predicates
@@ -232,6 +233,8 @@ p_arity_1_or_2(P) :- p_arity(P,N), N = 1..2,                                    
 
 % Previous constraints imply all P(O1,O2) are false if P has no arity
 
+% valuations are unambiguous
+:- val(I,(P,OO),S,1) , val(I,(P,OO),S,0).
 
 % Different nodes are different states (for non-noisy nodes)
 :- relevant(I,S1), relevant(I,S2), S1 < S2, val(I,(P,T),S2,V) : val(I,(P,T),S1,V); not noisy(S1), not noisy(S2).
@@ -336,6 +339,15 @@ affects(A,(P,T)) :- eff(A,(P,T),X).
 % Define root if no root node is specified
  min(I,S) :- marked(I,S), S <= S1 : marked(I,S1).
 root(I,S) :- min(I,S), not root(I,N) : marked(I,N), N != S.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Do not change the graph
+
+% no additional edges
+:- numedges(I,X), numedges(I,Y), X != Y.
+numedges(I,X) :- {edge(I,(S1,S2))} = X, instance(I).
+edge(I,(S1,S2)) :- tlabel(I,(S1,S2),A).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
