@@ -165,10 +165,6 @@ edge((63,30)).
 tlabel((63,30),2).
 p_arity(1,1).
 p_arity(2,2).
-:-node(S),noisy(S).
-object(1).
-object(2).
-num_objects = 2.
 val((2 ,(1, 1)),0, 0).
 val((2 ,(1, 2)),0, 0).
 val((1 ,(1, 1)),0, 0).
