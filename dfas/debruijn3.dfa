@@ -1,0 +1,11 @@
+dfa 8 -1
+2 shuffle shuffleexchange
+1 0
+2 shuffle 0 shuffleexchange 2
+2 shuffle 2 shuffleexchange 0
+2 shuffle 4 shuffleexchange 6
+2 shuffle 6 shuffleexchange 4
+2 shuffle 1 shuffleexchange 3
+2 shuffle 3 shuffleexchange 1
+2 shuffle 5 shuffleexchange 7
+2 shuffle 7 shuffleexchange 5
