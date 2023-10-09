@@ -272,8 +272,8 @@ affects(A,(P,T)) :- eff(A,(P,T),X).
 :- { appl(A,OO,S1) : next(A,OO,S1,S2) } = 0 , tlabel((S1,S2),A).
 
 % If there are X edges, there should be X applicable actions (redundant as it should be implied by above)
-%:- action(A), X = { tlabel(E,A) }, { appl(A,OO,S) } != X.
-%:- X = { tlabel(E,A) }, { appl(B,OO,S) } != X.
+%:- action(A), X = { tlabel(E,A) }, { appl(A,OO,S) } < X.
+%:- X = { tlabel(E,A) }, { appl(B,OO,S) } < X.
 
 % Define root(0) by default if no root node specified (root/1 is not used elsewhere)
 root(0) :- not root(N) : node(N), N != 0.

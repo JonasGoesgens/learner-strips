@@ -164,7 +164,7 @@ labelmatch(I,A,B) :- label(A,L), labelname(I,B,L).
 %    p_used(P): predicate P is used in encoding
 
 % CHECK: Method 1: Choose arity for predicates (Is it better?)
-{ p_arity(P,0..2) } 1 :- pred(P), opt_synthesis = 1.
+{ p_arity(P,0..2) } = 1 :- pred(P), opt_synthesis = 1.
 p_used(P)             :- p_arity(P,_).
 :- p_arity(P,0), a_atom(_,(P,(V1, _))), V1 > 0.
 :- p_arity(P,1), a_atom(_,(P,(V1,V2))), V1 != V2.
@@ -296,7 +296,7 @@ appl(I,A,OO1,S) :- action(A), objtuple(I,OO1,3), marked(I,S), not nappl(I,A,OO1,
 { next(I,A,OO,S1,S2) : tlabel(I,(S1,S2),B) } = 1 :- appl(I,A,OO,S1), labelmatch(I,A,B), marked(I,S1).
 
 % If action A maps S1 into S2, there is instance of A assigned to edge
-:- marked(I,S1), tlabel(I,(S1,S2),B), labelmatch(I,A,B), { next(I,A,OO,S1,S2) } != 1.
+:- marked(I,S1), tlabel(I,(S1,S2),B), labelmatch(I,A,B), { next(I,A,OO,S1,S2) } = 0.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -330,11 +330,11 @@ affects(A,(P,T)) :- eff(A,(P,T),X).
 :- marked(I,S1), edge(I,(S1,S2)), max_effects+1 #count{ M : val(I,M,S1,V), val(I,M,S2,1-V) }.
 
 % If A has X outgoing edges in S1, it should be applicable X times
-:- marked(I,S1), action(A), labelmatch(I,A,B), X = { tlabel(I,(S1,S2),B) }, { appl(I,A,OO,S1) } != X.
+:- marked(I,S1), action(A), labelmatch(I,A,B), X = { tlabel(I,(S1,S2),B) }, { appl(I,A,OO,S1) } < X.
 
 % If there are X edges, there should be X applicable actions
-:- action(A), labelmatch(I,A,B), X = { tlabel(I,(S1,S2),B) : marked(I,S1) }, { appl(I,A,OO,S) } != X.
-:- instance(I), X = { tlabel(I,(S1,S2),A) : marked(I,S1) }, { appl(I,B,OO,S) } != X.
+:- action(A), labelmatch(I,A,B), X = { tlabel(I,(S1,S2),B) : marked(I,S1) }, { appl(I,A,OO,S) } < X.
+:- instance(I), X = { tlabel(I,(S1,S2),A) : marked(I,S1) }, { appl(I,B,OO,S) } < X.
 
 % Define root if no root node is specified
  min(I,S) :- marked(I,S), S <= S1 : marked(I,S1).
