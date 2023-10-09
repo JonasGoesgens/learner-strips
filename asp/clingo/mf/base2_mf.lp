@@ -165,7 +165,7 @@ labelmatch(I,A,B) :- label(A,L), labelname(I,B,L).
 
 %*
 % CHECK: Is it better to choose predicate and enforce it?
-{ p_arity(P,0..2) } 1 :- pred(P), opt_synthesis = 1.
+{ p_arity(P,0..2) } = 1 :- pred(P), opt_synthesis = 1.
 :- p_arity(P,0), a_atom(_,(P,(V1, _))), V1 > 0.
 :- p_arity(P,1), a_atom(_,(P,(V1,V2))), V1 != V2.
 :- p_arity(P,K), a_atom(_,(P,( 0, 0))),  K > 0.
@@ -298,10 +298,10 @@ affects(A,(P,T)) :- eff(A,(P,T),X).
 :- marked(I,S1), edge(I,(S1,S2)), max_effects+1 #count{ M : val(I,M,S1,V), val(I,M,S2,1-V) }.
 
 % If A has X outgoing edges in S1, it should be applicable X times
-:- marked(I,S1), action(A), labelmatch(I,A,B), X = { tlabel(I,(S1,S2),B) }, { appl(I,A,OO,S1) } != X.
+:- marked(I,S1), action(A), labelmatch(I,A,B), X = { tlabel(I,(S1,S2),B) }, { appl(I,A,OO,S1) } < X.
 
 % If there are X edges, there should be X applicable actions
-:- action(A), labelmatch(I,A,B), X = { tlabel(I,(S1,S2),B) : marked(I,S1) }, { appl(I,A,OO,S) } != X.
+:- action(A), labelmatch(I,A,B), X = { tlabel(I,(S1,S2),B) : marked(I,S1) }, { appl(I,A,OO,S) } < X.
 
 % Define root if no root node is specified
  min(I,S) :- marked(I,S), S <= S1 : marked(I,S1).
