@@ -288,7 +288,10 @@ numedges(X) :- {edge((S1,S2))} = X.
 %a label causes an edge.
 edge((S1,S2)) :- tlabel((S1,S2),A).
 % an edge causes a label.
-:- { tlabel((S1,S2),A) : action(A) } = 0 , edge((S1,S2)).
+% assumes that no different actions cause the same edge.
+{ tlabel((S1,S2),A) : action(A) } = 1 :- edge((S1,S2)).
+%1 { tlabel((S1,S2),A) : action(A) } N :- edge((S1,S2)), num_actions(N).
+%:- { tlabel((S1,S2),A) : action(A) } = 0 , edge((S1,S2)).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Display
