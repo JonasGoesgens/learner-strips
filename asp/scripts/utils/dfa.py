@@ -55,7 +55,7 @@ class DFA:
                 raise RuntimeError(f'unknown suffix {self.fname.suffix} for DFA file')
             assert len(self.successors) == self.num_nodes
 
-    def dump_as_lp(self, fd):
+    def dump_as_lp(self, fd, suppress_labels):
         fd.write(f'% {self.num_nodes} nodes, {self.num_edges} edges\n')
         fd.write(f'numedges({self.num_edges}).\n')
         for node in range(self.num_nodes):
@@ -65,7 +65,8 @@ class DFA:
         for node, node_successors in enumerate(self.successors):
             for (label, next) in node_successors:
                 fd.write(f'edge(({node},{next})).\n')
-                fd.write(f'tlabel(({node},{next}),{self.labels[label]}).\n')
+                if not suppress_labels:
+                    fd.write(f'tlabel(({node},{next}),{self.labels[label]}).\n')
 
     def sample_nodes(self, n, repeat=True, avoid=None):
         nodes = list(range(self.num_nodes))
