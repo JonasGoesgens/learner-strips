@@ -1,19 +1,19 @@
 dfa 16 -1
-2 shuffle shuffleexchange
+3 shuffle shuffleexchange0 shuffleexchange1
 1 0
-2 shuffle 0 shuffleexchange 2
-2 shuffle 2 shuffleexchange 0
-2 shuffle 4 shuffleexchange 6
-2 shuffle 6 shuffleexchange 4
-2 shuffle 8 shuffleexchange 10
-2 shuffle 10 shuffleexchange 8
-2 shuffle 12 shuffleexchange 14
-2 shuffle 14 shuffleexchange 12
-2 shuffle 1 shuffleexchange 3
-2 shuffle 3 shuffleexchange 1
-2 shuffle 5 shuffleexchange 7
-2 shuffle 7 shuffleexchange 5
-2 shuffle 9 shuffleexchange 11
-2 shuffle 11 shuffleexchange 9
-2 shuffle 13 shuffleexchange 15
-2 shuffle 15 shuffleexchange 13
+2 shuffle 0 shuffleexchange0 2
+2 shuffle 2 shuffleexchange1 0
+2 shuffle 4 shuffleexchange0 6
+2 shuffle 6 shuffleexchange1 4
+2 shuffle 8 shuffleexchange0 10
+2 shuffle 10 shuffleexchange1 8
+2 shuffle 12 shuffleexchange0 14
+2 shuffle 14 shuffleexchange1 12
+2 shuffle 1 shuffleexchange0 3
+2 shuffle 3 shuffleexchange1 1
+2 shuffle 5 shuffleexchange0 7
+2 shuffle 7 shuffleexchange1 5
+2 shuffle 9 shuffleexchange0 11
+2 shuffle 11 shuffleexchange1 9
+2 shuffle 13 shuffleexchange0 15
+2 shuffle 15 shuffleexchange1 13

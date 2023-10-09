@@ -1,0 +1,25 @@
+% 4 nodes, 8 edges
+numedges(8).
+node(0).
+node(1).
+node(2).
+node(3).
+labelname(1,"shuffle").
+labelname(2,"shuffleexchange0").
+labelname(3,"shuffleexchange1").
+edge((0,0)).
+tlabel((0,0),1).
+edge((0,2)).
+tlabel((0,2),2).
+edge((1,2)).
+tlabel((1,2),1).
+edge((1,0)).
+tlabel((1,0),3).
+edge((2,1)).
+tlabel((2,1),1).
+edge((2,3)).
+tlabel((2,3),2).
+edge((3,3)).
+tlabel((3,3),1).
+edge((3,1)).
+tlabel((3,1),3).
