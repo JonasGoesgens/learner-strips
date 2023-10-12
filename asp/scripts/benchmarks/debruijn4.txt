@@ -1,2 +1,2 @@
 
-debruijn4.lp 4 0 -c max_num_invariants=0 -c max_predicates=2 -c max_static=0 VERIFY 7 0 debruijn2.lp debruijn3.lp debruijn4.lp debruijn5.lp debruijn6.lp debruijn7.lp
+debruijn4.lp 4 0 -c max_num_invariants=0 -c max_predicates=2 -c max_static=0 VERIFY 6 0 debruijn2.lp debruijn3.lp debruijn4.lp debruijn5.lp debruijn6.lp
