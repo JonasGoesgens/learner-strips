@@ -108,6 +108,15 @@ g_clingo = {
                'optimize'        : [ Path('kr21/optimize.lp') ],
                'heuristics'      : [ Path('kr21/heuristics.lp') ],   # NOT USED for test3 on 2023-MAR-17
              },
+    # constructive solver
+    'con'  : { 'solve'           : [ Path('constuct/base.lp'),
+                                     Path('constuct/constraints_blai.lp'),
+                                   ],
+               'verify'          : [ Path('constuct/base.lp') ],
+               'invariants'      : [ Path('constuct/invariants4a.lp') ], #     USED for test3 on 2023-MAR-17
+               'optimize'        : [ Path('constuct/optimize.lp') ],
+               'heuristics'      : [ Path('constuct/heuristics.lp') ],   # NOT USED for test3 on 2023-MAR-17
+             },
 }
 
 # templates
