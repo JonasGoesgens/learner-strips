@@ -109,12 +109,12 @@ objselect(P,N,                                    (0 ,0 )) :- p_min(P,N), p_arit
 
 numnodes(X) :- {node(S)} = X.
 
-nodereach(S,S)   :- node(S).
-nodereach(S1,S2) :- edge(S1,S3), nodereach(S3,S2), node(S1), node(S2), node(S3).
+nodereach(N,N)   :- node(N).
+nodereach(N1,N2) :- edge((N1,N3)), nodereach(N3,N2), node(N1), node(N2), node(N3).
 %Assume strongly conected graph
-:- not nodereach(S1,S2), node(S1), node(S2).
-%nodereachc(S1,N) :- node(S1), {node(S2):nodereach(S1,S2)} = N.
-%nodeusable(S1)   :- node(S1), N {node(S2):nodereachc(S2,C2),C2 <= C1}, nodereachc(S1,C1), numnodes(N+N;N+N-1).
+:- not nodereach(N1,N2), node(N1), node(N2).
+%nodereachc(N1,N) :- node(N1), {node(N2):nodereach(N1,N2)} = N.
+%nodeusable(N1)   :- node(N1), N {node(N2):nodereachc(N2,C2),C2 <= C1}, nodereachc(N1,C1), numnodes(N + N; N + N - 1).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Decompress State
@@ -125,6 +125,8 @@ state_val(S,N,M-(2 ** (N+1))) :- N >= 0, state_val(S,N+1,M), M >= (2 ** (N+1)).
 
 sval((P,OO),S,0) :- M <  (2 ** N), state_val(S,N,M), objselect(P,N,OO).
 sval((P,OO),S,1) :- M >= (2 ** N), state_val(S,N,M), objselect(P,N,OO).
+sval((P,OO),  V) :- sval((P,OO),S,V), p_static(P), pred(P).
+:- sval((P,OO),V),  sval((P,OO),1-V), p_static(P), pred(P).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Generate Initial States
@@ -132,6 +134,8 @@ sval((P,OO),S,1) :- M >= (2 ** N), state_val(S,N,M), objselect(P,N,OO).
 possible_state(0..N)  :- state_max(N+1).
 {initial_state(S):possible_state(S)}=1.
 state(S) :- initial_state(S).
+root(S)  :- initial_state(S).
+:- state(S), not possible_state(S).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Action Applicable?
@@ -177,12 +181,13 @@ construction_check :- {state(S)}=X, numnodes(X).
 {isomap(S,N):node(N)}=1 :- state(S), construction_check.                % mapping function
 :- node(N), state(S1), state(S2), S1 != S2, isomap(S1,N), isomap(S2,N). % mapping is injective and thus bijective by set size.
 
-:-     next(A,OO1,S1,S2),       not edge(N1,N2),                          node(N1), node(N2), state(S1), state(S2), isomap(S1,N1), isomap(S2,N2).
-:- {next(A,OO1,S1,S2)}=0,           edge(N1,N2),                          node(N1), node(N2), state(S1), state(S2), isomap(S1,N1), isomap(S2,N2).
+:-     next(A,OO1,S1,S2),       not edge((N1,N2)),                          node(N1), node(N2), state(S1), state(S2), isomap(S1,N1), isomap(S2,N2).
+:- {next(A,OO1,S1,S2)}=0,           edge((N1,N2)),                          node(N1), node(N2), state(S1), state(S2), isomap(S1,N1), isomap(S2,N2).
 :- {next(A,OO1,S1,S2)}=0,     tlabel((N1,N2),A),                          node(N1), node(N2), state(S1), state(S2), isomap(S1,N1), isomap(S2,N2).
 :-     next(A,OO1,S1,S2), not tlabel((N1,N2),A), tlabel((N1,N2),B), A!=B, node(N1), node(N2), state(S1), state(S2), isomap(S1,N1), isomap(S2,N2).
 
 val((P,OO2),N,X) :- sval((P,OO2),S1,X), isomap(S,N).
+val((P,OO2),  X) :- sval((P,OO2),   X), p_static(P), pred(P).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Display
