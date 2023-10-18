@@ -32,7 +32,7 @@ action(1..N) :- num_actions(N).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Action Predicate mapping
 
-objtuple(( 0, 0, 0),3).% for nullary predicates
+objtuple(( 0, 0, 0),2).% for nullary predicates
 objtuple((O1,O2,O3),3) :- object(O1), object(O2), object(O3).
 
 map((0,0),(O1,O2,O3),( 0, 0)) :- objtuple((O1,O2,O3),3). % for nullary predicates
@@ -121,7 +121,7 @@ nodereach(S1,S2) :- edge(S1,S3), nodereach(S3,S2), node(S1), node(S2), node(S3).
 
 state_val(S,N,S) :- state(S), p_max(max_predicates,N).
 state_val(S,N,M) :- N >= 0, state_val(S,N+1,M), M < (2 ** (N+1)).
-state_val(S,N,M-(2 ** (N+1))) :- N >= 0, state_val(S,N+1,M), M < (2 ** (N+1)).
+state_val(S,N,M-(2 ** (N+1))) :- N >= 0, state_val(S,N+1,M), M >= (2 ** (N+1)).
 
 sval((P,OO),S,0) :- M <  (2 ** N), state_val(S,N,M), objselect(P,N,OO).
 sval((P,OO),S,1) :- M >= (2 ** N), state_val(S,N,M), objselect(P,N,OO).
@@ -129,7 +129,7 @@ sval((P,OO),S,1) :- M >= (2 ** N), state_val(S,N,M), objselect(P,N,OO).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Generate Initial States
 
-possible_state(1..N)  :- state_max(N).
+possible_state(0..N)  :- state_max(N+1).
 {initial_state(S):possible_state(S)}=1.
 state(S) :- initial_state(S).
 
