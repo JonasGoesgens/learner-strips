@@ -32,7 +32,9 @@ action(1..N) :- num_actions(N).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Action Predicate mapping
 
-objtuple(( 0, 0, 0),2).% for nullary predicates
+objtuple(( 0, 0),0).% for nullary predicates
+objtuple(( O, O),1)    :- object( O).
+objtuple((O1,O2),2)    :- object(O1), object(O2).
 objtuple((O1,O2,O3),3) :- object(O1), object(O2), object(O3).
 
 map((0,0),(O1,O2,O3),( 0, 0)) :- objtuple((O1,O2,O3),3). % for nullary predicates
@@ -113,6 +115,7 @@ nodereach(N,N)   :- node(N).
 nodereach(N1,N2) :- edge((N1,N3)), nodereach(N3,N2), node(N1), node(N2), node(N3).
 %Assume strongly conected graph
 :- not nodereach(N1,N2), node(N1), node(N2).
+edgec(N1,N) :- {edge((N1,N2)):node(N2)} = N, node(N1).
 %nodereachc(N1,N) :- node(N1), {node(N2):nodereach(N1,N2)} = N.
 %nodeusable(N1)   :- node(N1), N {node(N2):nodereachc(N2,C2),C2 <= C1}, nodereachc(N1,C1), numnodes(N + N; N + N - 1).
 
@@ -131,11 +134,17 @@ sval((P,OO),  V) :- sval((P,OO),S,V), p_static(P), pred(P).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Generate Initial States
 
+%{ival((P,OO),X):X=0..1}=1 :- objtuple(OO,A), p_arity(P,A), p_used(P).
+%init_part(0 ,0).
+%init_part(S2,N) :- init_part(S3 ,N-1), S2=S3+(X * (2 ** (N-1))), objselect(P,N-1,OO), p_max(max_predicates,M), N>0, N<=M, ival((P,OO),X).
+%initial_state(S) :- init_part(S,N), p_max(max_predicates,N).
 possible_state(0..N)  :- state_max(N+1).
 {initial_state(S):possible_state(S)}=1.
 state(S) :- initial_state(S).
 root(S)  :- initial_state(S).
 :- state(S), not possible_state(S).
+%:- state(S), S < 0.
+%:- state(S), S >= N, state_max(N).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Action Applicable?
@@ -172,6 +181,8 @@ next_part(S2,N,A,OO1,S1) :- appl(A,OO1,S1), next_part(S3 ,N-1,A,OO1,S1), S2=S3+(
 next_part(S2,N,A,OO1,S1) :- appl(A,OO1,S1), next_part(S3 ,N-1,A,OO1,S1), S2=S3+(X * (2 ** (N-1))), objselect(P,N-1,OO2), p_max(max_predicates,M), N>0, N<=M, not g_affects(A,P,OO1,OO2), sval((P,OO2),S1,X). %Inertia
 state(S2):-next_part(S2,N,A,OO1,S1), p_max(max_predicates,N).
 next(A,OO1,S1,S2) :- next_part(S2,N,A,OO1,S1), p_max(max_predicates,N).
+next_s(S1,S2) :- next(A,OO1,S1,S2).
+:- {next_s(S1,S2):state(S2)} = X, state(S1), {edgec(N,X):node(N)}=0.
 construction_check :- {state(S)}=X, numnodes(X).
 :- not construction_check.
 
