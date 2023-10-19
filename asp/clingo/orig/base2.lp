@@ -31,6 +31,9 @@ action(1..N) :- num_actions(N), opt_synthesis = 1.
 
 %%%action(L) :- tlabel(T,L). % BLAI: old
 
+action_comp(A,A) :- action(A).
+action_comp(A,0) :- action(A).
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Atoms: ungrounded and grounded. Predicate's arity is either 0, 1, or 2.
@@ -225,29 +228,37 @@ appl(A,OO1,S) :- action(A), objtuple(OO1,3), node(S), not nappl(A,OO1,S),
 
 % If A(OO) is applicable at S1, choose a next node among those give by edges
 % enforces determinism of actions.
-{ next(A,OO,S1,S2) : tlabel((S1,S2),A) } = 1 :- appl(A,OO,S1).
+{ next(A,OO,S1,S2) : tlabel((S1,S2),B), action_comp(A,B), not not_next(A,OO,S1,S2) } = 1 :- appl(A,OO,S1).
+
+% TODO next calc next deterministically.
+% Note that S2 is completely determined by A,OO,S1.
+not_next(A,OO,S1,S2) :-  eff(A,(P,(V1,V2)),X),map((V1,V2),OO,(O1,O2)),      appl(A,OO,S1), val((P,(O1,O2)),S2,1-X),                        edge((S1,S2)), node(S2).
+not_next(A,OO,S1,S2) :- {eff(A,(P,(V1,V2)),_):map((V1,V2),OO,(O1,O2))} = 0, appl(A,OO,S1), val((P,(O1,O2)),S2,1-X), val((P,(O1,O2)),S1,X), edge((S1,S2)), node(S2).
+
 
 % If action A maps S1 into S2, there is instance of A assigned to edge
-:- tlabel((S1,S2),A), { next(A,OO,S1,S2) } = 0.
-
+:- tlabel((S1,S2),A), { next(A,OO,S1,S2) } = 0, action(A).
+:- tlabel((S1,S2),0), { next(A,OO,S1,S2) : appl(A,OO,S1), action(A) } = 0.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Check action effects on successor states (factored test)
 
 % A maps S1 into S2 with O1 in V1, O2 in V2, and O3 in V3
 pnext(0,A, 0,S1,S2) :-        tlabel((S1,S2),A), S2 >= 0. % for nullary predicates
+pnext(0,A, 0,S1,S2) :- action(A), tlabel((S1,S2),0), S2 >= 0. % for nullary predicates
 pnext(1,A,O1,S1,S2) :- next(A,(O1,O2,O3),S1,S2), S2 >= 0.
 pnext(2,A,O2,S1,S2) :- next(A,(O1,O2,O3),S1,S2), S2 >= 0.
 pnext(3,A,O3,S1,S2) :- next(A,(O1,O2,O3),S1,S2), S2 >= 0.
-:- S2 < 0 , pnext(_,A,_,S1,S2).
-:- O != 0 , pnext(0,A,O,S1,S2).
-:- { next(A,(O1,O2,O3),S1,S2) : object(O1), object(O2) } = 0 , pnext(3,A,O3,S1,S2), S2 >= 0.
-:- { next(A,(O1,O2,O3),S1,S2) : object(O1), object(O3) } = 0 , pnext(2,A,O2,S1,S2), S2 >= 0.
-:- { next(A,(O1,O2,O3),S1,S2) : object(O2), object(O3) } = 0 , pnext(1,A,O1,S1,S2), S2 >= 0.
-tlabel((S1,S2),A) :- pnext(0,A, 0,S1,S2), S2 >= 0.
+%:- S2 < 0 , pnext(_,A,_,S1,S2).
+%:- O != 0 , pnext(0,A,O,S1,S2).
+%:- { next(A,(O1,O2,O3),S1,S2) : object(O1), object(O2) } = 0 , pnext(3,A,O3,S1,S2), S2 >= 0.
+%:- { next(A,(O1,O2,O3),S1,S2) : object(O1), object(O3) } = 0 , pnext(2,A,O2,S1,S2), S2 >= 0.
+%:- { next(A,(O1,O2,O3),S1,S2) : object(O2), object(O3) } = 0 , pnext(1,A,O1,S1,S2), S2 >= 0.
+%tlabel((S1,S2),A) :- pnext(0,A, 0,S1,S2), S2 >= 0.
 
 % If A goes from S1 to S2 with O1 in V1 and O2 in V2, the effects must hold in S2
-:- eff(A,(P,(V1,V2)),X), pnext(V1,A,O1,S1,S2), pnext(V2,A,O2,S1,S2), val((P,(O1,O2)),S2,1-X).
+:-  eff(A,(P,(V1,V2)),X), pnext(V1,A,O1,S1,S2), pnext(V2,A,O2,S1,S2), val((P,(O1,O2)),S2,1-X), tlabel((S1,S2),A), action(A).
+:-  eff(A,(P,(V1,V2)),X), pnext(V1,A,O1,S1,S2), pnext(V2,A,O2,S1,S2), val((P,(O1,O2)),S2,1-X), tlabel((S1,S2),0), action(A).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -269,7 +280,9 @@ affects(A,(P,T)) :- eff(A,(P,T),X).
 
 % If A has X outgoing edges in S1, it should be applicable X times
 :- node(S1), action(A), X = { tlabel((S1,S2),A) }, { appl(A,OO,S1) } < X.
-:- { appl(A,OO,S1) : next(A,OO,S1,S2) } = 0 , tlabel((S1,S2),A).
+:- node(S1), X = { tlabel((S1,S2),A) : action(A) }, { appl(B,OO,S1) : action(B) } = Y, {tlabel((S1,S2),0)} > Y - X.
+:- { appl(A,OO,S1) : next(A,OO,S1,S2) } = 0 , tlabel((S1,S2),A), action(A).
+:- { appl(A,OO,S1) : next(A,OO,S1,S2) } = 0 , tlabel((S1,S2),0).
 
 % If there are X edges, there should be X applicable actions (redundant as it should be implied by above)
 %:- action(A), X = { tlabel(E,A) }, { appl(A,OO,S) } < X.
@@ -289,9 +302,10 @@ numedges(X) :- {edge((S1,S2))} = X.
 edge((S1,S2)) :- tlabel((S1,S2),A).
 % an edge causes a label.
 % assumes that no different actions cause the same edge.
-{ tlabel((S1,S2),A) : action(A) } = 1 :- edge((S1,S2)).
+%{ tlabel((S1,S2),A) : action(A) } = 1 :- edge((S1,S2)).
 %1 { tlabel((S1,S2),A) : action(A) } N :- edge((S1,S2)), num_actions(N).
-%:- { tlabel((S1,S2),A) : action(A) } = 0 , edge((S1,S2)).
+tlabel((S1,S2),0) :- {tlabel((S1,S2),A) : action(A)} = 0, edge((S1,S2)).
+:- { tlabel((S1,S2),0) ; tlabel((S1,S2),A) : action(A) } = 0 , edge((S1,S2)).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Display
