@@ -1,0 +1,2 @@
+
+blocksmin2ops3.lp 3 0 -c max_num_invariants=1 -c max_predicates=2 -c max_static=0 VERIFY 5 0 blocksmin2ops2.lp blocksmin2ops3.lp blocksmin2ops4.lp blocksmin2ops5.lp
