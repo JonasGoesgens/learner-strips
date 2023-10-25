@@ -230,8 +230,7 @@ appl(A,OO1,S) :- action(A), objtuple(OO1,3), node(S), not nappl(A,OO1,S),
 % enforces determinism of actions.
 { next(A,OO,S1,S2) : tlabel((S1,S2),B), action_comp(A,B), not not_next(A,OO,S1,S2) } = 1 :- appl(A,OO,S1).
 
-% TODO next calc next deterministically.
-% Note that S2 is completely determined by A,OO,S1.
+% Note that S2 is completely determined by A,OO,S1, but keep guessing for quicker progression, still exclude false canidates.
 not_next(A,OO,S1,S2) :-  eff(A,(P,(V1,V2)),X),map((V1,V2),OO,(O1,O2)),      appl(A,OO,S1), val((P,(O1,O2)),S2,1-X),                        edge((S1,S2)), node(S2).
 not_next(A,OO,S1,S2) :- {eff(A,(P,(V1,V2)),_):map((V1,V2),OO,(O1,O2))} = 0, appl(A,OO,S1), val((P,(O1,O2)),S2,1-X), val((P,(O1,O2)),S1,X), edge((S1,S2)), node(S2).
 
@@ -244,11 +243,11 @@ not_next(A,OO,S1,S2) :- {eff(A,(P,(V1,V2)),_):map((V1,V2),OO,(O1,O2))} = 0, appl
 % Check action effects on successor states (factored test)
 
 % A maps S1 into S2 with O1 in V1, O2 in V2, and O3 in V3
-pnext(0,A, 0,S1,S2) :-        tlabel((S1,S2),A), S2 >= 0. % for nullary predicates
-pnext(0,A, 0,S1,S2) :- action(A), tlabel((S1,S2),0), S2 >= 0. % for nullary predicates
-pnext(1,A,O1,S1,S2) :- next(A,(O1,O2,O3),S1,S2), S2 >= 0.
-pnext(2,A,O2,S1,S2) :- next(A,(O1,O2,O3),S1,S2), S2 >= 0.
-pnext(3,A,O3,S1,S2) :- next(A,(O1,O2,O3),S1,S2), S2 >= 0.
+pnext(0,A, 0,(O1,O2,O3),S1,S2) :- tlabel((S1,S2),A), action(A), S2 >= 0, objtuple((O1,O2,O3),3). % for nullary predicates, object selection is irrelevant.
+pnext(0,A, 0,(O1,O2,O3),S1,S2) :- next(A,(O1,O2,O3),S1,S2),     S2 >= 0. % for nullary predicates
+pnext(1,A,O1,(O1,O2,O3),S1,S2) :- next(A,(O1,O2,O3),S1,S2),     S2 >= 0.
+pnext(2,A,O2,(O1,O2,O3),S1,S2) :- next(A,(O1,O2,O3),S1,S2),     S2 >= 0.
+pnext(3,A,O3,(O1,O2,O3),S1,S2) :- next(A,(O1,O2,O3),S1,S2),     S2 >= 0.
 %:- S2 < 0 , pnext(_,A,_,S1,S2).
 %:- O != 0 , pnext(0,A,O,S1,S2).
 %:- { next(A,(O1,O2,O3),S1,S2) : object(O1), object(O2) } = 0 , pnext(3,A,O3,S1,S2), S2 >= 0.
@@ -257,8 +256,8 @@ pnext(3,A,O3,S1,S2) :- next(A,(O1,O2,O3),S1,S2), S2 >= 0.
 %tlabel((S1,S2),A) :- pnext(0,A, 0,S1,S2), S2 >= 0.
 
 % If A goes from S1 to S2 with O1 in V1 and O2 in V2, the effects must hold in S2
-:-  eff(A,(P,(V1,V2)),X), pnext(V1,A,O1,S1,S2), pnext(V2,A,O2,S1,S2), val((P,(O1,O2)),S2,1-X), tlabel((S1,S2),A), action(A).
-:-  eff(A,(P,(V1,V2)),X), pnext(V1,A,O1,S1,S2), pnext(V2,A,O2,S1,S2), val((P,(O1,O2)),S2,1-X), tlabel((S1,S2),0), action(A).
+:-  eff(A,(P,(V1,V2)),X), pnext(V1,A,O1,OO,S1,S2), pnext(V2,A,O2,OO,S1,S2), val((P,(O1,O2)),S2,1-X), tlabel((S1,S2),A), action(A).
+:-  eff(A,(P,(V1,V2)),X), pnext(V1,A,O1,OO,S1,S2), pnext(V2,A,O2,OO,S1,S2), val((P,(O1,O2)),S2,1-X), tlabel((S1,S2),0), action(A).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -268,7 +267,7 @@ pnext(3,A,O3,S1,S2) :- next(A,(O1,O2,O3),S1,S2), S2 >= 0.
 :- edge((S1,S2)), val(K,S1,V), val(K,S2,1-V), not caused(S1,S2,K).
 
 % If A goes from S1 to S2 with O1 in V1 and O2 in V2, P(O1,O2) is caused if P(V1,V2) is effect
-caused(S1,S2,(P,(O1,O2))) :- affects(A,(P,(V1,V2))), pnext(V1,A,O1,S1,S2), pnext(V2,A,O2,S1,S2).
+caused(S1,S2,(P,(O1,O2))) :- affects(A,(P,(V1,V2))), pnext(V1,A,O1,OO,S1,S2), pnext(V2,A,O2,OO,S1,S2).
 affects(A,(P,T)) :- eff(A,(P,T),X).
 
 
@@ -281,8 +280,8 @@ affects(A,(P,T)) :- eff(A,(P,T),X).
 % If A has X outgoing edges in S1, it should be applicable X times
 :- node(S1), action(A), X = { tlabel((S1,S2),A) }, { appl(A,OO,S1) } < X.
 :- node(S1), X = { tlabel((S1,S2),A) : action(A) }, { appl(B,OO,S1) : action(B) } = Y, {tlabel((S1,S2),0)} > Y - X.
-:- { appl(A,OO,S1) : next(A,OO,S1,S2) } = 0 , tlabel((S1,S2),A), action(A).
-:- { appl(A,OO,S1) : next(A,OO,S1,S2) } = 0 , tlabel((S1,S2),0).
+:- { appl(A,OO,S1) : next(A,OO,S1,S2) } = 0 , action(A), tlabel((S1,S2),A).
+:- { appl(A,OO,S1) : next(A,OO,S1,S2), action(A) } = 0 , tlabel((S1,S2),0).
 
 % If there are X edges, there should be X applicable actions (redundant as it should be implied by above)
 %:- action(A), X = { tlabel(E,A) }, { appl(A,OO,S) } < X.
