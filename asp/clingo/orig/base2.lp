@@ -14,6 +14,7 @@
 #const max_effects=6.    % for each action
 #const opt_unequal=1.    % inequality constraints for action arguments
 #const opt_synthesis=1.  % enable synthesis of model
+%#const opt_uniqueness=1. % enforce edges are caused by only one ground action
 
 % Constants needed and set at call time:
 %#const num_objects >= 1
@@ -236,8 +237,10 @@ not_next(A,OO,S1,S2) :- {eff(A,(P,(V1,V2)),_):map((V1,V2),OO,(O1,O2))} = 0, appl
 
 
 % If action A maps S1 into S2, there is instance of A assigned to edge
-:- tlabel((S1,S2),A), { next(A,OO,S1,S2) } = 0, action(A).
-:- tlabel((S1,S2),0), { next(A,OO,S1,S2) : appl(A,OO,S1), action(A) } = 0.
+:- tlabel((S1,S2),A), { next(A,OO,S1,S2)          }  = 0, action(A).
+:- tlabel((S1,S2),0), { next(A,OO,S1,S2) : appl(A,OO,S1), action(A) }  = 0.
+%:- tlabel((S1,S2),A), { next(A,OO,S1,S2)          } != 1, action(A),        opt_uniqueness = 1.
+%:- tlabel((S1,S2),0), { next(A,OO,S1,S2) : appl(A,OO,S1), action(A) } != 1, opt_uniqueness = 1.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Check action effects on successor states (factored test)
@@ -278,14 +281,19 @@ affects(A,(P,T)) :- eff(A,(P,T),X).
 :- edge((S1,S2)), max_effects+1 #count{ M : val(M,S1,V), val(M,S2,1-V) }.
 
 % If A has X outgoing edges in S1, it should be applicable X times
-:- node(S1), action(A), X = { tlabel((S1,S2),A) }, { appl(A,OO,S1) } < X.
-:- node(S1), X = { tlabel((S1,S2),A) : action(A) }, { appl(B,OO,S1) : action(B) } = Y, {tlabel((S1,S2),0)} > Y - X.
-:- { appl(A,OO,S1) : next(A,OO,S1,S2) } = 0 , action(A), tlabel((S1,S2),A).
-:- { appl(A,OO,S1) : next(A,OO,S1,S2), action(A) } = 0 , tlabel((S1,S2),0).
+:- node(S1), action(A), X = { tlabel((S1,S2),A) }, { appl(A,OO,S1) }  < X.
+%:- node(S1), action(A), X = { tlabel((S1,S2),A) }, { appl(A,OO,S1) } != X, {tlabel((S1,_),0)} = 0, opt_uniqueness = 1.
+:- node(S1), X = { tlabel((S1,_),A) : action(A) }, { appl(B,OO,S1) : action(B) } = Y, {tlabel((S1,_),0)}  > Y - X.
+%:- node(S1), X = { tlabel((S1,_),A) : action(A) }, { appl(B,OO,S1) : action(B) } = Y, {tlabel((S1,_),0)} != Y - X, opt_uniqueness = 1.
+:- { appl(A,OO,S1) : next(A,OO,S1,S2) }  = 0 , action(A), tlabel((S1,S2),A).
+%:- { appl(A,OO,S1) : next(A,OO,S1,S2) } != 1 , action(A), tlabel((S1,S2),A), opt_uniqueness = 1.
+:- { appl(A,OO,S1) : next(A,OO,S1,S2), action(A) }  = 0 , tlabel((S1,S2),0).
+%:- { appl(A,OO,S1) : next(A,OO,S1,S2), action(A) } != 1 , tlabel((S1,S2),0), opt_uniqueness = 1.
 
 % If there are X edges, there should be X applicable actions (redundant as it should be implied by above)
-%:- action(A), X = { tlabel(E,A) }, { appl(A,OO,S) } < X.
-%:- X = { tlabel(E,A) }, { appl(B,OO,S) } < X.
+:- action(A), X = { tlabel(E,A) }, { appl(A,OO,S) } < X.
+:- X = { tlabel(E,A) }, { appl(B,OO,S) }  < X.
+%:- X = { tlabel(E,A) }, { appl(B,OO,S) } != X, opt_uniqueness = 1.
 
 % Define root(0) by default if no root node specified (root/1 is not used elsewhere)
 root(0) :- not root(N) : node(N), N != 0.
