@@ -1,6 +1,5 @@
 % 64 nodes, 48 edges
 numedges(48).
-:- noisy(n), node(n).
 node(0).
 node(1).
 node(2).
