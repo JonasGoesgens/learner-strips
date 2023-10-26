@@ -228,11 +228,11 @@ appl(A,OO1,S) :- action(A), objtuple(OO1,3), node(S), not nappl(A,OO1,S),
 
 % If A(OO) is applicable at S1, choose a next node among those give by edges
 % enforces determinism of actions.
-{ next(A,OO,S1,S2) : tlabel((S1,S2),B), action_comp(A,B), not not_next(A,OO,S1,S2) } = 1 :- appl(A,OO,S1).
+{ next(A,OO,S1,S2) : tlabel((S1,S2),B), action_comp(A,B) } = 1 :- appl(A,OO,S1).
 
 % Note that S2 is completely determined by A,OO,S1, but keep guessing for quicker progression, still exclude false canidates.
-not_next(A,OO,S1,S2) :-  eff(A,(P,(V1,V2)),X),map((V1,V2),OO,(O1,O2)),      appl(A,OO,S1), val((P,(O1,O2)),S2,1-X),                        edge((S1,S2)), node(S2).
-not_next(A,OO,S1,S2) :- {eff(A,(P,(V1,V2)),_):map((V1,V2),OO,(O1,O2))} = 0, appl(A,OO,S1), val((P,(O1,O2)),S2,1-X), val((P,(O1,O2)),S1,X), edge((S1,S2)), node(S2).
+%not_next(A,OO,S1,S2) :-  eff(A,(P,(V1,V2)),X),map((V1,V2),OO,(O1,O2)),      appl(A,OO,S1), val((P,(O1,O2)),S2,1-X),                        edge((S1,S2)), node(S2).
+%not_next(A,OO,S1,S2) :- {eff(A,(P,(V1,V2)),_):map((V1,V2),OO,(O1,O2))} = 0, appl(A,OO,S1), val((P,(O1,O2)),S2,1-X), val((P,(O1,O2)),S1,X), edge((S1,S2)), node(S2).
 
 
 % If action A maps S1 into S2, there is instance of A assigned to edge
