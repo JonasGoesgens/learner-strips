@@ -1,5 +1,6 @@
 % 73 nodes, 168 edges
 numedges(168).
+inverse(1,2).
 node(0).
 node(1).
 node(2).

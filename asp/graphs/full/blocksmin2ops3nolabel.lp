@@ -1,5 +1,6 @@
 % 13 nodes, 24 edges
 numedges(24).
+inverse(1,2).
 node(0).
 node(1).
 node(2).
