@@ -127,6 +127,10 @@ a_arity_geq(A,M) :- a_arity(A,N), M = 1..3, N = M..3.
 % No noop effects and no noop actions
 :- prec(A,M,X), eff(A,M,X).
 
+% Inverses impose heavy restrictions:
+inverse(B,A) :- inverse(A,B).
+:- eff(A,(P,T),0),    not prec(A,(P,T),1), inverse(A,B).
+:- eff(A,(P,_),X), {eff(B,(P,_),1-X)} = 0, inverse(A,B).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Predicates
@@ -238,6 +242,7 @@ appl(A,OO1,S) :- action(A), objtuple(OO1,3), node(S), not nappl(A,OO1,S),
 % If action A maps S1 into S2, there is instance of A assigned to edge
 :- tlabel((S1,S2),A), { next(A,OO,S1,S2) } = 0, action(A).
 :- tlabel((S1,S2),0), { next(A,OO,S1,S2) : appl(A,OO,S1), action(A) } = 0.
+:- next(A, _,S1,S2),  { next(B, _,S2,S1) } = 0, inverse(A,B).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Check action effects on successor states (factored test)
@@ -258,6 +263,8 @@ pnext(3,A,O3,(O1,O2,O3),S1,S2) :- next(A,(O1,O2,O3),S1,S2),     S2 >= 0.
 % If A goes from S1 to S2 with O1 in V1 and O2 in V2, the effects must hold in S2
 :-  eff(A,(P,(V1,V2)),X), pnext(V1,A,O1,OO,S1,S2), pnext(V2,A,O2,OO,S1,S2), val((P,(O1,O2)),S2,1-X), tlabel((S1,S2),A), action(A).
 :-  eff(A,(P,(V1,V2)),X), pnext(V1,A,O1,OO,S1,S2), pnext(V2,A,O2,OO,S1,S2), val((P,(O1,O2)),S2,1-X), tlabel((S1,S2),0), action(A).
+
+:-  eff(A,(P,(V1,V2)),X), pnext(V1,A,O1,OO,S1,S2), pnext(V2,A,O2,OO,S1,S2), val((P,(O1,O2)),S1,  X), tlabel((S1,S2),A), inverse(A,B).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
