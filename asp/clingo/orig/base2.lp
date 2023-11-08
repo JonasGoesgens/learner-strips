@@ -111,8 +111,8 @@ a_arity_geq(A,M) :- a_arity(A,N), M = 1..3, N = M..3.
 % prec(A,(P,T),0): atom (P,T) is negative prec of action A
 % prec(A,(P,T),1): atom (P,T) is positive prec of action A
 
-{ prec(A,(P,T),0..1) : pred(P), argtuple(T) } max_precs :- action(A), opt_synthesis = 1.
-:- prec(A,M,0), prec(A,M,1).         % rule out contradictory precs
+{ prec(A,(P,T),1) : pred(P), argtuple(T) } max_precs :- action(A), opt_synthesis = 1.
+%:- prec(A,M,0), prec(A,M,1).         % rule out contradictory precs
 :- prec(_,(P,(0,0)),_), p_static(P). % CHECK: not nullary prec on static predicates
 
 % eff(A,(P,T),0): atom (P,T) is negative effect of action A
@@ -131,6 +131,8 @@ a_arity_geq(A,M) :- a_arity(A,N), M = 1..3, N = M..3.
 inverse(B,A) :- inverse(A,B).
 :- eff(A,(P,T),0),    not prec(A,(P,T),1), inverse(A,B).
 :- eff(A,(P,_),X), {eff(B,(P,_),1-X)} = 0, inverse(A,B).
+:- eff(A,(P,T),X), {eff(B,(P,T),1-X)} = 0, inverse(A,B), A != B.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Predicates
@@ -243,6 +245,7 @@ appl(A,OO1,S) :- action(A), objtuple(OO1,3), node(S), not nappl(A,OO1,S),
 :- tlabel((S1,S2),A), { next(A,OO,S1,S2) } = 0, action(A).
 :- tlabel((S1,S2),0), { next(A,OO,S1,S2) : appl(A,OO,S1), action(A) } = 0.
 :- next(A, _,S1,S2),  { next(B, _,S2,S1) } = 0, inverse(A,B).
+:- next(A,OO,S1,S2),  { next(B,OO,S2,S1) } = 0, inverse(A,B), A != B.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Check action effects on successor states (factored test)
@@ -265,7 +268,6 @@ pnext(3,A,O3,(O1,O2,O3),S1,S2) :- next(A,(O1,O2,O3),S1,S2),     S2 >= 0.
 :-  eff(A,(P,(V1,V2)),X), pnext(V1,A,O1,OO,S1,S2), pnext(V2,A,O2,OO,S1,S2), val((P,(O1,O2)),S2,1-X), tlabel((S1,S2),0), action(A).
 
 :-  eff(A,(P,(V1,V2)),X), pnext(V1,A,O1,OO,S1,S2), pnext(V2,A,O2,OO,S1,S2), val((P,(O1,O2)),S1,  X), tlabel((S1,S2),A), inverse(A,B).
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Inertia
