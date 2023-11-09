@@ -1,1 +1,5 @@
 termcolor
+clingo
+tqdm
+progress
+pyperplan
