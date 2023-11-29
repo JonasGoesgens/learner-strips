@@ -271,6 +271,9 @@ pnext(3,A,O3,(O1,O2,O3),S1,S2) :- next(A,(O1,O2,O3),S1,S2),     S2 >= 0.
 
 :-  eff(A,(P,(V1,V2)),X), pnext(V1,A,O1,OO,S1,S2), pnext(V2,A,O2,OO,S1,S2), val((P,(O1,O2)),S1,  X), tlabel((S1,S2),A), inverse(A,B).
 
+% an effect should be visible at one node at least
+:-  { node(S1)          : pnext(V1,A,O1,OO,S1,S2), pnext(V2,A,O2,OO,S1,S2), val((P,(O1,O2)),S1,1-X), tlabel((S1,S2),A)} = 0, eff(A,(P,(V1,V2)),X).
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Inertia
 
