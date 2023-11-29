@@ -14,9 +14,10 @@
 #const max_effects=6.    % for each action
 #const opt_unequal=1.    % inequality constraints for action arguments
 #const opt_synthesis=1.  % enable synthesis of model
+#const opt_prec=2.
 
 % Constants needed and set at call time:
-%#const num_objects >= 1
+%#const num_objects >= 1.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -111,8 +112,9 @@ a_arity_geq(A,M) :- a_arity(A,N), M = 1..3, N = M..3.
 % prec(A,(P,T),0): atom (P,T) is negative prec of action A
 % prec(A,(P,T),1): atom (P,T) is positive prec of action A
 
-{ prec(A,(P,T),1) : pred(P), argtuple(T) } max_precs :- action(A), opt_synthesis = 1.
-%:- prec(A,M,0), prec(A,M,1).         % rule out contradictory precs
+{ prec(A,(P,T),0..1) : pred(P), argtuple(T) } max_precs :- action(A), opt_synthesis = 1, opt_prec != 2.
+{ prec(A,(P,T),1)    : pred(P), argtuple(T) } max_precs :- action(A), opt_synthesis = 1, opt_prec  = 2.
+:- prec(A,M,0), prec(A,M,1), opt_prec != 2.         % rule out contradictory precs
 :- prec(_,(P,(0,0)),_), p_static(P). % CHECK: not nullary prec on static predicates
 
 % eff(A,(P,T),0): atom (P,T) is negative effect of action A
@@ -268,6 +270,9 @@ pnext(3,A,O3,(O1,O2,O3),S1,S2) :- next(A,(O1,O2,O3),S1,S2),     S2 >= 0.
 :-  eff(A,(P,(V1,V2)),X), pnext(V1,A,O1,OO,S1,S2), pnext(V2,A,O2,OO,S1,S2), val((P,(O1,O2)),S2,1-X), tlabel((S1,S2),0), action(A).
 
 :-  eff(A,(P,(V1,V2)),X), pnext(V1,A,O1,OO,S1,S2), pnext(V2,A,O2,OO,S1,S2), val((P,(O1,O2)),S1,  X), tlabel((S1,S2),A), inverse(A,B).
+
+% an effect should be visible at one node at least
+:-  { node(S1)          : pnext(V1,A,O1,OO,S1,S2), pnext(V2,A,O2,OO,S1,S2), val((P,(O1,O2)),S1,1-X), tlabel((S1,S2),A)} = 0, eff(A,(P,(V1,V2)),X).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Inertia
