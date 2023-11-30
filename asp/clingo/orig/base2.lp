@@ -246,6 +246,7 @@ appl(A,OO1,S) :- action(A), objtuple(OO1,3), node(S), not nappl(A,OO1,S),
 % If action A maps S1 into S2, there is instance of A assigned to edge
 :- tlabel((S1,S2),A), { next(A,OO,S1,S2) } = 0, action(A).
 :- tlabel((S1,S2),0), { next(A,OO,S1,S2) : appl(A,OO,S1), action(A) } = 0.
+:- tlabel((S1,S2),B), { next(A,OO,S1,S2) : action_comp(A,B) } = 0.
 :- next(A, _,S1,S2),  { next(B, _,S2,S1) } = 0, inverse(A,B).
 :- next(A,OO,S1,S2),  { next(B,OO,S2,S1) } = 0, inverse(A,B), A != B.
 
@@ -278,10 +279,12 @@ pnext(3,A,O3,(O1,O2,O3),S1,S2) :- next(A,(O1,O2,O3),S1,S2),     S2 >= 0.
 % Inertia
 
 % There cannot be a non-caused change of a fluent
-:- edge((S1,S2)), val(K,S1,V), val(K,S2,1-V), not caused(S1,S2,K).
+:- edge((S1,S2)),    val(K,S1,V), val(K,S2,1-V), { caused(S1,S2,OO,K) } = 0.
+:- next(_,OO,S1,S2), val(K,S1,V), val(K,S2,1-V), { caused(S1,S2,OO,K) } = 0.
+
 
 % If A goes from S1 to S2 with O1 in V1 and O2 in V2, P(O1,O2) is caused if P(V1,V2) is effect
-caused(S1,S2,(P,(O1,O2))) :- affects(A,(P,(V1,V2))), pnext(V1,A,O1,OO,S1,S2), pnext(V2,A,O2,OO,S1,S2).
+caused(S1,S2,OO,(P,(O1,O2))) :- affects(A,(P,(V1,V2))), pnext(V1,A,O1,OO,S1,S2), pnext(V2,A,O2,OO,S1,S2).
 affects(A,(P,T)) :- eff(A,(P,T),X).
 
 
