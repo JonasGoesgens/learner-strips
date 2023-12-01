@@ -114,7 +114,7 @@ a_arity_geq(A,M) :- a_arity(A,N), M = 1..3, N = M..3.
 
 { prec(A,(P,T),0..1) : pred(P), argtuple(T) } max_precs :- action(A), opt_synthesis = 1, opt_prec != 2.
 { prec(A,(P,T),1)    : pred(P), argtuple(T) } max_precs :- action(A), opt_synthesis = 1, opt_prec  = 2.
-:- prec(A,M,0), prec(A,M,1), opt_prec != 2.         % rule out contradictory precs
+:- prec(A,M,0), prec(A,M,1).%, opt_prec != 2.         % rule out contradictory precs
 :- prec(_,(P,(0,0)),_), p_static(P). % CHECK: not nullary prec on static predicates
 
 % eff(A,(P,T),0): atom (P,T) is negative effect of action A
@@ -267,13 +267,14 @@ pnext(3,A,O3,(O1,O2,O3),S1,S2) :- next(A,(O1,O2,O3),S1,S2),     S2 >= 0.
 %tlabel((S1,S2),A) :- pnext(0,A, 0,S1,S2), S2 >= 0.
 
 % If A goes from S1 to S2 with O1 in V1 and O2 in V2, the effects must hold in S2
-:-  eff(A,(P,(V1,V2)),X), pnext(V1,A,O1,OO,S1,S2), pnext(V2,A,O2,OO,S1,S2), val((P,(O1,O2)),S2,1-X), tlabel((S1,S2),A), action(A).
-:-  eff(A,(P,(V1,V2)),X), pnext(V1,A,O1,OO,S1,S2), pnext(V2,A,O2,OO,S1,S2), val((P,(O1,O2)),S2,1-X), tlabel((S1,S2),0), action(A).
+:-   eff(A,(P,(V1,V2)),X),   pnext(V1,A,O1,OO,S1,S2), pnext(V2,A,O2,OO,S1,S2), val((P,(O1,O2)),S2,1-X), tlabel((S1,S2),A), action(A).
+:-   eff(A,(P,(V1,V2)),X),   pnext(V1,A,O1,OO,S1,S2), pnext(V2,A,O2,OO,S1,S2), val((P,(O1,O2)),S2,1-X), tlabel((S1,S2),0), action(A).
 
-:-  eff(A,(P,(V1,V2)),X), pnext(V1,A,O1,OO,S1,S2), pnext(V2,A,O2,OO,S1,S2), val((P,(O1,O2)),S1,  X), tlabel((S1,S2),A), inverse(A,B).
+:-   eff(A,(P,(V1,V2)),X),   pnext(V1,A,O1,OO,S1,S2), pnext(V2,A,O2,OO,S1,S2), val((P,(O1,O2)),S1,  X), tlabel((S1,S2),A), inverse(A,B).
 
 % an effect should be visible at one node at least
-:-  { node(S1)          : pnext(V1,A,O1,OO,S1,S2), pnext(V2,A,O2,OO,S1,S2), val((P,(O1,O2)),S1,1-X)} = 0, eff(A,(P,(V1,V2)),X).
+eff_used(A,(P,(V1,V2)),X) :- pnext(V1,A,O1,OO,S1,S2), pnext(V2,A,O2,OO,S1,S2), val((P,(O1,O2)),S1,1-X), node(S1), eff(A,(P,(V1,V2)),X).
+:- eff(A,(P,(V1,V2)),X), not eff_used(A,(P,(V1,V2)),X).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Inertia
