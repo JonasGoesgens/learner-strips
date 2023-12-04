@@ -156,7 +156,8 @@ p_reflexive(P) :- a_atom(_,(P,(V,V))), V > 0.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % States: valuations of ground atoms, either static or dynamic
-% val((predicate,objects),State optional,value)
+
+% val((predicate,objects),state optional,value): atom of predicate on objects has value in state.
 
 { val((P,OO),  0..1) } = 1 :- pred(P),     p_static(P), objtuple(OO,2).
 { val((P,OO),S,0..1) } = 1 :- pred(P), not p_static(P), objtuple(OO,2), node(S).
