@@ -1,0 +1,2 @@
+
+testdomain3ops_7.lp 7 0 -c max_num_invariants=2 -c max_predicates=4 -c max_static=3 VERIFY 8 0 testdomain3ops_5.lp testdomain3ops_6.lp testdomain3ops_7.lp testdomain3ops_8.lp

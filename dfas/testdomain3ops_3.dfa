@@ -1,0 +1,6 @@
+dfa 3 -1
+3 move_1 move_2 move_3
+1 0
+5 move_1 1 move_1 2 move_2 2 move_3 1 move_3 2
+5 move_1 0 move_1 2 move_2 0 move_2 2 move_3 0
+2 move_1 0 move_2 1
