@@ -304,6 +304,10 @@ root(0) :- not root(N) : node(N), N != 0.
 
 :- tlabel((S1,S2),_), not edge((S1,S2)).
 
+% Indirect label distribution
+min_label(A,V) :- #min {N,N : edge_num((S1,S2),N), next(A,OO,S1,S2)} = V, action(A).
+:- min_label(A,V), min_label(B,W), edge_map(A,M), edge_map(B,N), M < N, V > W.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Display

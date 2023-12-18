@@ -357,6 +357,10 @@ root(I,S) :- min(I,S), not root(I,N) : marked(I,N), N != S.
 
 :- tlabel(I,(S1,S2),_), not edge(I,(S1,S2)).
 
+% Indirect label distribution %%% not needed during verification
+%%% min_label(I,A,V) :- #min {N,N : edge_num(I,(S1,S2),N), next(I,A,OO,S1,S2)} = V, action(A), labelmatch(I,A,_).
+%%% :- min_label(I,A,V), min_label(I,B,W), edge_map(I,C,M), edge_map(I,D,N), labelmatch(I,A,C), labelmatch(I,B,D), M < N, V > W.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Display
