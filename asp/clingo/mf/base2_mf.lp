@@ -113,6 +113,8 @@ a_var(A,V) :- a_atom(A,(_,(_,V))).
 a_arity(A,N)     :- a_var(A,N), not a_var(A,N+1).
 a_arity_geq(A,M) :- a_arity(A,N), M = 1..3, N = M..3.
 
+:- a_arity(A,N), a_arity(A,M), N != M.
+
 % Action labels and consistent labels in each instance
 % Actions are counted in python: num_actions.
 % There are as many Actions as there are Labels for Actions.
@@ -287,6 +289,18 @@ appl(I,A,OO1,S) :- action(A), objtuple(I,OO1,3), marked(I,S), not nappl(I,A,OO1,
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Successors
+
+% Convert more informative labels
+a_arity(A,3) :- tlabel(I,(S1,S2),B,(O1,O2,O3)),labelmatch(I,A,B), object(I,O1), object(I,O2), object(I,O3).
+a_arity(A,2) :- tlabel(I,(S1,S2),B,(O1,O2,O3)),labelmatch(I,A,B), object(I,O1), object(I,O2),      O3 = -1.
+a_arity(A,1) :- tlabel(I,(S1,S2),B,(O1,O2,O3)),labelmatch(I,A,B), object(I,O1),      O2 = -1,      O3 = -1.
+a_arity(A,0) :- tlabel(I,(S1,S2),B,(O1,O2,O3)),labelmatch(I,A,B),      O1 = -1,      O2 = -1,      O3 = -1.
+tlabel(I,(S1,S2),B) :- tlabel(I,(S1,S2),B,_).
+next(I,A,(O1,O2,O3),S1,S2) :- a_arity(A,3), tlabel(I,(S1,S2),B,(O1,O2,O3)),labelmatch(I,A,B), object(I,O1), object(I,O2), object(I,O3).
+next(I,A,(O1,O2, 1),S1,S2) :- a_arity(A,2), tlabel(I,(S1,S2),B,(O1,O2,O3)),labelmatch(I,A,B), object(I,O1), object(I,O2),      O3 = -1.
+next(I,A,(O1, 1, 1),S1,S2) :- a_arity(A,1), tlabel(I,(S1,S2),B,(O1,O2,O3)),labelmatch(I,A,B), object(I,O1),      O2 = -1,      O3 = -1.
+next(I,A,( 1, 1, 1),S1,S2) :- a_arity(A,0), tlabel(I,(S1,S2),B,(O1,O2,O3)),labelmatch(I,A,B),      O1 = -1,      O2 = -1,      O3 = -1.
+:- next(I,A,OO,S1,S2), nappl(I,A,OO,S1).
 
 % Create missing unknown labels
 tlabel(I,(S1,S2),0) :- {tlabel(I,(S1,S2),B) : labelmatch(I,_,B)} = 0, edge(I,(S1,S2)).
