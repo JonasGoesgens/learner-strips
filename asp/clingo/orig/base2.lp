@@ -246,6 +246,7 @@ next(A,(O1,O2, 1),S1,S2) :- a_arity(A,2), tlabel((S1,S2),A,(O1,O2,O3)), object(O
 next(A,(O1, 1, 1),S1,S2) :- a_arity(A,1), tlabel((S1,S2),A,(O1,O2,O3)), object(O1),    O2 = -1,    O3 = -1.
 next(A,( 1, 1, 1),S1,S2) :- a_arity(A,0), tlabel((S1,S2),A,(O1,O2,O3)),    O1 = -1,    O2 = -1,    O3 = -1.
 :- next(A,OO,S1,S2), nappl(A,OO,S1).
+#defined tlabel/3.
 
 % Create missing unknown labels
 tlabel((S1,S2),0) :- {tlabel((S1,S2),A) : action(A)} = 0, edge((S1,S2)).
