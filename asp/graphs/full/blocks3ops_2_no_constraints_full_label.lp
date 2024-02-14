@@ -1,6 +1,6 @@
 labelname(1,"NEWTOWER").
 labelname(2,"STACK").
-labelname(3,"MOVE").
+%labelname(3,"MOVE").
 node(0).
 node(1).
 node(2).
