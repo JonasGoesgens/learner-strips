@@ -93,8 +93,9 @@ map((3,3),(O1,O2,O3), (O3,O3)) :- action_tupel((O1,O2,O3))                      
 
 
 % change pattern how the objects of an action change the predicate 
-pattern(0, J,  (-1,-1)) :- J=0..3. % notcht sicher 
-pattern(2, J,  (N1,N2))    :- J=0..3,N1 = 1..J, N2 = 1..J. 
+pattern(0, J,  (-1,-1))    :- J=0..3. % notcht sicher
+pattern(1, J,  (N1,N1))    :- J=1..3,N1 = 1..J.
+pattern(2, J,  (N1,N2))    :- J=1..3,N1 = 1..J, N2 = 1..J.
 
 % we need to guess for each predicate which actions add it and which actions delete it 
 % this is similar as choosing which action changes which predicate. 
