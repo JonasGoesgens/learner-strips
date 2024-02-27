@@ -1,6 +1,6 @@
 % we use the same format of input as before but we use the objects that the action is used with where the order is crutial 
 % constants that may be needed 
-#const max_predicates   = 2. 
+#const max_predicates   = 3. 
 #const max_influence    = 8. % how many predicates of the same kind can be changed by one action (BSP: how many on(x,y) predicates in blocks, move needs 2) 
 #const max_static       = 0.
 
@@ -40,6 +40,12 @@ a_arity(A,3) :- tlabel(_,A,(O1,O2,O3)), object(O1), object(O2), object(O3).
 
 :- a_arity(A,I), a_arity(A,J), I != J. % i dont know if can happen... 
 
+equal(A,1,2) :- tlabel(_,A,(O1,O1,_)), object(O1).
+equal(A,1,3) :- tlabel(_,A,(O1,_,O1)), object(O1).
+equal(A,2,3) :- tlabel(_,A,(_,O1,O1)), object(O1). 
+
+unequal(A,N1,N2) :- not equal(A,N1,N2), action(A), N1=1..3, N2=1..3, N1 < N2. 
+
 % Predicates 
 % we need to guess the predicates (and use the optimization given so the smallest solution is used)
 predicate(1..max_predicates). 
@@ -61,8 +67,8 @@ objtuple((O1,O2), 2) :- object(O1), object(O2). % for features with arity 1 or t
 
 % tupel of actions since everything on the left has to be on the right (???) 
 %action_tupel((O1,O2,O3)) :- tlabel(_,_,(O1,O2,O3)). % 
-action_tupel((O1,O2,O3)) :- object(O1) , object(O2), object(O3), O1 != O2, O1 != O3, O2 != O3.% 
-action_tupel((O1,O2,O3)) :- object(O1) , object(O2),    O3 = -1, O1 != O2.% 
+action_tupel((O1,O2,O3)) :- object(O1) , object(O2), object(O3).% 
+action_tupel((O1,O2,O3)) :- object(O1) , object(O2),    O3 = -1.% 
 action_tupel((O1,O2,O3)) :- object(O1) ,    O2 = -1,    O3 = -1.% 
 action_tupel((O1,O2,O3)) :-    O1 = -1 ,    O2 = -1,    O3 = -1.% 
 
@@ -186,8 +192,12 @@ n_apply(A,S1,(O1,O2,O3)) :- node(S1), action(A), action_tupel((O1,O2,O3)), a_ari
 n_apply(A,S1,AOlist) :- node(S1), action(A), predicate(P), precondition(A,P,Pattern,V), not val(S1,(P,POlist),V), map(Pattern, AOlist, POlist).
 n_apply(A,S1,AOlist) :- node(S1), action(A), a_arity(A,X), action_tupel_size(AOlist,Y), X != Y. 
 
-:- node(S1), action(A), action_tupel(AOlist), n_apply(A,S1,AOlist), tlabel((S1,_),A,AOlist). 
-:- node(S1), action(A), action_tupel(AOlist), not n_apply(A,S1,AOlist), not tlabel((S1,S2),A,AOlist):node(S2). 
+n_apply(A,S1,(O1,O2,O3)) :- node(S1), action(A), object(O1), object(O2), unequal(A,1,2), action_tupel((O1,O2,O3)), O1 = O2.
+n_apply(A,S1,(O1,O2,O3)) :- node(S1), action(A), object(O1), object(O3), unequal(A,1,3), action_tupel((O1,O2,O3)), O1 = O3.
+n_apply(A,S1,(O1,O2,O3)) :- node(S1), action(A), object(O2), object(O3), unequal(A,2,3), action_tupel((O1,O2,O3)), O2 = O3.
+
+:- node(S1), action(A), action_tupel(AOlist), n_apply(A,S1,AOlist), tlabel((S1,_),A,AOlist).
+:- node(S1), action(A), action_tupel(AOlist), not n_apply(A,S1,AOlist), not tlabel((S1,S2),A,AOlist):node(S2).
 
 % :- node(S1), action(A), action_tupel(AOlist), a_arity(A,X), tlabel((S1,_),A,AOlist), action_tupel_size(AOlist,Y), Y != X. 
 
