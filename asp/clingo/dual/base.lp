@@ -113,12 +113,12 @@ pattern(2, J,  (N1,N2))    :- J=1..3,N1 = 1..J, N2 = 1..J.
 
 
 % a value of an predicate has to be 0/1 at least once each 
-1 {val(S,(P,(O1,O2)),1):node(S)}:-object(O1), object(O2), predicate(P), p_used(P), p_arity(P,2).
-1 {val(S,(P,(O1,O2)),0):node(S)}:-object(O1), object(O2), predicate(P), p_used(P), p_arity(P,2).
-1 {val(S,(P,(O1,O1)),1):node(S)}:-object(O1),             predicate(P), p_used(P), p_arity(P,1).
-1 {val(S,(P,(O1,O1)),0):node(S)}:-object(O1),             predicate(P), p_used(P), p_arity(P,1).
-1 {val(S,(P,(-1,-1)),1):node(S)}:-                        predicate(P), p_used(P), p_arity(P,0).
-1 {val(S,(P,(-1,-1)),0):node(S)}:-                        predicate(P), p_used(P), p_arity(P,0).
+1 {val(S,(P,(O1,O2)),1):node(S), object(O1), object(O2)}:-predicate(P), p_used(P), p_arity(P,2).
+1 {val(S,(P,(O1,O2)),0):node(S), object(O1), object(O2)}:-predicate(P), p_used(P), p_arity(P,2).
+1 {val(S,(P,(O1,O1)),1):node(S), object(O1)            }:-predicate(P), p_used(P), p_arity(P,1).
+1 {val(S,(P,(O1,O1)),0):node(S), object(O1)            }:-predicate(P), p_used(P), p_arity(P,1).
+1 {val(S,(P,(-1,-1)),1):node(S)                        }:-predicate(P), p_used(P), p_arity(P,0).
+1 {val(S,(P,(-1,-1)),0):node(S)                        }:-predicate(P), p_used(P), p_arity(P,0).
 
 % there can not be an action that has no effect 
 :- action(A), {change_pattern(A,_,_,_)} = 0. 
@@ -199,4 +199,4 @@ n_apply(A,S1,(O1,O2,O3)) :- node(S1), action(A), object(O2), object(O3), unequal
 %changes: 
 % there cant be action tupels that have the same element at different positions (besides -1 )
 % we have a function for the length of an action tupel to better say when an action is applicable 
-% minimisation precondtions 
+% minimisation precondtions
