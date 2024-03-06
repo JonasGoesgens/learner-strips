@@ -216,8 +216,8 @@ p_reflexive(P) :- a_atom(_,(P,(V,V))), V > 0.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % States: valuations of ground atoms, either static or dynamic
 
-{ val(I,(P,OO),  0..1) } = 1 :- pred(P),     p_static(P), objtuple(I,OO,2).
-{ val(I,(P,OO),S,0..1) } = 1 :- pred(P), not p_static(P), objtuple(I,OO,2), relevant(I,S).
+{ val(I,(P,OO),  0..1) } = 1 :- pred(P),     p_static(P), p_used(P), objtuple(I,OO,2).
+{ val(I,(P,OO),S,0..1) } = 1 :- pred(P), not p_static(P), p_used(P), objtuple(I,OO,2), relevant(I,S).
 
 % Different nodes are different states (for non-noisy nodes)
 :- relevant(I,S1), relevant(I,S2), S1 < S2, val(I,(P,T),S2,V) : val(I,(P,T),S1,V); not noisy(S1), not noisy(S2).
@@ -229,9 +229,11 @@ p_reflexive(P) :- a_atom(_,(P,(V,V))), V > 0.
 p_arity_1_or_2(P) :- p_arity(P,N), N = 1..2.
 
 % If P hasn't arity 2, atoms P(O1,O2) where O1 != O2 are false
+:- val(I,(P,(O1,O2)),  1), not p_arity(P,2), O1 != O2.
 :- val(I,(P,(O1,O2)),S,1), not p_arity(P,2), O1 != O2.
 
 % If P hasn't arity 1 or 2, atoms P(O,O) where O != 0 are false
+:- val(I,(P,( O, O)),  1), not p_arity_1_or_2(P), O != 0.
 :- val(I,(P,( O, O)),S,1), not p_arity_1_or_2(P), O != 0.
 
 % If P hasn't arity 0, P(0,0) is false

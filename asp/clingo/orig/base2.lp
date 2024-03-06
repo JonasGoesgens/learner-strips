@@ -160,20 +160,22 @@ p_reflexive(P) :- a_atom(_,(P,(V,V))), V > 0.
 
 % val((predicate,objects),state optional,value): atom of predicate on objects has value in state.
 
-{ val((P,OO),  0..1) } = 1 :- pred(P),     p_static(P), objtuple(OO,2).
-{ val((P,OO),S,0..1) } = 1 :- pred(P), not p_static(P), objtuple(OO,2), node(S).
+{ val((P,OO),  0..1) } = 1 :- pred(P),     p_static(P), p_used(P), objtuple(OO,2).
+{ val((P,OO),S,0..1) } = 1 :- pred(P), not p_static(P), p_used(P), objtuple(OO,2), node(S).
 
 % Forced false atoms by predicate arity
 p_arity_1_or_2(P) :- p_arity(P,N), N = 1..2.
 
 % If P hasn't arity 2, atoms P(O1,O2) where O1 != O2 are false
+:- val((P,(O1,O2)),  1), not p_arity(P,2), O1 != O2.
 :- val((P,(O1,O2)),S,1), not p_arity(P,2), O1 != O2.
 
 % If P hasn't arity 1 or 2, atoms P(O,O) where O != 0 are false
+:- val((P,(O,O)),  1), not p_arity_1_or_2(P), O != 0.
 :- val((P,(O,O)),S,1), not p_arity_1_or_2(P), O != 0.
 
 % If P hasn't arity 0, P(0,0) is false
-:- val((P,(0,0)),1),   not p_arity(P,0).
+:- val((P,(0,0)),  1), not p_arity(P,0).
 :- val((P,(0,0)),S,1), not p_arity(P,0).
 
 % Previous constraints imply all P(O1,O2) are false if P has no arity

@@ -219,41 +219,45 @@ p_reflexive(P) :- a_atom(_,(P,(V,V))), V > 0.
 % States: valuations of ground atoms, either static or dynamic
 
 % CHECK: Method 1: Choose true atoms and set the rest to false
-{ val(I,(P,( 0, 0)),     1) }     :- pred(P),     p_static(P), p_arity(P,0), objtuple(I,( 0, 0),2),                                            opt_val = 1.
-{ val(I,(P,( 0, 0)),S,   1) }     :- pred(P), not p_static(P), p_arity(P,0), objtuple(I,( 0, 0),2), relevant(I,S),                             opt_val = 1.
-{ val(I,(P,( O, O)),     1) }     :- pred(P),     p_static(P), p_arity(P,1), objtuple(I,( O, O),2),                O != 0,                     opt_val = 1.
-{ val(I,(P,( O, O)),S,   1) }     :- pred(P), not p_static(P), p_arity(P,1), objtuple(I,( O, O),2), relevant(I,S), O != 0,                     opt_val = 1.
-{ val(I,(P,(O1,O2)),     1) }     :- pred(P),     p_static(P), p_arity(P,2), objtuple(I,(O1,O2),2),                O1 != 0,                    opt_val = 1.
-{ val(I,(P,(O1,O2)),S,   1) }     :- pred(P), not p_static(P), p_arity(P,2), objtuple(I,(O1,O2),2), relevant(I,S), O1 != 0,                    opt_val = 1.
-val(I,(P,(O1,O2)),  0)            :- pred(P),     p_static(P), p_arity(P,_), objtuple(I,(O1,O2),2),                not val(I,(P,(O1,O2)),  1), opt_val = 1.
-val(I,(P,(O1,O2)),S,0)            :- pred(P), not p_static(P), p_arity(P,_), objtuple(I,(O1,O2),2), relevant(I,S), not val(I,(P,(O1,O2)),S,1), opt_val = 1.
+{ val(I,(P,( 0, 0)),     1) }     :- pred(P),     p_static(P), p_used(P), p_arity(P,0), objtuple(I,( 0, 0),2),                                            opt_val = 1.
+{ val(I,(P,( 0, 0)),S,   1) }     :- pred(P), not p_static(P), p_used(P), p_arity(P,0), objtuple(I,( 0, 0),2), relevant(I,S),                             opt_val = 1.
+{ val(I,(P,( O, O)),     1) }     :- pred(P),     p_static(P), p_used(P), p_arity(P,1), objtuple(I,( O, O),2),                O  != 0,                    opt_val = 1.
+{ val(I,(P,( O, O)),S,   1) }     :- pred(P), not p_static(P), p_used(P), p_arity(P,1), objtuple(I,( O, O),2), relevant(I,S), O  != 0,                    opt_val = 1.
+{ val(I,(P,(O1,O2)),     1) }     :- pred(P),     p_static(P), p_used(P), p_arity(P,2), objtuple(I,(O1,O2),2),                O1 != 0, O2 != 0,           opt_val = 1.
+{ val(I,(P,(O1,O2)),S,   1) }     :- pred(P), not p_static(P), p_used(P), p_arity(P,2), objtuple(I,(O1,O2),2), relevant(I,S), O1 != 0, O2 != 0,           opt_val = 1.
+  val(I,(P,(O1,O2)),     0)       :- pred(P),     p_static(P), p_used(P), p_arity(P,_), objtuple(I,(O1,O2),2),                not val(I,(P,(O1,O2)),  1), opt_val = 1.
+  val(I,(P,(O1,O2)),S,   0)       :- pred(P), not p_static(P), p_used(P), p_arity(P,_), objtuple(I,(O1,O2),2), relevant(I,S), not val(I,(P,(O1,O2)),S,1), opt_val = 1.
 
 % CHECK: Method 2: First, set false atoms of non-matching arity, then choose full valuation for the rest
-val(I,(P,(O1,O2)),  0)            :- pred(P),     p_static(P), p_arity(P,0), objtuple(I,(O1,O2),2),                O1 != 0,                    opt_val = 2.
-val(I,(P,(O1,O2)),S,0)            :- pred(P), not p_static(P), p_arity(P,0), objtuple(I,(O1,O2),2), relevant(I,S), O1 != 0,                    opt_val = 2.
-val(I,(P,( 0, 0)),  0)            :- pred(P),     p_static(P), p_arity(P,N), objtuple(I,( 0, 0),2),                N = 1..2,                   opt_val = 2.
-val(I,(P,( 0, 0)),S,0)            :- pred(P), not p_static(P), p_arity(P,N), objtuple(I,( 0, 0),2), relevant(I,S), N = 1..2,                   opt_val = 2.
-val(I,(P,(O1,O2)),  0)            :- pred(P),     p_static(P), p_arity(P,1), objtuple(I,(O1,O2),2),                O1 != O2,                   opt_val = 2.
-val(I,(P,(O1,O2)),S,0)            :- pred(P), not p_static(P), p_arity(P,1), objtuple(I,(O1,O2),2), relevant(I,S), O1 != O2,                   opt_val = 2.
+  val(I,(P,(O1,O2)),     0)       :- pred(P),     p_static(P), p_used(P), p_arity(P,0), objtuple(I,(O1,O2),2),                O1 != 0,                    opt_val = 2.
+  val(I,(P,(O1,O2)),S,   0)       :- pred(P), not p_static(P), p_used(P), p_arity(P,0), objtuple(I,(O1,O2),2), relevant(I,S), O1 != 0,                    opt_val = 2.
+  val(I,(P,(O1,O2)),     0)       :- pred(P),     p_static(P), p_used(P), p_arity(P,0), objtuple(I,(O1,O2),2),                O2 != 0,                    opt_val = 2.
+  val(I,(P,(O1,O2)),S,   0)       :- pred(P), not p_static(P), p_used(P), p_arity(P,0), objtuple(I,(O1,O2),2), relevant(I,S), O2 != 0,                    opt_val = 2.
+  val(I,(P,( 0, 0)),     0)       :- pred(P),     p_static(P), p_used(P), p_arity(P,N), objtuple(I,( 0, 0),2),                N = 1..2,                   opt_val = 2.
+  val(I,(P,( 0, 0)),S,   0)       :- pred(P), not p_static(P), p_used(P), p_arity(P,N), objtuple(I,( 0, 0),2), relevant(I,S), N = 1..2,                   opt_val = 2.
+  val(I,(P,(O1,O2)),     0)       :- pred(P),     p_static(P), p_used(P), p_arity(P,1), objtuple(I,(O1,O2),2),                O1 != O2,                   opt_val = 2.
+  val(I,(P,(O1,O2)),S,   0)       :- pred(P), not p_static(P), p_used(P), p_arity(P,1), objtuple(I,(O1,O2),2), relevant(I,S), O1 != O2,                   opt_val = 2.
 
-{ val(I,(P,( 0, 0)),  0..1) } = 1 :- pred(P),     p_static(P), p_arity(P,0), objtuple(I,( 0, 0),2),                                            opt_val = 2.
-{ val(I,(P,( 0, 0)),S,0..1) } = 1 :- pred(P), not p_static(P), p_arity(P,0), objtuple(I,( 0, 0),2), relevant(I,S),                             opt_val = 2.
-{ val(I,(P,( O, O)),  0..1) } = 1 :- pred(P),     p_static(P), p_arity(P,1), objtuple(I,( O, O),2),                O != 0,                     opt_val = 2.
-{ val(I,(P,( O, O)),S,0..1) } = 1 :- pred(P), not p_static(P), p_arity(P,1), objtuple(I,( O, O),2), relevant(I,S), O != 0,                     opt_val = 2.
-{ val(I,(P,(O1,O2)),  0..1) } = 1 :- pred(P),     p_static(P), p_arity(P,2), objtuple(I,(O1,O2),2),                O1 != 0,                    opt_val = 2.
-{ val(I,(P,(O1,O2)),S,0..1) } = 1 :- pred(P), not p_static(P), p_arity(P,2), objtuple(I,(O1,O2),2), relevant(I,S), O1 != 0,                    opt_val = 2.
+{ val(I,(P,( 0, 0)),  0..1) } = 1 :- pred(P),     p_static(P), p_used(P), p_arity(P,0), objtuple(I,( 0, 0),2),                                            opt_val = 2.
+{ val(I,(P,( 0, 0)),S,0..1) } = 1 :- pred(P), not p_static(P), p_used(P), p_arity(P,0), objtuple(I,( 0, 0),2), relevant(I,S),                             opt_val = 2.
+{ val(I,(P,( O, O)),  0..1) } = 1 :- pred(P),     p_static(P), p_used(P), p_arity(P,1), objtuple(I,( O, O),2),                O  != 0,                    opt_val = 2.
+{ val(I,(P,( O, O)),S,0..1) } = 1 :- pred(P), not p_static(P), p_used(P), p_arity(P,1), objtuple(I,( O, O),2), relevant(I,S), O  != 0,                    opt_val = 2.
+{ val(I,(P,(O1,O2)),  0..1) } = 1 :- pred(P),     p_static(P), p_used(P), p_arity(P,2), objtuple(I,(O1,O2),2),                O1 != 0, O2 != 0,           opt_val = 2.
+{ val(I,(P,(O1,O2)),S,0..1) } = 1 :- pred(P), not p_static(P), p_used(P), p_arity(P,2), objtuple(I,(O1,O2),2), relevant(I,S), O1 != 0, O2 != 0,           opt_val = 2.
 
 % CHECK: Method 3: Choose full valuation for all atoms, then constraint allowed values
-{ val(I,(P,OO),  0..1) } = 1      :- pred(P),     p_static(P), objtuple(I,OO,2),                                                               opt_val = 3.
-{ val(I,(P,OO),S,0..1) } = 1      :- pred(P), not p_static(P), objtuple(I,OO,2), relevant(I,S),                                                opt_val = 3.
+{ val(I,(P,     OO),  0..1) } = 1 :- pred(P),     p_static(P), p_used(P), objtuple(I,OO,2),                                                               opt_val = 3.
+{ val(I,(P,     OO),S,0..1) } = 1 :- pred(P), not p_static(P), p_used(P), objtuple(I,OO,2), relevant(I,S),                                                opt_val = 3.
 
 % Forced false atoms by predicate arity
 p_arity_1_or_2(P) :- p_arity(P,N), N = 1..2,                                                                                                   opt_val = 3.
 
 % If P hasn't arity 2, atoms P(O1,O2) where O1 != O2 are false
 :- val(I,(P,(O1,O2)),S,1), not p_arity(P,2), O1 != O2,                                                                                         opt_val = 3.
+:- val(I,(P,(O1,O2)),  1), not p_arity(P,2), O1 != O2,                                                                                         opt_val = 3.
 
 % If P hasn't arity 1 or 2, atoms P(O,O) where O != 0 are false
+:- val(I,(P,( O, O)),  1), not p_arity_1_or_2(P), O != 0,                                                                                      opt_val = 3.
 :- val(I,(P,( O, O)),S,1), not p_arity_1_or_2(P), O != 0,                                                                                      opt_val = 3.
 
 % If P hasn't arity 0, P(0,0) is false
