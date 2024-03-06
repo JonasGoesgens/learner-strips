@@ -18,3 +18,6 @@
 
 % Prefer positive preconditions
 %#minimize {        1@1, prec(A,(P,T),0) : prec(A,(P,T),0) , opt_prec  = 1}.
+
+% Prefer dont cares set to zero
+%#minimize {        1@0, val((P,(O1,O2)),S,1) : val((P,(O1,O2)),S,1)}.
