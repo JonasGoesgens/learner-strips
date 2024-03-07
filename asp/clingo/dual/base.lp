@@ -52,8 +52,10 @@ p_not_static(1..max_predicates-max_static).
 
 % p_arity(P,N): predicate P has arity N where N in {0..3}
 %    p_used(P): predicate P is used in encoding
-{usedpredicates(N) : N = 1..max_predicates}=1.
-p_used(P):- usedpredicates(N), P=1..N.
+{usedpredicates(N)       : N = 1..max_predicates-max_static}=1.
+{usedstaticpredicates(N) : N = max_predicates-max_static..max_predicates}=1.
+p_used(P):- usedpredicates(N),       P=1..N.
+p_used(P):- p_static(P), usedstaticpredicates(N), P=1..N.
 {p_arity(P,0..2)} = 1 :- predicate(P), p_used(P).  
 %p_used(P) :- predicate(P), p_arity(P,_).
 
@@ -92,6 +94,8 @@ pattern(2, J,  (N1,N2))    :- J=1..3,N1 = 1..J, N2 = 1..J.
 
 % we need to guess for each predicate which actions add it and which actions delete it 
 % this is similar as choosing which action changes which predicate. 
+% there may be rules that lell some changes.
+ changes(A,P,   0)      :- action(A), predicate(P), p_used(P), p_static(P).
 {changes(A,P,0..1)} = 1 :- action(A), predicate(P), p_used(P). % each action either changes or does not change each predicate
 
 % if a actions changes a predicate it either makes it true or false and it does it by a fixed pattern 
@@ -123,16 +127,17 @@ pattern(2, J,  (N1,N2))    :- J=1..3,N1 = 1..J, N2 = 1..J.
 % there can not be an action that has no effect 
 :- action(A), {change_pattern(A,_,_,_)} = 0. 
 
-% each predicate needs to be added and deleted at some point (static is missing)
+% each non static predicate needs to be added and deleted at some point (static is missing)
 :- predicate(P), p_used(P), p_not_static(P), p_used(P), {change_pattern(_,P,_,0)} = 0.
 :- predicate(P), p_used(P), p_not_static(P), p_used(P), {change_pattern(_,P,_,1)} = 0.
 
 
 % values of the features at a node S1 is defined if there is an edge with the given labels (change (forward) + neutral (forward + backward))
-val(S1,(P,OList),V) :- node(S1), node(S2), predicate(P), p_used(P), tlabel((S2,S1),A,Obj), map(Pattern, Obj,OList),  change_pattern(A,P,Pattern,V).
-val(S1,(P,OList),V) :- node(S1), node(S2), predicate(P), p_used(P), tlabel((S2,S1),A,Obj), map(Pattern, Obj,OList), {change_pattern(A,P,Pattern,_)} = 0, val(S2,(P,OList),V). 
-val(S1,(P,OList),V) :- node(S1), node(S2), predicate(P), p_used(P), tlabel((S1,S2),A,Obj), map(Pattern, Obj,OList), {change_pattern(A,P,Pattern,_)} = 0, val(S2,(P,OList),V). 
-val(S1,(P,OList),V) :- node(S1), node(S2), predicate(P), p_used(P), tlabel((S1,S2),A,Obj), {map(Pattern, Obj,OList)} = 0, val(S2,(P,OList),V). 
+val(S1,(P,OList),V) :- node(S1), node(S2), predicate(P), p_used(P), tlabel((S2,S1),A,Obj),  map(Pattern, Obj,OList),  change_pattern(A,P,Pattern,V).
+val(S1,(P,OList),V) :- node(S1), node(S2), predicate(P), p_used(P), tlabel((S2,S1),A,Obj),  map(Pattern, Obj,OList), {change_pattern(A,P,Pattern,_)} = 0, val(S2,(P,OList),V).
+val(S1,(P,OList),V) :- node(S1), node(S2), predicate(P), p_used(P), tlabel((S1,S2),A,Obj),  map(Pattern, Obj,OList), {change_pattern(A,P,Pattern,_)} = 0, val(S2,(P,OList),V).
+val(S1,(P,OList),V) :- node(S1), node(S2), predicate(P), p_used(P), tlabel((S1,S2),A,Obj), {map(Pattern, Obj,OList)} = 0, val(S2,(P,OList),V).
+val(S1,(P,OList),V) :- node(S1), node(S2), predicate(P), p_used(P), p_static(P), val(S2,(P,OList),V).
 
 % at every state the value of a predicate for fixed objects can not be true and false at the same time 
 :- val(S1,(P,O),V), val(S1,(P,O),W), W != V. 
@@ -146,10 +151,13 @@ p_arity_1_or_2(P) :- p_arity(P,N), N = 1..2.
 :- val(S,(P,(O,_)),1), p_arity(P,0), O != -1.
 :- val(S,(P,(_,O)),1), p_arity(P,0), O != -1.
 
+% the value of a feature of arity >0 is false for -1.
+:- val(S,(P,(-1,-1)),1), not p_arity(P,0).
+
 % set unset values to -1 #currently not used# 
 %val(S,(P,(O1,O2)),-1) :- {val(S,(P,(O1,O2)),0);val(S,(P,(O1,O2)),1)} = 0, node(S) , predicate(P), object(O1), object(O2).
 
-% two different states need to have 2 different values
+% two different states need to have some different values
 :- node(S1), node(S2), S1 < S2, val(S1,(P,T),V) : val(S2,(P,T),V).
 
 % each action needs to have some precondition but at most max_precondition many 
@@ -171,8 +179,8 @@ n_apply(A,S1,(O1,O2,O3)) :- node(S1), action(A), object(O1), object(O2), unequal
 n_apply(A,S1,(O1,O2,O3)) :- node(S1), action(A), object(O1), object(O3), unequal(A,1,3), action_tupel((O1,O2,O3)), O1 = O3.
 n_apply(A,S1,(O1,O2,O3)) :- node(S1), action(A), object(O2), object(O3), unequal(A,2,3), action_tupel((O1,O2,O3)), O2 = O3.
 
-% each action that is in the graph has to have a corresponding edge adn each action not applicable can not have a edge in the graph 
-:- node(S1), action(A), action_tupel(AOlist), n_apply(A,S1,AOlist), tlabel((S1,_),A,AOlist).
+% each action that is in the graph has to have a corresponding edge and each action not applicable can not have a edge in the graph 
+:- node(S1), action(A), action_tupel(AOlist),     n_apply(A,S1,AOlist),     tlabel((S1, _),A,AOlist).
 :- node(S1), action(A), action_tupel(AOlist), not n_apply(A,S1,AOlist), not tlabel((S1,S2),A,AOlist):node(S2).
 
 
