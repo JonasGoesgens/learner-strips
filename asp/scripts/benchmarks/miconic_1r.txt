@@ -1,0 +1,2 @@
+
+miconic4ops_3x2.lp 5 0 -c opt_psym=2 -c opt_osym=2 -c opt_asym=2 -c max_precs=6 -c max_num_invariants=2 -c max_predicates=4 -c max_static=2 VERIFY 6 0 miconic4ops_3x2.lp miconic4ops_3x3.lp miconic4ops_4x2.lp
