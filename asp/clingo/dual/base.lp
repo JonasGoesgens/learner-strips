@@ -154,6 +154,11 @@ p_arity_1_or_2(P) :- p_arity(P,N), N = 1..2.
 % the value of a feature of arity >0 is false for -1.
 :- val(S,(P,(-1,-1)),1), not p_arity(P,0).
 
+% prevent unset values
+:- {val(S,(P,(O1,O2)),0);val(S,(P,(O1,O2)),1)} = 0, node(S), predicate(P), p_used(P), object(O1), object(O2), p_arity(P,2).
+:- {val(S,(P,(O1,O1)),0);val(S,(P,(O1,O1)),1)} = 0, node(S), predicate(P), p_used(P), object(O1),             p_arity(P,1).
+:- {val(S,(P,(-1,-1)),0);val(S,(P,(-1,-1)),1)} = 0, node(S), predicate(P), p_used(P),                         p_arity(P,0).
+
 % set unset values to -1 #currently not used# 
 %val(S,(P,(O1,O2)),-1) :- {val(S,(P,(O1,O2)),0);val(S,(P,(O1,O2)),1)} = 0, node(S) , predicate(P), object(O1), object(O2).
 
