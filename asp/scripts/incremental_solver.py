@@ -13,6 +13,8 @@ from utils.output_mf    import parse_clingo_out as parse_clingo_out_mf
 from utils.output_mf    import STRIPSSchema     as STRIPSSchema_mf
 from utils.output_vars2 import parse_clingo_out as parse_clingo_out_vars
 from utils.output_vars2 import STRIPSSchema     as STRIPSSchema_vars
+from utils.output_dual import parse_clingo_out as parse_clingo_out_dual 
+from utils.output_dual import STRIPSSchema as STRIPSSchema_dual
 
 class Benchmark:
     def __init__(self, fields):
@@ -107,6 +109,12 @@ g_clingo = {
                'invariants'      : [ Path('kr21/invariants4a.lp') ], #     USED for test3 on 2023-MAR-17
                'optimize'        : [ Path('kr21/optimize.lp') ],
                'heuristics'      : [ Path('kr21/heuristics.lp') ],   # NOT USED for test3 on 2023-MAR-17
+             },
+    'dual' : { 'solve'           : [ Path('dual/base.lp'),
+                                   ],
+               'verify'          : [ Path('dual/base.lp') ],
+               'optimize'        : [ Path('dual/optimize.lp') ],
+
              },
 }
 
@@ -392,7 +400,13 @@ def get_records(fname: Path, record):
 
 # parse output from clingo and store stats
 def parse_clingo_output(stdout, stderr, elapsed_time, max_memory, version: str):
-    result = parse_clingo_out_mf(stdout) if version == 'mf' else parse_clingo_out_orig(stdout)
+    # result = parse_clingo_out_mf(stdout) if version == 'mf' else parse_clingo_out_orig(stdout)
+    if version == 'mf': 
+        result = parse_clingo_out_mf(stdout) 
+    elif version == 'dual': 
+        result = parse_clingo_out_dual(stdout)
+    else: 
+        result = parse_clingo_out_orig(stdout)
     stats = dict(total_time=result.get(TIME, elapsed_time),
                  solve_memory=max_memory,
                  satisfiable=result[SAT], # True, False, or None for Sat, Unsat, Unknown
@@ -407,8 +421,14 @@ def parse_clingo_output(stdout, stderr, elapsed_time, max_memory, version: str):
 
 # parse clingo output
 def create_schema_from_symbols(result, version: str):
+    # schema = STRIPSSchema_mf.create_from_clingo(symbols) if version == 'mf' else STRIPSSchema_orig.create_from_clingo(symbols)
     symbols = result[SYMBOLS]
-    schema = STRIPSSchema_mf.create_from_clingo(symbols) if version == 'mf' else STRIPSSchema_orig.create_from_clingo(symbols)
+    if version == 'mf': 
+        schema = STRIPSSchema_mf.create_from_clingo(symbols)
+    elif version == 'dual': 
+        schema = STRIPSSchema_dual.create_from_clingo(symbols) 
+    else: 
+        schema = STRIPSSchema_orig.create_from_clingo(symbols)
     decoded = schema.get_string(val=False)
     model = schema.get_schema()
     return schema, decoded, model
