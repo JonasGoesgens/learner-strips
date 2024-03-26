@@ -11,7 +11,7 @@
 %#minimize { (1+N)**N@4, P : p_arity(P, N), p_static(P) }.
 
 % Prefer models with minimum number of preconditions
-#minimize {        1@3, Action, Predicate, Pattern : precondition(Action,Predicate,Pattern,Value) }.
+#minimize {        1@3, Action, Predicate, Pattern : prec(Action,(Predicate,Pattern),Value) }.
 
 % Prefer models with minimum number of true atoms per state
 %#minimize {        N@2, N : bound_on_true_atoms_per_state(N) }.
