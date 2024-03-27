@@ -244,14 +244,14 @@ appl(A,OO1,S) :- action(A), objtuple(OO1,3), node(S), not nappl(A,OO1,S),
 
 % Convert more informative labels
 a_arity(A,3) :- tlabel((S1,S2),A,(O1,O2,O3)), object(O1), object(O2), object(O3).
-a_arity(A,2) :- tlabel((S1,S2),A,(O1,O2,O3)), object(O1), object(O2),    O3 = -1.
-a_arity(A,1) :- tlabel((S1,S2),A,(O1,O2,O3)), object(O1),    O2 = -1,    O3 = -1.
-a_arity(A,0) :- tlabel((S1,S2),A,(O1,O2,O3)),    O1 = -1,    O2 = -1,    O3 = -1.
+a_arity(A,2) :- tlabel((S1,S2),A,(O1,O2,O3)), object(O1), object(O2),     O3 = 0.
+a_arity(A,1) :- tlabel((S1,S2),A,(O1,O2,O3)), object(O1),     O2 = 0,     O3 = 0.
+a_arity(A,0) :- tlabel((S1,S2),A,(O1,O2,O3)),     O1 = 0,     O2 = 0,     O3 = 0.
 tlabel((S1,S2),A) :- tlabel((S1,S2),A,_).
 next(A,(O1,O2,O3),S1,S2) :- a_arity(A,3), tlabel((S1,S2),A,(O1,O2,O3)), object(O1), object(O2), object(O3).
-next(A,(O1,O2, 1),S1,S2) :- a_arity(A,2), tlabel((S1,S2),A,(O1,O2,O3)), object(O1), object(O2),    O3 = -1.
-next(A,(O1, 1, 1),S1,S2) :- a_arity(A,1), tlabel((S1,S2),A,(O1,O2,O3)), object(O1),    O2 = -1,    O3 = -1.
-next(A,( 1, 1, 1),S1,S2) :- a_arity(A,0), tlabel((S1,S2),A,(O1,O2,O3)),    O1 = -1,    O2 = -1,    O3 = -1.
+next(A,(O1,O2, 1),S1,S2) :- a_arity(A,2), tlabel((S1,S2),A,(O1,O2,O3)), object(O1), object(O2),     O3 = 0.
+next(A,(O1, 1, 1),S1,S2) :- a_arity(A,1), tlabel((S1,S2),A,(O1,O2,O3)), object(O1),     O2 = 0,     O3 = 0.
+next(A,( 1, 1, 1),S1,S2) :- a_arity(A,0), tlabel((S1,S2),A,(O1,O2,O3)),     O1 = 0,     O2 = 0,     O3 = 0.
 :- next(A,OO,S1,S2), nappl(A,OO,S1).
 #defined tlabel/3.
 
