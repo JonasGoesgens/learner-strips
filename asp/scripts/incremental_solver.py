@@ -116,6 +116,17 @@ g_clingo = {
                'optimize'        : [ Path('dual/optimize.lp') ],
 
              },
+    'kr-dual' : { 'solve'        : [ Path('kr21/base2.lp'),
+                                     Path('kr21/constraints_blai.lp'),
+                                     Path('dual/base.lp'),
+                                     # Path('kr21/constraints_javier.lp'), # NOT CLEAR IF HELPFUL
+                                   ],
+               'verify'          : [ Path('kr21/base2.lp'),
+                                     Path('dual/base.lp'),],
+               'invariants'      : [ Path('kr21/invariants4a.lp') ], #     USED for test3 on 2023-MAR-17
+               'optimize'        : [ Path('kr21/optimize.lp') ],
+               'heuristics'      : [ Path('kr21/heuristics.lp') ],   # NOT USED for test3 on 2023-MAR-17
+             },
 }
 
 # templates
@@ -223,6 +234,8 @@ def get_args():
 
     # parse arguments
     args = parser.parse_args()
+    if args.version == 'kr-dual':
+        args.opt_prec = 3
     return args
 
 def copy_files(filenames: List[Path], target_dir: Path, logger, prefix=None):
