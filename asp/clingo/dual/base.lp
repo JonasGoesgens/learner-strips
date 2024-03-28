@@ -98,6 +98,11 @@ pattern(2, J,  (N1,N2))    :- J=1..3,N1 = 1..J, N2 = 1..J.
  changes(A,P,   0)      :- action(A), pred(P), p_used(P), p_static(P).
 {changes(A,P,0..1)} = 1 :- action(A), pred(P), p_used(P).% each action either changes or does not change each predicate
 
+
+% :- inverse(A,B), changes(A,P,V), not changes(B,P,V).
+
+% :- {changes(A,P,1):action(A)} = 0, pred(P), p_not_static(P).
+
 % if a actions changes a predicate it either makes it true or false and it does it by a fixed pattern
 % e.g.a(x,y,z) makes p1(z,y) and p2(y) and p3(x,z) true or false ...
 % it has to change at least 1 predicate and at most max_influence
@@ -189,6 +194,47 @@ n_apply_dual(A,S1,(O1,O2,O3)) :- node(S1), action(A), object(O2), object(O3), un
 :- node(S1), action(A), action_tupel(AOlist), not n_apply_dual(A,S1,AOlist), not tlabel((S1,S2),A,AOlist):node(S2).
 
 
+map_triplets((X,Y,Z),1,(X,Y,Z)):- action_tupel((X,Y,Z))                       .
+map_triplets((X,Y,Z),2,(X,Z,Y)):- action_tupel((X,Y,Z)), action_tupel((X,Z,Y)).
+map_triplets((X,Y,Z),3,(Y,X,Z)):- action_tupel((X,Y,Z)), action_tupel((Y,X,Z)).
+map_triplets((X,Y,Z),4,(Y,Z,X)):- action_tupel((X,Y,Z)), action_tupel((Y,Z,X)).
+map_triplets((X,Y,Z),5,(Z,X,Y)):- action_tupel((X,Y,Z)), action_tupel((Z,X,Y)).
+map_triplets((X,Y,Z),6,(Z,Y,X)):- action_tupel((X,Y,Z)), action_tupel((Z,Y,X)).
+
+
+pattern_3(1,(1,2,3)).
+pattern_3(2,(1,3,2)).
+pattern_3(3,(2,1,3)).
+pattern_3(4,(2,3,1)).
+pattern_3(5,(3,1,2)).
+pattern_3(6,(3,2,1)).
+
+
+% inverse
+%inv(A1,A2,S1,(X,Y,Z),S2,(X,Y,Z)) :- S1 < S2, tlabel().
+ninv(A,B):- tlabel((S1,S2),A,_), { tlabel((S2,S1),B,AOlist) : action_tupel(AOlist) } = 0, action(A), action(B).
+inverse(A,B):- not ninv(A,B), action(A), action(B).
+
+% Inverses impose heavy restrictions:
+%:-  eff(A,(P,T),0),                    not prec(A,(P,T),  1),           inverse(A,B).
+%:-  eff(A,(P,_),X),                       { eff(B,(P,_),1-X)} = 0,      inverse(A,B).
+% :-  eff(A,(P,T),X),                       { eff(B,(P,T),1-X)} = 0, safe_inverse(A,B).
+%:- prec(B,(P,T),X), not eff(B,(P,T),1-X), {prec(A,(P,_),  X)} = 0,      inverse(A,B).
+
+
+
+%inv_pattern(A,B,P) :- action(A), action(B), inverse(A,B), node(S1), node(S2), tlabel((S1,S2),A,Alist), tlabel((S2,S1),B,Blist), map_triplets(Alist,P,Blist).
+%:- inv_pattern(A,B,P) ,inv_pattern(A,B,Q), P!=Q.
+%:- inv_pattern(A,B,P), node(S1), node(S2), tlabel((S1,S2),A,Alist), map_triplets(Alist,P,Blist), not tlabel((S2,S1),B,Blist).
+
+
+%:- inv_pattern(A,B,N), pattern_3(N,(X,Y,Z)), prec(A,(P,Pattern),V), map_dual(Pattern,(X,Y,Z),Res), prec(B,(P,Res),V), eff(A,(P,Pattern),_).
+%:- inv_pattern(A,B,N), pattern_3(N,(X,Y,Z)), prec(A,(P,Pattern),V), map_dual(Pattern,(X,Y,Z),Res), eff(A,(P,Pattern),1-V), not eff(B,(P,Res),V).
+
+%:- inv_pattern(A,B,N), pattern_3(N,(X,Y,Z)), map_dual(Pattern,(X,Y,Z),Res), eff(A,(P,Pattern),1-V), not eff(B,(P,Res),V).
+
+% prec(A,(P,Pattern),V)
+
 % TODO List.
 % -what if val of S2 is not set for all differing predicates (im moment geraten)
 % -what is happening with static predicates (TODO)
@@ -203,6 +249,8 @@ n_apply_dual(A,S1,(O1,O2,O3)) :- node(S1), action(A), object(O2), object(O3), un
 #show a_arity/2.
 #show prec/3.
 #show eff/3.
+#show inverse/2.
+#show inv_pattern/3.
 #show val((P,OList),S1,V): val((P,OList),S1,V), S1 = 0.
 #show pattern/3.
 #show p_arity/2.
