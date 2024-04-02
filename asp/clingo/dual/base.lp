@@ -3,7 +3,7 @@
 #const max_predicates   =  5.
 #const max_influence    =  6.% how many predicates of the same kind can be changed by one action (BSP: how many on(x,y) predicates in blocks, move needs 2)
 #const max_static       =  2.
-#const max_precondition = 10.
+#const max_precondition =  6.
 
 % how to run the files
 % srun -p rleap_gpu_24gb --pty -c 64 apptainer shell --bind ./learner-strips/:/learner-strips/ test.sif
