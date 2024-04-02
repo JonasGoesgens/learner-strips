@@ -111,7 +111,7 @@ g_clingo = {
                'heuristics'      : [ Path('kr21/heuristics.lp') ],   # NOT USED for test3 on 2023-MAR-17
              },
     'dual' : { 'solve'           : [ Path('dual/base.lp'),
-                                     Path('kr21/constraints_blai.lp'),
+                                     Path('dual/constraints_blai.lp'),
                                      # Path('kr21/constraints_blai.lp'),
                                    ],
                'verify'          : [ Path('dual/base.lp') ],
