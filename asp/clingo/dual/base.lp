@@ -99,7 +99,7 @@ pattern(2, J,  (N1,N2))    :- J=1..3,N1 = 1..J, N2 = 1..J.
 {changes(A,P,0..1)} = 1 :- action(A), pred(P), p_used(P).% each action either changes or does not change each predicate
 
 
-% :- inverse(A,B), changes(A,P,V), not changes(B,P,V).
+:- inverse(A,B), changes(A,P,V), not changes(B,P,V).
 
 % :- {changes(A,P,1):action(A)} = 0, pred(P), p_not_static(P).
 
@@ -223,15 +223,15 @@ inverse(A,B):- not ninv(A,B), action(A), action(B).
 
 
 
-%inv_pattern(A,B,P) :- action(A), action(B), inverse(A,B), node(S1), node(S2), tlabel((S1,S2),A,Alist), tlabel((S2,S1),B,Blist), map_triplets(Alist,P,Blist).
-%:- inv_pattern(A,B,P) ,inv_pattern(A,B,Q), P!=Q.
-%:- inv_pattern(A,B,P), node(S1), node(S2), tlabel((S1,S2),A,Alist), map_triplets(Alist,P,Blist), not tlabel((S2,S1),B,Blist).
+inv_pattern(A,B,P) :- action(A), action(B), inverse(A,B), node(S1), node(S2), tlabel((S1,S2),A,Alist), tlabel((S2,S1),B,Blist), map_triplets(Alist,P,Blist).
+:- inv_pattern(A,B,P) ,inv_pattern(A,B,Q), P!=Q.
+:- inv_pattern(A,B,P), node(S1), node(S2), tlabel((S1,S2),A,Alist), map_triplets(Alist,P,Blist), not tlabel((S2,S1),B,Blist).
 
 
-%:- inv_pattern(A,B,N), pattern_3(N,(X,Y,Z)), prec(A,(P,Pattern),V), map_dual(Pattern,(X,Y,Z),Res), prec(B,(P,Res),V), eff(A,(P,Pattern),_).
-%:- inv_pattern(A,B,N), pattern_3(N,(X,Y,Z)), prec(A,(P,Pattern),V), map_dual(Pattern,(X,Y,Z),Res), eff(A,(P,Pattern),1-V), not eff(B,(P,Res),V).
+:- inv_pattern(A,B,N), pattern_3(N,(X,Y,Z)), prec(A,(P,Pattern),V), map_dual(Pattern,(X,Y,Z),Res), prec(B,(P,Res),V), eff(A,(P,Pattern),_).
+:- inv_pattern(A,B,N), pattern_3(N,(X,Y,Z)), prec(A,(P,Pattern),V), map_dual(Pattern,(X,Y,Z),Res), eff(A,(P,Pattern),1-V), not eff(B,(P,Res),V).
 
-%:- inv_pattern(A,B,N), pattern_3(N,(X,Y,Z)), map_dual(Pattern,(X,Y,Z),Res), eff(A,(P,Pattern),1-V), not eff(B,(P,Res),V).
+:- inv_pattern(A,B,N), pattern_3(N,(X,Y,Z)), map_dual(Pattern,(X,Y,Z),Res), eff(A,(P,Pattern),1-V), not eff(B,(P,Res),V).
 
 % prec(A,(P,Pattern),V)
 
@@ -255,8 +255,10 @@ inverse(A,B):- not ninv(A,B), action(A), action(B).
 #show pattern/3.
 #show p_arity/2.
 #show usedpredicates/1.
-
-
+#show labelname/2.
+#show unequal/2.
+#show p_used/1.
+#show object/1.
 %changes:
 % there cant be action tupels that have the same element at different positions (besides -1 )
 % we have a function for the length of an action tupel to better say when an action is applicable
