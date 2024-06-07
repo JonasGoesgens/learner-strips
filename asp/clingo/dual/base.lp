@@ -1,8 +1,8 @@
 % we use the same format of input as before but we use the objects that the action is used with where the order is crutial
 % constants that may be needed
-#const max_predicates   =  5.
+#const max_predicates   =  3.
 #const max_influence    =  6.% how many predicates of the same kind can be changed by one action (BSP: how many on(x,y) predicates in blocks, move needs 2)
-#const max_static       =  2.
+#const max_static       =  0.
 #const max_precondition =  6.
 
 % how to run the files
@@ -13,6 +13,8 @@
 % im aptainer:  cd /learner-strips/ also in den ordner rein
 % clingo -t 64 blocksmin3ops3.lp dual.lp
 % python3 debug_clingo.py -n 2 blocksmin3ops2.lp dual.lp
+
+%clingo --verbose=2 --opt-strategy=bb,hier -t 64,split clingo/dual/base.lp clingo/dual/constraints_blai.lp clingo/dual/optimize.lp graphs/full/blocks_world_5test.lp
 
 % get objects from labels
 object(O) :- tlabel(_,_,(O,_,_)), O > 0.
@@ -56,6 +58,8 @@ p_not_static(1..max_predicates-max_static).
 {usedstaticpredicates(N) : N = max_predicates-max_static..max_predicates}=1.
 p_used(P):- usedpredicates(N),       P=1..N.
 p_used(P):- p_static(P), usedstaticpredicates(N), P=1..N.
+p_not_used(P):- pred(P), p_static(P), usedstaticpredicates(N), P>N.
+p_not_used(max_predicates+1).
 {p_arity(P,0..2)} = 1 :- pred(P), p_used(P).
 %p_used(P) :- predicate(P), p_arity(P,_).
 
@@ -215,6 +219,8 @@ pattern_3(6,(3,2,1)).
 ninv(A,B):- tlabel((S1,S2),A,_), { tlabel((S2,S1),B,AOlist) : action_tupel(AOlist) } = 0, action(A), action(B).
 inverse(A,B):- not ninv(A,B), action(A), action(B).
 
+:- inverse(A,B), tlabel((S1,S2),A,_), not tlabel((S2,S1),B,_).
+
 % Inverses impose heavy restrictions:
 %:-  eff(A,(P,T),0),                    not prec(A,(P,T),  1),           inverse(A,B).
 %:-  eff(A,(P,_),X),                       { eff(B,(P,_),1-X)} = 0,      inverse(A,B).
@@ -223,8 +229,8 @@ inverse(A,B):- not ninv(A,B), action(A), action(B).
 
 
 
-inv_pattern(A,B,P) :- action(A), action(B), inverse(A,B), node(S1), node(S2), tlabel((S1,S2),A,Alist), tlabel((S2,S1),B,Blist), map_triplets(Alist,P,Blist).
-:- inv_pattern(A,B,P) ,inv_pattern(A,B,Q), P!=Q.
+inv_pattern(A,B,P) :- inverse(A,B), node(S1), node(S2), tlabel((S1,S2),A,Alist), tlabel((S2,S1),B,Blist), map_triplets(Alist,P,Blist).
+:- inv_pattern(A,B,P), inv_pattern(A,B,Q), P!=Q.
 :- inv_pattern(A,B,P), node(S1), node(S2), tlabel((S1,S2),A,Alist), map_triplets(Alist,P,Blist), not tlabel((S2,S1),B,Blist).
 
 
@@ -233,7 +239,12 @@ inv_pattern(A,B,P) :- action(A), action(B), inverse(A,B), node(S1), node(S2), tl
 
 :- inv_pattern(A,B,N), pattern_3(N,(X,Y,Z)), map_dual(Pattern,(X,Y,Z),Res), eff(A,(P,Pattern),1-V), not eff(B,(P,Res),V).
 
+:- inverse(A,B), { eff(A,(AP,APattern),0..1)} = N, { eff(B,(BP,BPattern),0..1)} != N.
+:- inverse(A,B), {prec(A,(AP,APattern),0..1)} = N, {prec(B,(BP,BPattern),0..1)} != N.
 % prec(A,(P,Pattern),V)
+
+%has_at_least_arity(A):- p_arity(_,X), X>=A, A=1..3.
+%has_at_least_prec(Action,Arity):- action(Action), prec(A,(P,_),_), p_arity(P,X), X>= Arity, Arity=1..3.
 
 % TODO List.
 % -what if val of S2 is not set for all differing predicates (im moment geraten)
@@ -255,10 +266,15 @@ inv_pattern(A,B,P) :- action(A), action(B), inverse(A,B), node(S1), node(S2), tl
 #show pattern/3.
 #show p_arity/2.
 #show usedpredicates/1.
+#show usedstaticpredicates/1.
 #show labelname/2.
 #show unequal/2.
 #show p_used/1.
 #show object/1.
+#show p_used/1.
+#show p_not_used/1.
+#show p_static/1. 
+#show p_not_static/1. 
 %changes:
 % there cant be action tupels that have the same element at different positions (besides -1 )
 % we have a function for the length of an action tupel to better say when an action is applicable
